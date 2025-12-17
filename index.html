@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Barbería Experience</title>
+<title>Barbería Premium</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -15,176 +15,161 @@ body{
   font-family:'Inter',system-ui;
   background:#050505;
   color:#fff;
-  overflow-x:hidden;
-}
-
-/* ===== LOGO FONDO ===== */
-.bg-logo{
-  position:fixed;
-  inset:-10%;
-  background:url('logo.jpg') center/420px no-repeat;
-  opacity:.18;
-  filter:blur(1px);
-  animation:pulse 8s ease-in-out infinite;
-  z-index:-2;
-}
-@keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.06)}
 }
 
 /* ===== HEADER ===== */
 header{
   position:fixed;
-  top:16px;
+  top:20px;
   left:50%;
   transform:translateX(-50%);
-  width:calc(100% - 32px);
-  max-width:1200px;
+  width:calc(100% - 40px);
+  max-width:1100px;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(20px);
+  border-radius:18px;
+  padding:14px 26px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 22px;
-  border-radius:18px;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(18px);
-  box-shadow:0 10px 40px rgba(0,0,0,.6);
   z-index:50;
 }
 
-header .brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:600;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  font-size:12px;
-}
-header .brand img{
-  width:34px;
-  height:34px;
-  border-radius:8px;
+header img{
+  width:36px;
+  height:36px;
+  border-radius:10px;
 }
 
 nav{
   display:flex;
-  gap:26px;
+  gap:28px;
 }
+
 nav a{
   color:#fff;
   text-decoration:none;
   font-size:13px;
   letter-spacing:.14em;
-  opacity:.75;
+  opacity:.7;
 }
 nav a:hover{opacity:1}
 
 /* ===== ESPACIO HEADER ===== */
-.spacer{height:120px}
+.top-space{height:120px}
 
 /* ===== HERO ===== */
 .hero{
-  min-height:90vh;
+  min-height:85vh;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:40px 20px;
-}
-.hero-card{
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(26px);
-  border-radius:28px;
-  padding:46px 34px;
-  max-width:440px;
-  width:100%;
-  box-shadow:0 0 70px rgba(0,0,0,.7);
   text-align:center;
 }
-.hero-card h1{
-  font-size:44px;
+
+.hero h1{
+  font-size:48px;
   font-weight:800;
   margin-bottom:16px;
 }
-.hero-card p{
-  opacity:.75;
+
+.hero p{
+  opacity:.7;
+  max-width:500px;
+  margin:0 auto 32px;
   line-height:1.6;
-  margin-bottom:30px;
 }
-.hero-card a{
-  display:block;
-  width:100%;
-  padding:16px;
-  border-radius:16px;
-  font-weight:600;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  font-size:12px;
+
+.hero a{
+  display:inline-block;
+  padding:16px 34px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.16em;
   text-decoration:none;
-  margin-bottom:14px;
 }
-.hero-card .primary{
+
+.hero .primary{
   background:#fff;
   color:#000;
+  margin-right:14px;
 }
-.hero-card .outline{
-  border:1px solid rgba(255,255,255,.35);
+
+.hero .secondary{
+  border:1px solid rgba(255,255,255,.4);
   color:#fff;
 }
 
 /* ===== EXPERIENCE ===== */
 .experience{
-  padding:120px 20px 160px;
+  padding:120px 20px;
   max-width:1200px;
   margin:auto;
 }
+
 .experience h2{
+  text-align:center;
   font-size:42px;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  margin-bottom:18px;
+  letter-spacing:.3em;
+  margin-bottom:16px;
 }
+
 .experience p{
+  text-align:center;
   opacity:.6;
-  margin-bottom:60px;
+  margin-bottom:70px;
 }
 
 /* GRID */
 .exp-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:28px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:32px;
 }
+
 .exp-card{
-  position:relative;
+  background:#0d0d0d;
   border-radius:22px;
   overflow:hidden;
-  opacity:0;
-  transform:translateY(80px) scale(.94);
-  transition:all .9s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 20px 60px rgba(0,0,0,.7);
 }
-.exp-card.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
+
 .exp-card img{
   width:100%;
-  height:100%;
+  height:260px;
   object-fit:cover;
-  transition:transform .6s ease;
 }
-.exp-card:hover img{
-  transform:scale(1.08);
+
+.exp-info{
+  padding:20px;
+}
+
+.exp-info h3{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.exp-info span{
+  font-size:13px;
+  opacity:.6;
 }
 
 /* ===== CTA FINAL ===== */
-.final-cta{
+.cta{
   text-align:center;
-  padding-bottom:160px;
+  padding:120px 20px;
 }
-.final-cta a{
+
+.cta h3{
+  font-size:34px;
+  margin-bottom:20px;
+}
+
+.cta a{
   display:inline-block;
-  padding:18px 34px;
+  padding:18px 38px;
   background:#fff;
   color:#000;
   border-radius:999px;
@@ -192,20 +177,23 @@ nav a:hover{opacity:1}
   font-size:13px;
   letter-spacing:.16em;
   text-decoration:none;
-  box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:40px 20px;
+  text-align:center;
+  opacity:.4;
+  font-size:12px;
+  border-top:1px solid rgba(255,255,255,.08);
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg-logo"></div>
-
 <header>
-  <div class="brand">
-    <img src="logo.jpg" alt="Logo">
-    <span>Barbería</span>
-  </div>
+  <img src="logo.jpg" alt="Logo">
   <nav>
     <a href="index.html">Inicio</a>
     <a href="servicios.html">Servicios</a>
@@ -213,50 +201,75 @@ nav a:hover{opacity:1}
   </nav>
 </header>
 
-<div class="spacer"></div>
+<div class="top-space"></div>
 
 <section class="hero">
-  <div class="hero-card">
-    <h1>Barbería<br>Experience</h1>
+  <div>
+    <h1>Estilo que se respeta</h1>
     <p>
-      Precisión. Estilo. Presencia.<br>
-      No es un corte, es una experiencia.
+      Cortes limpios. Detalles precisos.  
+      No es solo barbería, es presencia.
     </p>
-    <a href="servicios.html" class="primary">Ver Servicios</a>
-    <a href="#experience" class="outline">Ver Experience</a>
+    <a href="reservar.html" class="primary">Reservar ahora</a>
+    <a href="#experience" class="secondary">Ver experiencia</a>
   </div>
 </section>
 
 <section id="experience" class="experience">
-  <h2>Experience</h2>
-  <p>Momentos reales. Estilo real. Calidad visible.</p>
+  <h2>EXPERIENCE</h2>
+  <p>Clientes reales. Resultados reales.</p>
 
   <div class="exp-grid">
-    <div class="exp-card"><img src="experience1.jpg"></div>
-    <div class="exp-card"><img src="experience2.jpg"></div>
-    <div class="exp-card"><img src="experience3.jpg"></div>
-    <div class="exp-card"><img src="experience4.jpg"></div>
-    <div class="exp-card"><img src="experience5.jpg"></div>
+    <div class="exp-card">
+      <img src="experience1.jpg">
+      <div class="exp-info">
+        <h3>Fade preciso</h3>
+        <span>Cliente regular · Corte premium</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <img src="experience2.jpg">
+      <div class="exp-info">
+        <h3>Diseño personalizado</h3>
+        <span>Trabajo detallado a navaja</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <img src="experience3.jpg">
+      <div class="exp-info">
+        <h3>Barba profesional</h3>
+        <span>Perfilado y acabado limpio</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <img src="experience4.jpg">
+      <div class="exp-info">
+        <h3>Corte moderno</h3>
+        <span>Estilo urbano</span>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <img src="experience5.jpg">
+      <div class="exp-info">
+        <h3>Resultado final</h3>
+        <span>Cliente satisfecho</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="final-cta">
-  <a href="reservar.html">Reservar ahora</a>
-</div>
+<section class="cta">
+  <h3>Agenda tu experiencia</h3>
+  <a href="reservar.html">Reservar cita</a>
+</section>
 
-<script>
-/* EFECTO ENTRADA EXPERIENCE */
-const cards = document.querySelectorAll('.exp-card');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
-},{threshold:.25});
-
-cards.forEach(card=>observer.observe(card));
-</script>
+<footer>
+  © 2025 Barbería Premium. Todos los derechos reservados.
+</footer>
 
 </body>
 </html>
