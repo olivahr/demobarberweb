@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Beneficios | Barbería Premium</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',system-ui;
+  background:#050505;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  width:calc(100% - 32px);
+  max-width:1200px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 22px;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(18px);
+  border-radius:18px;
+  z-index:50;
+}
+
+header a{
+  color:#fff;
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:.14em;
+  opacity:.8;
+}
+header a:hover{opacity:1}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:140px 20px 100px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:clamp(38px,6vw,64px);
+  font-weight:800;
+  margin-bottom:22px;
+}
+
+.hero p{
+  max-width:680px;
+  margin:auto;
+  font-size:17px;
+  opacity:.75;
+  line-height:1.7;
+}
+
+/* ===== BENEFICIOS ===== */
+.section{
+  padding:120px 20px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.section h2{
+  text-align:center;
+  font-size:34px;
+  letter-spacing:.2em;
+  margin-bottom:80px;
+}
+
+.benefits{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.benefit{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:36px 30px;
+  backdrop-filter:blur(14px);
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+.benefit:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+
+.benefit h3{
+  font-size:20px;
+  margin-bottom:14px;
+}
+
+.benefit p{
+  opacity:.75;
+  line-height:1.6;
+}
+
+/* ===== HOW IT WORKS ===== */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:40px;
+  margin-top:80px;
+}
+
+.step{
+  text-align:center;
+}
+
+.step span{
+  display:block;
+  font-size:46px;
+  font-weight:800;
+  opacity:.2;
+  margin-bottom:12px;
+}
+
+.step h4{
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+.step p{
+  opacity:.7;
+  line-height:1.5;
+}
+
+/* ===== CIERRE ===== */
+.closing{
+  padding:140px 20px;
+  text-align:center;
+}
+
+.closing h2{
+  font-size:clamp(32px,5vw,52px);
+  margin-bottom:20px;
+}
+
+.closing p{
+  max-width:620px;
+  margin:auto;
+  opacity:.75;
+  line-height:1.7;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Inicio</a>
+  <a href="reservar.html">Reservar</a>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>No es solo una barbería.<br>Es un sistema.</h1>
+    <p>
+      Un sistema que trabaja por ti, organiza tus clientes,
+      aumenta tus reservas y eleva tu imagen a nivel premium.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>BENEFICIOS</h2>
+
+  <div class="benefits">
+    <div class="benefit">
+      <h3>Más reservas automáticas</h3>
+      <p>
+        Los clientes reservan solos, sin llamadas ni mensajes.
+        Tú solo te concentras en cortar.
+      </p>
+    </div>
+
+    <div class="benefit">
+      <h3>Menos tiempo perdido</h3>
+      <p>
+        Se acabó el “llego tarde”, “me confundí de hora”.
+        Todo queda claro desde el inicio.
+      </p>
+    </div>
+
+    <div class="benefit">
+      <h3>Imagen profesional</h3>
+      <p>
+        Tu barbería deja de verse informal y pasa a verse
+        como una marca sólida y confiable.
+      </p>
+    </div>
+
+    <div class="benefit">
+      <h3>Más dinero por cliente</h3>
+      <p>
+        Un sistema premium permite cobrar mejor
+        y atraer clientes que valoran tu trabajo.
+      </p>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <span>01</span>
+      <h4>El cliente entra</h4>
+      <p>Ve tu marca, tu estilo y tu profesionalismo.</p>
+    </div>
+
+    <div class="step">
+      <span>02</span>
+      <h4>Reserva fácil</h4>
+      <p>Selecciona día, hora y servicio sin fricción.</p>
+    </div>
+
+    <div class="step">
+      <span>03</span>
+      <h4>Tú solo trabajas</h4>
+      <p>El sistema se encarga del resto.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <h2>Esto no es gasto.<br>Es inversión.</h2>
+  <p>
+    Una barbería con sistema crece.
+    Una sin sistema se estanca.
+  </p>
+</section>
+
+</body>
+</html>

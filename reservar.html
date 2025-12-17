@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reservar · GPG Barber Experience</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',system-ui;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ===== FONDO LOGO ===== */
+.bg-logo{
+  position:fixed;
+  inset:-20%;
+  background:url('logo.jpg') center/420px no-repeat;
+  opacity:.25;
+  filter:blur(1.5px);
+  animation:pulse 8s ease-in-out infinite;
+  z-index:-2;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.06)}
+}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  width:calc(100% - 28px);
+  max-width:1200px;
+  z-index:50;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 22px;
+  border-radius:18px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(20px);
+}
+nav{
+  display:flex;
+  gap:26px;
+  font-size:13px;
+  letter-spacing:.14em;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.7;
+}
+nav a:hover{opacity:1}
+
+/* ===== ESPACIO ===== */
+.spacer{height:110px}
+
+/* ===== HERO ===== */
+.hero{
+  padding:80px 20px 60px;
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+}
+.hero h1{
+  font-size:48px;
+  font-weight:800;
+  margin-bottom:16px;
+}
+.hero p{
+  opacity:.7;
+  line-height:1.7;
+}
+
+/* ===== SERVICIOS ===== */
+.services{
+  max-width:1000px;
+  margin:80px auto;
+  padding:0 20px;
+}
+.services h2{
+  font-size:32px;
+  margin-bottom:40px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  text-align:center;
+}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+}
+
+.service{
+  background:rgba(255,255,255,.06);
+  border-radius:22px;
+  padding:28px;
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.12);
+  transition:transform .5s ease, box-shadow .5s ease;
+}
+.service:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+}
+.service h3{
+  font-size:22px;
+  margin-bottom:10px;
+}
+.service p{
+  opacity:.7;
+  font-size:14px;
+  line-height:1.6;
+}
+.service .meta{
+  display:flex;
+  justify-content:space-between;
+  margin-top:18px;
+  font-size:13px;
+  opacity:.85;
+}
+.service .btn{
+  margin-top:22px;
+  display:block;
+  text-align:center;
+  padding:14px;
+  border-radius:14px;
+  background:#fff;
+  color:#000;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:12px;
+  text-decoration:none;
+}
+
+/* ===== INFO ===== */
+.info{
+  max-width:800px;
+  margin:100px auto;
+  padding:0 20px;
+  text-align:center;
+}
+.info h3{
+  font-size:26px;
+  margin-bottom:14px;
+}
+.info p{
+  opacity:.65;
+  line-height:1.7;
+}
+
+/* ===== BOTÓN WHATSAPP (TEMPORAL) ===== */
+.reserve-float{
+  position:fixed;
+  bottom:26px;
+  right:22px;
+  background:#fff;
+  color:#000;
+  padding:14px 22px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:600;
+  z-index:80;
+  text-decoration:none;
+  box-shadow:0 16px 40px rgba(0,0,0,.6);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:60px 20px;
+  text-align:center;
+  opacity:.45;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-logo"></div>
+
+<header>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="reservar.html">Reservar</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+</header>
+
+<div class="spacer"></div>
+
+<section class="hero">
+  <h1>Reserva tu Experiencia</h1>
+  <p>
+    No es solo un corte.  
+    Es tiempo reservado, atención total y presencia premium.
+  </p>
+</section>
+
+<section class="services">
+  <h2>Servicios</h2>
+
+  <div class="service-grid">
+
+    <div class="service">
+      <h3>Corte Clásico</h3>
+      <p>Corte limpio, preciso y profesional. Ideal para mantener presencia.</p>
+      <div class="meta">
+        <span>⏱ 30 min</span>
+        <span>$30</span>
+      </div>
+      <a href="#" class="btn">Reservar</a>
+    </div>
+
+    <div class="service">
+      <h3>Fade Premium</h3>
+      <p>Degradado detallado, acabado perfecto y estilo moderno.</p>
+      <div class="meta">
+        <span>⏱ 45 min</span>
+        <span>$40</span>
+      </div>
+      <a href="#" class="btn">Reservar</a>
+    </div>
+
+    <div class="service">
+      <h3>Corte + Barba</h3>
+      <p>Servicio completo para una imagen sólida y cuidada.</p>
+      <div class="meta">
+        <span>⏱ 60 min</span>
+        <span>$55</span>
+      </div>
+      <a href="#" class="btn">Reservar</a>
+    </div>
+
+    <div class="service">
+      <h3>VIP Experience</h3>
+      <p>Tiempo extendido, detalles finos y trato exclusivo.</p>
+      <div class="meta">
+        <span>⏱ 90 min</span>
+        <span>$80</span>
+      </div>
+      <a href="#" class="btn">Reservar</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="info">
+  <h3>¿Cómo funciona?</h3>
+  <p>
+    Selecciona tu servicio, elige tu horario  
+    y asegura tu espacio sin llamadas ni esperas.
+  </p>
+</section>
+
+<a href="https://wa.me/17862902388" class="reserve-float">
+  Reservar por WhatsApp
+</a>
+
+<footer>
+  © GPG Barber Experience · Reservas inteligentes
+</footer>
+
+</body>
+</html>
