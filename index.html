@@ -2,13 +2,15 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Barbería Premium · Reservas Inteligentes</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbería Experience</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:'Inter',system-ui;
   background:#050505;
@@ -16,274 +18,245 @@ body{
   overflow-x:hidden;
 }
 
+/* ===== LOGO FONDO ===== */
+.bg-logo{
+  position:fixed;
+  inset:-10%;
+  background:url('logo.jpg') center/420px no-repeat;
+  opacity:.18;
+  filter:blur(1px);
+  animation:pulse 8s ease-in-out infinite;
+  z-index:-2;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.06)}
+}
+
 /* ===== HEADER ===== */
 header{
-  position:fixed; top:18px; left:50%;
+  position:fixed;
+  top:16px;
+  left:50%;
   transform:translateX(-50%);
-  width:calc(100% - 36px); max-width:1200px;
-  z-index:100;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:14px 22px; border-radius:18px;
+  width:calc(100% - 32px);
+  max-width:1200px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 22px;
+  border-radius:18px;
   background:rgba(0,0,0,.55);
   backdrop-filter:blur(18px);
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+  z-index:50;
 }
-header img{height:36px}
-nav{display:flex; gap:28px; font-size:12px; letter-spacing:.2em; text-transform:uppercase}
-nav a{color:#fff; text-decoration:none; opacity:.75}
+
+header .brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-size:12px;
+}
+header .brand img{
+  width:34px;
+  height:34px;
+  border-radius:8px;
+}
+
+nav{
+  display:flex;
+  gap:26px;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:.14em;
+  opacity:.75;
+}
 nav a:hover{opacity:1}
+
+/* ===== ESPACIO HEADER ===== */
 .spacer{height:120px}
 
 /* ===== HERO ===== */
 .hero{
-  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   padding:40px 20px;
-  background:
-    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
-    radial-gradient(800px 400px at 50% 0%, rgba(255,255,255,.06), transparent 60%);
 }
-.hero-content{max-width:900px; text-align:center}
-.hero-content h1{
-  font-size:clamp(42px,6vw,78px);
-  font-weight:800; letter-spacing:-.03em; margin-bottom:22px
+.hero-card{
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(26px);
+  border-radius:28px;
+  padding:46px 34px;
+  max-width:440px;
+  width:100%;
+  box-shadow:0 0 70px rgba(0,0,0,.7);
+  text-align:center;
 }
-.hero-content p{
-  font-size:18px; opacity:.85; line-height:1.7; margin-bottom:36px
+.hero-card h1{
+  font-size:44px;
+  font-weight:800;
+  margin-bottom:16px;
 }
-.hero-actions{display:flex; gap:18px; justify-content:center; flex-wrap:wrap}
-.btn{
-  padding:16px 30px; border-radius:999px; font-size:12px;
-  letter-spacing:.22em; text-transform:uppercase; text-decoration:none; font-weight:600
+.hero-card p{
+  opacity:.75;
+  line-height:1.6;
+  margin-bottom:30px;
 }
-.btn-primary{background:#fff; color:#000}
-.btn-outline{border:1px solid rgba(255,255,255,.35); color:#fff}
-
-/* ===== SECTIONS ===== */
-section{max-width:1200px; margin:auto; padding:150px 20px}
-.section-title{font-size:44px; font-weight:800; margin-bottom:16px}
-.section-sub{opacity:.65; max-width:680px; margin-bottom:64px; line-height:1.7}
-
-/* ===== SERVICES PREVIEW ===== */
-.services-grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:28px
+.hero-card a{
+  display:block;
+  width:100%;
+  padding:16px;
+  border-radius:16px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size:12px;
+  text-decoration:none;
+  margin-bottom:14px;
 }
-.service{
-  background:#0f0f0f; border-radius:26px; padding:30px;
-  border:1px solid rgba(255,255,255,.08)
+.hero-card .primary{
+  background:#fff;
+  color:#000;
 }
-.service h3{margin-bottom:8px}
-.service p{opacity:.7; line-height:1.6}
-.service span{display:block; margin-top:14px; opacity:.6}
+.hero-card .outline{
+  border:1px solid rgba(255,255,255,.35);
+  color:#fff;
+}
 
 /* ===== EXPERIENCE ===== */
-.experience-grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:32px
+.experience{
+  padding:120px 20px 160px;
+  max-width:1200px;
+  margin:auto;
+}
+.experience h2{
+  font-size:42px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.experience p{
+  opacity:.6;
+  margin-bottom:60px;
+}
+
+/* GRID */
+.exp-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:28px;
 }
 .exp-card{
-  border-radius:28px; overflow:hidden; background:#0f0f0f
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(80px) scale(.94);
+  transition:all .9s cubic-bezier(.2,.8,.2,1);
 }
-.exp-card img{width:100%; height:260px; object-fit:cover}
-.exp-card div{padding:28px}
-.exp-card h4{margin-bottom:10px}
-.exp-card p{opacity:.7; line-height:1.6}
+.exp-card.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+.exp-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+.exp-card:hover img{
+  transform:scale(1.08);
+}
 
-/* ===== BENEFITS ===== */
-.benefit-grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:26px
-}
-.benefit{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:24px; padding:34px
-}
-.benefit h4{margin-bottom:12px}
-.benefit p{opacity:.7; line-height:1.6}
-
-/* ===== HOW IT WORKS ===== */
-.steps{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:32px
-}
-.step{background:#0f0f0f; border-radius:26px; padding:34px}
-.step span{font-size:12px; letter-spacing:.2em; opacity:.5}
-.step h4{margin:14px 0}
-
-/* ===== FINAL CTA ===== */
+/* ===== CTA FINAL ===== */
 .final-cta{
-  text-align:center; padding:180px 20px;
-  background:linear-gradient(#050505,#000)
+  text-align:center;
+  padding-bottom:160px;
 }
-.final-cta h2{font-size:48px; margin-bottom:20px}
-.final-cta p{opacity:.7; margin-bottom:36px}
-
-/* ===== FOOTER ===== */
-footer{padding:50px 20px; text-align:center; font-size:13px; opacity:.45}
+.final-cta a{
+  display:inline-block;
+  padding:18px 34px;
+  background:#fff;
+  color:#000;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.16em;
+  text-decoration:none;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
 </style>
 </head>
 
 <body>
 
+<div class="bg-logo"></div>
+
 <header>
-  <img src="logo.jpg" alt="Barbería">
+  <div class="brand">
+    <img src="logo.jpg" alt="Logo">
+    <span>Barbería</span>
+  </div>
   <nav>
     <a href="index.html">Inicio</a>
+    <a href="servicios.html">Servicios</a>
     <a href="reservar.html">Reservar</a>
-    <a href="beneficios.html">Beneficios</a>
-    <a href="contacto.html">Contacto</a>
   </nav>
 </header>
 
 <div class="spacer"></div>
 
 <section class="hero">
-  <div class="hero-content">
-    <h1>Cortes premium.<br>Reservas sin llamadas.</h1>
+  <div class="hero-card">
+    <h1>Barbería<br>Experience</h1>
     <p>
-      Agenda tu cita en segundos y vive una experiencia
-      diseñada para clientes que saben lo que quieren.
+      Precisión. Estilo. Presencia.<br>
+      No es un corte, es una experiencia.
     </p>
-    <div class="hero-actions">
-      <a href="reservar.html" class="btn btn-primary">Reservar ahora</a>
-      <a href="#services" class="btn btn-outline">Ver servicios</a>
-    </div>
+    <a href="servicios.html" class="primary">Ver Servicios</a>
+    <a href="#experience" class="outline">Ver Experience</a>
   </div>
 </section>
 
-<section id="services">
-  <h2 class="section-title">Servicios destacados</h2>
-  <p class="section-sub">
-    Servicios claros, precios transparentes y una experiencia
-    que eleva el valor de cada visita.
-  </p>
+<section id="experience" class="experience">
+  <h2>Experience</h2>
+  <p>Momentos reales. Estilo real. Calidad visible.</p>
 
-  <div class="services-grid">
-    <div class="service">
-      <h3>Corte clásico</h3>
-      <p>Limpio, preciso y profesional.</p>
-      <span>30 min</span>
-    </div>
-    <div class="service">
-      <h3>Fade premium</h3>
-      <p>Detalle y acabado de alto nivel.</p>
-      <span>40 min</span>
-    </div>
-    <div class="service">
-      <h3>Corte + barba</h3>
-      <p>Servicio completo, una sola reserva.</p>
-      <span>45 min</span>
-    </div>
-    <div class="service">
-      <h3>Servicio VIP</h3>
-      <p>Atención exclusiva y prioridad.</p>
-      <span>60 min</span>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <h2 class="section-title">La experiencia lo es todo</h2>
-  <p class="section-sub">
-    Desde el primer clic, el cliente siente orden,
-    profesionalismo y nivel.
-  </p>
-
-  <div class="experience-grid">
-    <div class="exp-card">
-      <img src="experience1.jpg">
-      <div>
-        <h4>Reserva inmediata</h4>
-        <p>Sin llamadas ni esperas innecesarias.</p>
-      </div>
-    </div>
-    <div class="exp-card">
-      <img src="experience2.jpg">
-      <div>
-        <h4>Agenda organizada</h4>
-        <p>Horarios claros y control total.</p>
-      </div>
-    </div>
-    <div class="exp-card">
-      <img src="experience3.jpg">
-      <div>
-        <h4>Imagen profesional</h4>
-        <p>Una barbería que se ve y se siente premium.</p>
-      </div>
-    </div>
-    <div class="exp-card">
-      <img src="experience4.jpg">
-      <div>
-        <h4>Clientes recurrentes</h4>
-        <p>El sistema incentiva a volver.</p>
-      </div>
-    </div>
-    <div class="exp-card">
-      <img src="experience5.jpg">
-      <div>
-        <h4>Automatización</h4>
-        <p>Menos trabajo manual, más foco en cortar.</p>
-      </div>
-    </div>
-    <div class="exp-card">
-      <img src="experience6.jpg">
-      <div>
-        <h4>Crecimiento real</h4>
-        <p>Más reservas, menos huecos vacíos.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2 class="section-title">Beneficios que generan más dinero</h2>
-  <p class="section-sub">
-    Un sistema pensado para fidelizar y aumentar el ticket promedio.
-  </p>
-
-  <div class="benefit-grid">
-    <div class="benefit">
-      <h4>Recompensas por frecuencia</h4>
-      <p>Descuentos automáticos a clientes que vuelven.</p>
-    </div>
-    <div class="benefit">
-      <h4>Cupones mensuales</h4>
-      <p>Promociones que llenan la agenda.</p>
-    </div>
-    <div class="benefit">
-      <h4>Menos cancelaciones</h4>
-      <p>Confirmaciones claras y recordatorios.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2 class="section-title">Cómo funciona</h2>
-
-  <div class="steps">
-    <div class="step">
-      <span>PASO 01</span>
-      <h4>Elige el servicio</h4>
-      <p>El cliente selecciona lo que necesita.</p>
-    </div>
-    <div class="step">
-      <span>PASO 02</span>
-      <h4>Reserva online</h4>
-      <p>Confirmación inmediata.</p>
-    </div>
-    <div class="step">
-      <span>PASO 03</span>
-      <h4>Negocio en control</h4>
-      <p>Agenda, pagos y clientes organizados.</p>
-    </div>
+  <div class="exp-grid">
+    <div class="exp-card"><img src="experience1.jpg"></div>
+    <div class="exp-card"><img src="experience2.jpg"></div>
+    <div class="exp-card"><img src="experience3.jpg"></div>
+    <div class="exp-card"><img src="experience4.jpg"></div>
+    <div class="exp-card"><img src="experience5.jpg"></div>
   </div>
 </section>
 
 <div class="final-cta">
-  <h2>Convierte tu barbería<br>en un sistema profesional</h2>
-  <p>Más reservas, más orden y más ingresos.</p>
-  <a href="contacto.html" class="btn btn-primary">Solicitar este sistema</a>
+  <a href="reservar.html">Reservar ahora</a>
 </div>
 
-<footer>
-  © Barbería Premium · Sistema de Reservas · Demo
-</footer>
+<script>
+/* EFECTO ENTRADA EXPERIENCE */
+const cards = document.querySelectorAll('.exp-card');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:.25});
+
+cards.forEach(card=>observer.observe(card));
+</script>
 
 </body>
 </html>
