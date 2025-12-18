@@ -2,8 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Servicios | Barbería</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Servicios | Barbería Premium</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -12,7 +13,7 @@
 
 body{
   font-family:'Inter',system-ui;
-  background:#050505;
+  background:#000;
   color:#fff;
   overflow-x:hidden;
 }
@@ -20,115 +21,147 @@ body{
 /* ===== HEADER ===== */
 header{
   position:fixed;
-  top:16px;
+  top:18px;
   left:50%;
   transform:translateX(-50%);
-  width:calc(100% - 32px);
+  width:calc(100% - 36px);
   max-width:1100px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 22px;
   background:rgba(0,0,0,.55);
   backdrop-filter:blur(18px);
-  border-radius:18px;
+  border-radius:20px;
+  padding:14px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   z-index:50;
 }
 
-header a{
+.brand img{
+  width:34px;
+  height:34px;
+  border-radius:8px;
+}
+
+nav{
+  display:flex;
+  gap:26px;
+  font-size:13px;
+  letter-spacing:.12em;
+}
+
+nav a{
   color:#fff;
   text-decoration:none;
-  font-size:13px;
-  letter-spacing:.14em;
-  opacity:.8;
+  opacity:.7;
 }
-header a:hover{opacity:1}
+
+nav a:hover{opacity:1}
 
 /* ===== ESPACIO HEADER ===== */
-.spacer{height:110px}
+.spacer{height:130px}
 
-/* ===== TITULO ===== */
-.title{
+/* ===== HERO ===== */
+.hero{
+  padding:50px 20px 90px;
   text-align:center;
-  padding:40px 20px 80px;
-}
-.title h1{
-  font-size:clamp(34px,5vw,54px);
-  font-weight:800;
-}
-.title p{
-  opacity:.7;
-  margin-top:14px;
 }
 
-/* ===== LISTA SERVICIOS (APP STYLE) ===== */
-.services{
-  max-width:900px;
+.hero h1{
+  font-size:34px;
+  letter-spacing:.28em;
+  margin-bottom:16px;
+}
+
+.hero p{
+  opacity:.65;
+  max-width:520px;
   margin:auto;
-  padding:0 20px 140px;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+  line-height:1.6;
+}
+
+/* ===== SERVICIOS ===== */
+.section{
+  max-width:1100px;
+  margin:auto;
+  padding:20px 20px 100px;
 }
 
 .service{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:22px 24px;
-  border-radius:22px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(14px);
-  transition:transform .3s ease, box-shadow .3s ease;
-  cursor:pointer;
-}
-.service:hover{
-  transform:translateY(-4px);
-  box-shadow:0 14px 40px rgba(0,0,0,.6);
+  display:grid;
+  grid-template-columns:1fr;
+  gap:22px;
+  background:rgba(255,255,255,.04);
+  border-radius:26px;
+  padding:26px;
+  margin-bottom:26px;
 }
 
-.service-info{
-  display:flex;
-  flex-direction:column;
+.service h3{
+  font-size:16px;
+  letter-spacing:.18em;
 }
-.service-info h3{
-  font-size:18px;
-  margin-bottom:6px;
-}
-.service-info span{
-  font-size:13px;
+
+.service p{
   opacity:.65;
+  line-height:1.6;
+  font-size:14px;
 }
 
 .service-meta{
-  text-align:right;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:10px;
 }
-.service-meta strong{
-  font-size:16px;
-}
-.service-meta small{
-  display:block;
+
+.time{
   font-size:12px;
   opacity:.6;
-  margin-top:4px;
+}
+
+.price{
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.08em;
 }
 
 /* ===== CTA ===== */
 .cta{
-  position:fixed;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
+  padding:80px 20px;
+  text-align:center;
+}
+
+.cta h2{
+  font-size:26px;
+  letter-spacing:.22em;
+  margin-bottom:14px;
+}
+
+.cta p{
+  opacity:.6;
+  margin-bottom:28px;
+}
+
+.cta a{
+  display:inline-block;
+  padding:16px 34px;
+  border-radius:999px;
   background:#fff;
   color:#000;
-  padding:16px 28px;
-  border-radius:999px;
-  font-weight:700;
-  font-size:13px;
+  font-size:12px;
   letter-spacing:.14em;
+  text-transform:uppercase;
   text-decoration:none;
-  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  font-weight:600;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:40px 20px;
+  text-align:center;
+  font-size:12px;
+  opacity:.45;
+  border-top:1px solid rgba(255,255,255,.08);
 }
 </style>
 </head>
@@ -136,84 +169,94 @@ header a:hover{opacity:1}
 <body>
 
 <header>
-  <a href="index.html">← Inicio</a>
-  <a href="reservar.html">Reservar</a>
+  <div class="brand">
+    <img src="logo.jpg" alt="Logo">
+  </div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="reservar.html">Reservar</a>
+  </nav>
 </header>
 
 <div class="spacer"></div>
 
-<section class="title">
-  <h1>Servicios</h1>
-  <p>Selecciona tu estilo. Precisión, técnica y presencia.</p>
+<section class="hero">
+  <h1>SERVICIOS</h1>
+  <p>
+    Cada servicio está diseñado para elevar tu imagen.  
+    No trabajamos rápido. Trabajamos bien.
+  </p>
 </section>
 
-<section class="services">
+<section class="section">
 
-  <div class="service" onclick="goReserve('High Fade')">
-    <div class="service-info">
-      <h3>High Fade</h3>
-      <span>Degradado alto · limpio y marcado</span>
-    </div>
+  <div class="service">
+    <h3>CORTE MODERNO</h3>
+    <p>
+      Fade limpio, estructura precisa y estilo urbano adaptado a tu rostro.
+    </p>
     <div class="service-meta">
-      <strong>$30</strong>
-      <small>45 min</small>
+      <span class="time">45 minutos</span>
+      <span class="price">$30</span>
     </div>
   </div>
 
-  <div class="service" onclick="goReserve('Medium Fade')">
-    <div class="service-info">
-      <h3>Medium Fade</h3>
-      <span>Equilibrio clásico · moderno</span>
-    </div>
+  <div class="service">
+    <h3>BARBA PROFESIONAL</h3>
+    <p>
+      Perfilado exacto, líneas definidas y acabado pulido.
+    </p>
     <div class="service-meta">
-      <strong>$28</strong>
-      <small>40 min</small>
+      <span class="time">30 minutos</span>
+      <span class="price">$20</span>
     </div>
   </div>
 
-  <div class="service" onclick="goReserve('Low Fade')">
-    <div class="service-info">
-      <h3>Low Fade</h3>
-      <span>Discreto · elegante</span>
-    </div>
+  <div class="service">
+    <h3>CORTE + BARBA</h3>
+    <p>
+      Servicio completo para una imagen sólida y bien presentada.
+    </p>
     <div class="service-meta">
-      <strong>$25</strong>
-      <small>35 min</small>
+      <span class="time">60 minutos</span>
+      <span class="price">$45</span>
     </div>
   </div>
 
-  <div class="service" onclick="goReserve('Beard Trim')">
-    <div class="service-info">
-      <h3>Barba</h3>
-      <span>Perfilado · cuidado profesional</span>
-    </div>
+  <div class="service">
+    <h3>DISEÑO PERSONALIZADO</h3>
+    <p>
+      Líneas, símbolos y detalles únicos creados para ti.
+    </p>
     <div class="service-meta">
-      <strong>$18</strong>
-      <small>25 min</small>
+      <span class="time">15 minutos</span>
+      <span class="price">$10+</span>
     </div>
   </div>
 
-  <div class="service" onclick="goReserve('Combo Fade + Beard')">
-    <div class="service-info">
-      <h3>Fade + Barba</h3>
-      <span>Servicio completo</span>
-    </div>
+  <div class="service">
+    <h3>EXPERIENCIA VIP</h3>
+    <p>
+      Atención exclusiva, sin prisas, con máximo detalle y comodidad.
+    </p>
     <div class="service-meta">
-      <strong>$40</strong>
-      <small>60 min</small>
+      <span class="time">90 minutos</span>
+      <span class="price">$70</span>
     </div>
   </div>
 
 </section>
 
-<a href="reservar.html" class="cta">Reservar ahora</a>
+<section class="cta">
+  <h2>RESERVA TU ESPACIO</h2>
+  <p>Los mejores cortes no se improvisan. Se reservan.</p>
+  <a href="reservar.html">Reservar ahora</a>
+</section>
 
-<script>
-function goReserve(service){
-  localStorage.setItem("servicioSeleccionado", service);
-  window.location.href = "reservar.html";
-}
-</script>
+<footer>
+  © 2025 Barbería Premium · Todos los derechos reservados
+</footer>
 
 </body>
 </html>
