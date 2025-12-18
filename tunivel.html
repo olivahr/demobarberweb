@@ -10,149 +10,132 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-  --glass:rgba(255,255,255,.07);
-  --line:rgba(255,255,255,.14);
-  --basic:#666;
-  --pro:#ffd36a;
-  --vip:#ffffff;
+  --glass:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.18);
+  --vip:#fff;
 }
 
 body{
   font-family:'Inter',system-ui;
-  background:
-    radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.10), transparent 65%),
-    radial-gradient(800px 400px at 50% 100%, rgba(255,255,255,.06), transparent 60%),
-    #000;
   color:#fff;
+  min-height:100vh;
+  background:#000;
   overflow-x:hidden;
 }
 
-/* ===== TOP BAR ===== */
-.topbar{
+/* ===== FONDO REACTIVO ===== */
+body.vip{
+  background:
+    radial-gradient(900px 500px at 50% 0%, rgba(255,255,255,.25), transparent 65%),
+    radial-gradient(600px 400px at 50% 100%, rgba(255,255,255,.15), transparent 60%),
+    #000;
+  animation:bgPulse 6s ease-in-out infinite;
+}
+@keyframes bgPulse{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.15)}
+}
+
+/* ===== TOP ===== */
+.top{
   position:fixed;
   top:18px;
   left:50%;
   transform:translateX(-50%);
   width:calc(100% - 36px);
   max-width:1100px;
-  padding:14px 18px;
-  border-radius:18px;
+  padding:14px 20px;
   background:rgba(0,0,0,.65);
   backdrop-filter:blur(18px);
   border:1px solid var(--line);
+  border-radius:18px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   z-index:50;
 }
-
-.topbar a{
+.top a{
   color:#fff;
   text-decoration:none;
   letter-spacing:.14em;
   font-size:12px;
   opacity:.75;
 }
-.topbar a:hover{opacity:1}
-
-.stats span{
+.top span{
+  font-size:11px;
+  letter-spacing:.14em;
   padding:8px 12px;
   border-radius:999px;
   background:var(--glass);
   border:1px solid var(--line);
-  font-size:11px;
-  letter-spacing:.12em;
 }
 
-/* ===== SPACER ===== */
-.spacer{height:120px}
-
 /* ===== MAIN ===== */
+.spacer{height:120px}
 main{
   max-width:1100px;
   margin:auto;
   padding:20px;
-  animation:fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(25px)}
-  to{opacity:1; transform:translateY(0)}
 }
 
 h1{
-  font-size:44px;
+  font-size:46px;
   letter-spacing:.32em;
+  margin-bottom:6px;
 }
 
 .subtitle{
   opacity:.75;
-  font-size:14px;
   margin-bottom:40px;
 }
 
-/* ===== XP BOX ===== */
-.xp-box{
+/* ===== XP HUD ===== */
+.hud{
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:30px;
+  border-radius:32px;
   padding:30px;
-  margin-bottom:45px;
-  box-shadow:0 0 120px rgba(255,255,255,.15);
+  margin-bottom:50px;
   position:relative;
   overflow:hidden;
 }
 
-.xp-box.vip::after{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background:
-    radial-gradient(500px 200px at 50% 0%, rgba(255,255,255,.35), transparent 65%);
-  animation:vipGlow 3.5s ease-in-out infinite;
-  pointer-events:none;
-}
-
-@keyframes vipGlow{
-  0%{opacity:.4}
-  50%{opacity:.9}
-  100%{opacity:.4}
+.hud.vip{
+  box-shadow:0 0 180px rgba(255,255,255,.8);
 }
 
 .rank{
   font-weight:800;
-  letter-spacing:.22em;
+  letter-spacing:.28em;
   margin-bottom:12px;
 }
 
-.progress{
+.xp-number{
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.bar{
   height:16px;
-  background:rgba(255,255,255,.15);
+  background:rgba(255,255,255,.18);
   border-radius:999px;
   overflow:hidden;
 }
 
-.progress span{
-  display:block;
+.fill{
   height:100%;
   width:0%;
   background:linear-gradient(90deg,#fff,#ddd,#fff);
-  transition:width 1.6s cubic-bezier(.2,.9,.2,1);
-  box-shadow:0 0 45px rgba(255,255,255,.6);
-}
-
-.xp-text{
-  margin-top:12px;
-  font-size:12px;
-  opacity:.8;
+  box-shadow:0 0 45px rgba(255,255,255,.9);
+  transition:width .8s cubic-bezier(.2,.9,.2,1);
 }
 
 /* ===== LEVELS ===== */
 .levels{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-  margin-bottom:55px;
+  gap:26px;
+  margin-bottom:60px;
 }
 
 .level{
@@ -160,179 +143,122 @@ h1{
   border:1px solid var(--line);
   border-radius:28px;
   padding:26px;
-  transition:transform .45s ease, box-shadow .45s ease;
-  position:relative;
-  overflow:hidden;
+  transition:all .4s ease;
 }
-
-.level:hover{transform:translateY(-8px)}
 
 .level.active{
-  box-shadow:0 0 120px rgba(255,255,255,.15);
+  box-shadow:0 0 120px rgba(255,255,255,.4);
 }
 
-/* PRO */
-.level.pro.active{
-  outline:2px solid var(--pro);
-  box-shadow:0 0 90px rgba(255,211,106,.35);
-}
-
-/* VIP */
 .level.vip.active{
-  outline:2px solid var(--vip);
   box-shadow:
-    0 0 160px rgba(255,255,255,.6),
-    inset 0 0 40px rgba(255,255,255,.15);
-  animation:vipPulse 2.8s ease-in-out infinite;
+    0 0 200px rgba(255,255,255,1),
+    inset 0 0 60px rgba(255,255,255,.25);
+  animation:vipGlow 2.5s infinite;
 }
-
-@keyframes vipPulse{
-  0%{box-shadow:0 0 120px rgba(255,255,255,.35)}
-  50%{box-shadow:0 0 200px rgba(255,255,255,.8)}
-  100%{box-shadow:0 0 120px rgba(255,255,255,.35)}
+@keyframes vipGlow{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.03)}
 }
 
 .level h3{
   letter-spacing:.26em;
-  font-size:14px;
-  margin-bottom:14px;
-}
-
-.level ul{
-  list-style:none;
-  font-size:13px;
-  opacity:.78;
-  line-height:1.65;
+  margin-bottom:12px;
 }
 
 /* ===== MISSIONS ===== */
 .missions{
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:30px;
+  border-radius:32px;
   padding:30px;
-}
-
-.missions h2{
-  font-size:14px;
-  letter-spacing:.28em;
-  margin-bottom:20px;
 }
 
 .mission{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px;
+  padding:22px;
   border-radius:22px;
   border:1px solid var(--line);
   margin-bottom:18px;
-  transition:transform .3s ease;
+  transition:transform .25s ease;
 }
-
-.mission:hover{transform:translateX(6px)}
-
-.mission span{
-  font-size:13px;
-  opacity:.8;
-}
+.mission:hover{transform:translateX(10px)}
 
 .mission button{
   background:#fff;
   color:#000;
   border:none;
-  padding:14px 24px;
+  padding:14px 26px;
   border-radius:999px;
-  font-size:11px;
   font-weight:800;
   letter-spacing:.14em;
   cursor:pointer;
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-
-.mission button:active{
-  transform:scale(.95);
-  box-shadow:0 0 25px rgba(255,255,255,.8);
 }
 
 /* ===== FOOTER ===== */
 footer{
+  margin-top:70px;
+  padding:30px;
   text-align:center;
   font-size:12px;
   opacity:.45;
-  margin-top:70px;
   border-top:1px solid var(--line);
-  padding:34px 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
+<div class="top">
   <a href="index.html">← INICIO</a>
-  <div class="stats">
-    <span>XP: <b id="xp">0</b></span>
-    <span>RACHA: <b id="racha">0</b></span>
-  </div>
+  <span>XP: <b id="xp">0</b></span>
 </div>
 
 <div class="spacer"></div>
 
 <main>
   <h1>TU NIVEL</h1>
-  <div class="subtitle">
-    Aquí no se viene solo a cortarse. Aquí se sube de estatus.
-  </div>
+  <div class="subtitle">Esto es un juego. El que viene más, manda más.</div>
 
-  <div class="xp-box" id="xpBox">
+  <div class="hud" id="hud">
     <div class="rank" id="rank">BÁSICO</div>
-    <div class="progress"><span id="bar"></span></div>
-    <div class="xp-text" id="xpText"></div>
+    <div class="xp-number"><span id="xpCounter">0</span> XP</div>
+    <div class="bar"><div class="fill" id="fill"></div></div>
   </div>
 
   <div class="levels">
     <div class="level" id="lv1">
       <h3>BÁSICO</h3>
-      <ul>
-        <li>• Acceso al sistema</li>
-      </ul>
+      <p>Solo acceso al sistema</p>
     </div>
 
-    <div class="level pro" id="lv2">
+    <div class="level" id="lv2">
       <h3>PRO</h3>
-      <ul>
-        <li>• Prioridad para reservar</li>
-        <li>• Prioridad en días festivos</li>
-      </ul>
+      <p>Prioridad para reservar (festivos incluidos)</p>
     </div>
 
     <div class="level vip" id="lv3">
       <h3>VIP</h3>
-      <ul>
-        <li>• Prioridad total</li>
-        <li>• 6 cortes gratis al año</li>
-        <li>• Atención VIP (agua / café)</li>
-      </ul>
+      <p>Todos los beneficios + 6 cortes gratis/año</p>
     </div>
   </div>
 
   <div class="missions">
-    <h2>MISIONES</h2>
-
     <div class="mission">
       <span>Propina opcional (+20 XP)</span>
-      <button onclick="gain(20)">RECLAMAR</button>
+      <button onclick="addXP(20)">RECLAMAR</button>
     </div>
 
     <div class="mission">
       <span>Reservar y asistir 3 veces en un mes (+140 XP)</span>
-      <button onclick="gain(140)">RECLAMAR</button>
+      <button onclick="addXP(140)">RECLAMAR</button>
     </div>
 
     <div class="mission">
-      <span>Mantener tu nivel activo este mes (+40 XP)</span>
-      <button onclick="gain(40)">RECLAMAR</button>
+      <span>Mantener tu nivel activo (+40 XP)</span>
+      <button onclick="addXP(40)">RECLAMAR</button>
     </div>
   </div>
 </main>
@@ -342,49 +268,55 @@ footer{
 </footer>
 
 <script>
-let data = JSON.parse(localStorage.getItem("nivelBarber")) || {
-  xp: 0,
-  racha: 0
-};
+let state = JSON.parse(localStorage.getItem("nivelVIP")) || { xp:0 };
 
-function update(){
-  document.getElementById("xp").textContent = data.xp;
-  document.getElementById("racha").textContent = data.racha;
+function animateXP(from,to){
+  let current = from;
+  const step = Math.max(1, Math.floor((to-from)/30));
+  const interval = setInterval(()=>{
+    current += step;
+    if(current >= to){
+      current = to;
+      clearInterval(interval);
+    }
+    document.getElementById("xpCounter").textContent = current;
+  },20);
+}
 
-  let rank = "BÁSICO";
-  let percent = Math.min(100, data.xp / 3.2);
+function render(){
+  const xp = state.xp;
+  document.getElementById("xp").textContent = xp;
+  animateXP(parseInt(document.getElementById("xpCounter").textContent), xp);
 
+  let percent = Math.min(100, xp/3.2);
+  document.getElementById("fill").style.width = percent+"%";
+
+  document.body.classList.remove("vip");
   document.querySelectorAll(".level").forEach(l=>l.classList.remove("active"));
-  document.getElementById("xpBox").classList.remove("vip");
+  document.getElementById("hud").classList.remove("vip");
 
-  if(data.xp >= 320){
-    rank = "VIP";
+  if(xp >= 320){
+    document.getElementById("rank").textContent = "VIP";
     document.getElementById("lv3").classList.add("active");
-    document.getElementById("xpBox").classList.add("vip");
-  }else if(data.xp >= 180){
-    rank = "PRO";
+    document.body.classList.add("vip");
+    document.getElementById("hud").classList.add("vip");
+  }else if(xp >= 180){
+    document.getElementById("rank").textContent = "PRO";
     document.getElementById("lv2").classList.add("active");
   }else{
+    document.getElementById("rank").textContent = "BÁSICO";
     document.getElementById("lv1").classList.add("active");
   }
 
-  document.getElementById("rank").textContent = rank;
-  document.getElementById("bar").style.width = percent + "%";
-  document.getElementById("xpText").textContent =
-    rank === "VIP"
-      ? "ESTATUS VIP ACTIVO · Beneficios desbloqueados"
-      : "Sigue jugando para subir de nivel";
-
-  localStorage.setItem("nivelBarber", JSON.stringify(data));
+  localStorage.setItem("nivelVIP", JSON.stringify(state));
 }
 
-function gain(x){
-  data.xp += x;
-  if(x >= 140) data.racha++;
-  update();
+function addXP(x){
+  state.xp += x;
+  render();
 }
 
-update();
+render();
 </script>
 
 </body>
