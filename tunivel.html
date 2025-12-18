@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Tu Nivel · Barbería Premium</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#000;
+  --card:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.12);
+  --muted:rgba(255,255,255,.62);
+  --muted2:rgba(255,255,255,.42);
+  --white:#fff;
+  --black:#000;
+}
+
+html,body{height:100%}
+body{
+  font-family:'Inter',system-ui;
+  background: radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
+              radial-gradient(900px 500px at 15% 85%, rgba(255,255,255,.07), transparent 65%),
+              #000;
+  color:#fff;
+  overflow-x:hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* FONDO “LUZ” ANIMADA */
+.bg-glow{
+  position:fixed; inset:-20%;
+  background:
+    radial-gradient(400px 280px at 25% 20%, rgba(255,255,255,.10), transparent 60%),
+    radial-gradient(380px 260px at 80% 30%, rgba(255,255,255,.08), transparent 60%),
+    radial-gradient(520px 320px at 50% 90%, rgba(255,255,255,.06), transparent 60%);
+  filter: blur(2px);
+  animation: floatGlow 10s ease-in-out infinite;
+  z-index:-3;
+}
+@keyframes floatGlow{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(0,-10px,0) scale(1.02)}
+}
+
+/* CONTENEDOR */
+.wrap{
+  min-height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:26px 16px;
+}
+
+.card{
+  width:100%;
+  max-width:430px;
+  border-radius:28px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border:1px solid var(--line);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 40px 120px rgba(0,0,0,.75);
+  overflow:hidden;
+  position:relative;
+  transform: translateY(10px);
+  animation: cardIn .9s cubic-bezier(.2,.9,.2,1) forwards;
+}
+@keyframes cardIn{
+  to{transform: translateY(0)}
+}
+
+/* TOP BAR */
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 16px 0;
+}
+.pill{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:10px 12px;
+  border-radius:999px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.95;
+}
+.pill b{letter-spacing:.16em}
+.icon-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#fff;
+  opacity:.85;
+  box-shadow:0 0 18px rgba(255,255,255,.65);
+}
+.reset{
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  border-radius:12px;
+  padding:10px 12px;
+  font-size:12px;
+  cursor:pointer;
+  opacity:.85;
+}
+.reset:hover{opacity:1}
+
+/* HEAD */
+.head{
+  padding:18px 22px 10px;
+  text-align:center;
+}
+h1{
+  font-size:26px;
+  letter-spacing:.28em;
+  font-weight:900;
+}
+.sub{
+  margin-top:10px;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+/* NIVEL */
+.levelbox{
+  padding:16px 22px 10px;
+}
+.levelRow{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.levelTitle{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  text-shadow: 0 10px 35px rgba(0,0,0,.65);
+}
+.badge{
+  padding:10px 12px;
+  border-radius:999px;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+}
+
+/* PROGRESS */
+.progressWrap{
+  margin-top:14px;
+  padding:10px 0 0;
+}
+.progressOuter{
+  background:rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  overflow:hidden;
+  height:14px;
+}
+.progressInner{
+  height:100%;
+  width:0%;
+  background: linear-gradient(90deg, #ffffff, #cfcfcf, #ffffff);
+  background-size: 180% 100%;
+  animation: shine 2.4s linear infinite;
+  box-shadow: 0 0 26px rgba(255,255,255,.35);
+  transition: width .75s cubic-bezier(.2,.9,.2,1);
+}
+@keyframes shine{
+  0%{background-position:0% 0%}
+  100%{background-position:180% 0%}
+}
+.points{
+  margin-top:10px;
+  font-size:12px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+.points span{opacity:.95}
+
+/* ACTIONS */
+.actions{
+  padding:14px 22px 22px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.action{
+  border-radius:18px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.12);
+  padding:14px 12px;
+  text-align:left;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.action:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.22);
+  background:rgba(0,0,0,.45);
+}
+.action:active{transform: translateY(0)}
+.action h3{
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.action p{
+  font-size:12px;
+  color:var(--muted2);
+  line-height:1.45;
+}
+.action .mini{
+  position:absolute; right:12px; top:12px;
+  font-size:14px; opacity:.85;
+}
+.action strong{
+  color:#fff;
+}
+
+/* CTA grande */
+.bigCTA{
+  padding:0 22px 22px;
+}
+.bigBtn{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:16px;
+  border-radius:999px;
+  background:#fff;
+  color:#000;
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size:12px;
+  border:none;
+  cursor:pointer;
+  box-shadow: 0 20px 60px rgba(0,0,0,.55);
+  transition: transform .18s ease;
+}
+.bigBtn:hover{transform: translateY(-1px)}
+.bigBtn:active{transform: translateY(0)}
+.bigBtn .spark{font-size:14px}
+
+/* REWARD */
+.reward{
+  margin:0 22px 22px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  padding:14px 14px;
+  display:none;
+}
+.reward b{letter-spacing:.08em}
+.reward .small{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+/* FOOTER */
+.footer{
+  padding:18px 22px 22px;
+  font-size:11px;
+  color:rgba(255,255,255,.38);
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* POPUP */
+.popup{
+  position:fixed;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  width:calc(100% - 26px);
+  max-width:440px;
+  border-radius:18px;
+  background:rgba(0,0,0,.70);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(18px);
+  padding:14px 14px;
+  box-shadow:0 25px 80px rgba(0,0,0,.7);
+  display:none;
+  z-index:999;
+  animation: popIn .45s cubic-bezier(.2,.9,.2,1) forwards;
+}
+@keyframes popIn{
+  from{opacity:0; transform:translateX(-50%) translateY(14px)}
+  to{opacity:1; transform:translateX(-50%) translateY(0)}
+}
+.popupRow{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.popup .title{
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+  opacity:.95;
+}
+.popup .msg{
+  font-size:13px;
+  color:rgba(255,255,255,.78);
+  line-height:1.45;
+}
+.popup .x{
+  margin-left:auto;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+  opacity:.7;
+}
+.popup .x:hover{opacity:1}
+
+/* CONFETTI */
+.confetti{
+  position:fixed;
+  top:-10px;
+  width:10px;height:16px;
+  background:#fff;
+  opacity:.9;
+  z-index:9999;
+  animation: fall linear forwards;
+  border-radius:2px;
+}
+@keyframes fall{
+  to{transform: translateY(110vh) rotate(540deg); opacity:0.9;}
+}
+
+/* RESPONSIVE */
+@media (max-width:420px){
+  h1{font-size:24px}
+  .actions{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<div class="bg-glow"></div>
+
+<div class="wrap">
+  <div class="card">
+
+    <div class="top">
+      <div class="pill"><span class="icon-dot"></span><b>Tu Nivel</b></div>
+      <button class="reset" id="btnReset">Reset</button>
+    </div>
+
+    <div class="head">
+      <h1>NIVEL</h1>
+      <div class="sub">
+        Gana puntos por <b>asistir</b> y por <b>propina</b>.<br>
+        Mientras más subes, más cerca estás del <b>corte gratis</b>.
+      </div>
+    </div>
+
+    <div class="levelbox">
+      <div class="levelRow">
+        <div class="levelTitle" id="nivelTexto">CLIENTE</div>
+        <div class="badge" id="badge">Nivel 1</div>
+      </div>
+
+      <div class="progressWrap">
+        <div class="progressOuter">
+          <div class="progressInner" id="barra"></div>
+        </div>
+
+        <div class="points">
+          <span id="puntosTexto">0 / 150</span>
+          <span id="metaTexto">Meta: VIP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="action" id="btnAsistir">
+        <div class="mini">✅</div>
+        <h3>Asistí</h3>
+        <p>+ <strong>25</strong> puntos por cada cita asistida.</p>
+      </div>
+
+      <div class="action" id="btnPropina">
+        <div class="mini">💎</div>
+        <h3>Propina</h3>
+        <p>+ <strong>15</strong> puntos por propina.</p>
+      </div>
+
+      <div class="action" id="btnBonus">
+        <div class="mini">⚡</div>
+        <h3>Bonus</h3>
+        <p>+ <strong>10</strong> puntos (promos o invitación).</p>
+      </div>
+
+      <div class="action" id="btnVerReglas">
+        <div class="mini">📌</div>
+        <h3>Reglas</h3>
+        <p>3 niveles. El último te da <strong>corte gratis</strong>.</p>
+      </div>
+    </div>
+
+    <div class="reward" id="premio">
+      🎉 <b>ELITE ACTIVADO</b><br>
+      <div class="small">
+        Este mes tienes <b>1 corte GRATIS</b>.<br>
+        (El negocio lo puede validar al momento de la cita.)
+      </div>
+    </div>
+
+    <div class="bigCTA">
+      <button class="bigBtn" id="btnCelebrar">
+        <span class="spark">✨</span> Listo para reservar
+      </button>
+    </div>
+
+    <div class="footer">
+      Sistema de fidelidad · Guardado en tu teléfono · Sin apps raras
+    </div>
+
+  </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popupRow">
+    <div>
+      <div class="title" id="popupTitle">Listo</div>
+      <div class="msg" id="popupMsg">¿Listo para subir de nivel? Reserva y asegura tu lugar.</div>
+    </div>
+    <button class="x" id="popupX">×</button>
+  </div>
+</div>
+
+<script>
+/* ======================
+   CONFIG
+====================== */
+const STORAGE_KEY = "puntos_tunivel_v1";
+
+/* Niveles y metas */
+const LEVELS = [
+  { id:1, name:"CLIENTE",  badge:"Nivel 1", min:0,   max:150, meta:"Meta: VIP" },
+  { id:2, name:"VIP",      badge:"Nivel 2", min:150, max:300, meta:"Meta: ELITE" },
+  { id:3, name:"ELITE",    badge:"Nivel 3", min:300, max:300, meta:"Meta: ELITE" }
+];
+
+/* Puntos por acciones */
+const P_ASISTIR = 25;
+const P_PROPINA = 15;
+const P_BONUS   = 10;
+
+let puntos = Number(localStorage.getItem(STORAGE_KEY)) || 0;
+let lastLevel = 1;
+
+/* ======================
+   UI helpers
+====================== */
+const elBarra = document.getElementById("barra");
+const elPuntos = document.getElementById("puntosTexto");
+const elMeta = document.getElementById("metaTexto");
+const elNivel = document.getElementById("nivelTexto");
+const elBadge = document.getElementById("badge");
+const elPremio = document.getElementById("premio");
+
+const popup = document.getElementById("popup");
+const popupTitle = document.getElementById("popupTitle");
+const popupMsg = document.getElementById("popupMsg");
+const popupX = document.getElementById("popupX");
+
+function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+
+function getLevelByPoints(p){
+  if(p >= 300) return LEVELS[2];
+  if(p >= 150) return LEVELS[1];
+  return LEVELS[0];
+}
+
+function save(){ localStorage.setItem(STORAGE_KEY, String(puntos)); }
+
+function setPopup(title, msg){
+  popupTitle.textContent = title;
+  popupMsg.textContent = msg;
+  popup.style.display = "block";
+}
+function hidePopup(){ popup.style.display = "none"; }
+
+popupX.addEventListener("click", hidePopup);
+
+/* ======================
+   CONFETTI
+====================== */
+function confettiBurst(){
+  const count = 36;
+  for(let i=0;i<count;i++){
+    const c = document.createElement("div");
+    c.className="confetti";
+    const left = Math.random()*100;
+    const dur = 1.8 + Math.random()*1.6;
+    const delay = Math.random()*0.2;
+    const size = 6 + Math.random()*8;
+    c.style.left = left + "vw";
+    c.style.animationDuration = dur + "s";
+    c.style.animationDelay = delay + "s";
+    c.style.width = size + "px";
+    c.style.height = (size*1.4) + "px";
+    c.style.opacity = 0.75 + Math.random()*0.25;
+    c.style.transform = `translateY(0) rotate(${Math.random()*180}deg)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), (dur+delay)*1000 + 200);
+  }
+}
+
+/* ======================
+   (Opcional) Sonido
+   - Sin archivos, con WebAudio
+====================== */
+function tinyBeep(){
+  try{
+    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type="sine";
+    o.frequency.value = 880;
+    g.gain.value = 0.05;
+    o.connect(g); g.connect(ctx.destination);
+    o.start();
+    setTimeout(()=>{ o.stop(); ctx.close(); }, 110);
+  }catch(e){}
+}
+
+/* ======================
+   UPDATE UI
+====================== */
+function actualizar(){
+  puntos = clamp(puntos, 0, 9999);
+
+  const L = getLevelByPoints(puntos);
+  const levelId = L.id;
+
+  elNivel.textContent = L.name;
+  elBadge.textContent = L.badge;
+
+  // progreso según rango
+  let pct = 0;
+  if(levelId === 1){
+    pct = (puntos / 150) * 100;
+    elPuntos.textContent = `${puntos} / 150`;
+    elMeta.textContent = "Meta: VIP";
+    elPremio.style.display = "none";
+  }else if(levelId === 2){
+    pct = ((puntos - 150) / 150) * 100;
+    elPuntos.textContent = `${puntos} / 300`;
+    elMeta.textContent = "Meta: ELITE";
+    elPremio.style.display = "none";
+  }else{
+    pct = 100;
+    elPuntos.textContent = `${puntos} / 300`;
+    elMeta.textContent = "Meta: ELITE";
+    elPremio.style.display = "block";
+  }
+  elBarra.style.width = clamp(pct,0,100) + "%";
+
+  // si subió de nivel
+  if(levelId > lastLevel){
+    lastLevel = levelId;
+    confettiBurst();
+    tinyBeep();
+    if(levelId === 2){
+      setPopup("SUBISTE A VIP", "Ahora tienes prioridad de agenda y más beneficios. Sigue: ELITE te da corte gratis.");
+    }else if(levelId === 3){
+      setPopup("ELITE ACTIVADO", "🔥 Este mes tienes 1 corte GRATIS. Enséñalo al barbero y listo.");
+    }
+    setTimeout(hidePopup, 7000);
+  }
+}
+
+/* ======================
+   ACTIONS
+====================== */
+function sumar(pts, label){
+  puntos += pts;
+  save();
+  actualizar();
+  setPopup("PUNTOS +"+pts, label);
+  setTimeout(hidePopup, 4200);
+}
+
+document.getElementById("btnAsistir").addEventListener("click", ()=>{
+  sumar(P_ASISTIR, "Cita asistida ✅. Sigue así que vas subiendo rápido.");
+});
+
+document.getElementById("btnPropina").addEventListener("click", ()=>{
+  sumar(P_PROPINA, "Propina registrada 💎. Te acercas al corte gratis.");
+});
+
+document.getElementById("btnBonus").addEventListener("click", ()=>{
+  sumar(P_BONUS, "Bonus ⚡. Promos, invitaciones o recompensas.");
+});
+
+document.getElementById("btnVerReglas").addEventListener("click", ()=>{
+  setPopup("REGLAS", "Nivel 1→2 a los 150 puntos. Nivel 2→3 a los 300. ELITE = 1 corte gratis este mes.");
+});
+
+document.getElementById("btnCelebrar").addEventListener("click", ()=>{
+  setPopup("LISTO PARA RESERVAR", "Cuando reserves y asistas, subes de nivel. Esto crea clientes fijos.");
+  confettiBurst();
+  tinyBeep();
+  setTimeout(hidePopup, 6500);
+});
+
+document.getElementById("btnReset").addEventListener("click", ()=>{
+  if(confirm("¿Resetear puntos a 0?")){
+    puntos = 0;
+    lastLevel = 1;
+    save();
+    actualizar();
+    setPopup("RESET", "Puntos reiniciados. Listo para empezar otra vez.");
+    setTimeout(hidePopup, 3500);
+  }
+});
+
+/* ======================
+   POPUP AUTOMÁTICO (enganche)
+====================== */
+window.addEventListener("load", ()=>{
+  setTimeout(()=>{
+    setPopup("LISTO", "Sube de nivel con cada visita. VIP y ELITE te dan beneficios reales.");
+    setTimeout(hidePopup, 6500);
+  }, 1200);
+});
+
+/* Init */
+lastLevel = getLevelByPoints(puntos).id;
+actualizar();
+</script>
+
+</body>
+</html>
