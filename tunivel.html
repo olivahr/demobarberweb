@@ -12,7 +12,7 @@
 :root{
   --glass:rgba(255,255,255,.07);
   --line:rgba(255,255,255,.14);
-  --basic:#777;
+  --basic:#666;
   --pro:#ffd36a;
   --vip:#ffffff;
 }
@@ -20,7 +20,8 @@
 body{
   font-family:'Inter',system-ui;
   background:
-    radial-gradient(1000px 500px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
+    radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.10), transparent 65%),
+    radial-gradient(800px 400px at 50% 100%, rgba(255,255,255,.06), transparent 60%),
     #000;
   color:#fff;
   overflow-x:hidden;
@@ -44,6 +45,7 @@ body{
   align-items:center;
   z-index:50;
 }
+
 .topbar a{
   color:#fff;
   text-decoration:none;
@@ -51,6 +53,8 @@ body{
   font-size:12px;
   opacity:.75;
 }
+.topbar a:hover{opacity:1}
+
 .stats span{
   padding:8px 12px;
   border-radius:999px;
@@ -60,6 +64,7 @@ body{
   letter-spacing:.12em;
 }
 
+/* ===== SPACER ===== */
 .spacer{height:120px}
 
 /* ===== MAIN ===== */
@@ -67,20 +72,21 @@ main{
   max-width:1100px;
   margin:auto;
   padding:20px;
-  animation:fadeIn .9s ease forwards;
+  animation:fadeIn 1s ease forwards;
 }
 
 @keyframes fadeIn{
-  from{opacity:0; transform:translateY(20px)}
+  from{opacity:0; transform:translateY(25px)}
   to{opacity:1; transform:translateY(0)}
 }
 
 h1{
   font-size:44px;
-  letter-spacing:.3em;
+  letter-spacing:.32em;
 }
+
 .subtitle{
-  opacity:.7;
+  opacity:.75;
   font-size:14px;
   margin-bottom:40px;
 }
@@ -89,26 +95,38 @@ h1{
 .xp-box{
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:28px;
-  padding:28px;
-  margin-bottom:40px;
-  box-shadow:0 0 90px rgba(255,255,255,.1);
-  animation:floatUp 1.2s ease;
+  border-radius:30px;
+  padding:30px;
+  margin-bottom:45px;
+  box-shadow:0 0 120px rgba(255,255,255,.15);
+  position:relative;
+  overflow:hidden;
 }
 
-@keyframes floatUp{
-  from{opacity:0; transform:translateY(30px)}
-  to{opacity:1; transform:translateY(0)}
+.xp-box.vip::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(500px 200px at 50% 0%, rgba(255,255,255,.35), transparent 65%);
+  animation:vipGlow 3.5s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes vipGlow{
+  0%{opacity:.4}
+  50%{opacity:.9}
+  100%{opacity:.4}
 }
 
 .rank{
   font-weight:800;
   letter-spacing:.22em;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .progress{
-  height:14px;
+  height:16px;
   background:rgba(255,255,255,.15);
   border-radius:999px;
   overflow:hidden;
@@ -118,132 +136,133 @@ h1{
   display:block;
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#fff,#ccc,#fff);
-  transition:width 1.4s cubic-bezier(.2,.9,.2,1);
-  box-shadow:0 0 30px rgba(255,255,255,.4);
+  background:linear-gradient(90deg,#fff,#ddd,#fff);
+  transition:width 1.6s cubic-bezier(.2,.9,.2,1);
+  box-shadow:0 0 45px rgba(255,255,255,.6);
 }
 
 .xp-text{
-  margin-top:10px;
+  margin-top:12px;
   font-size:12px;
-  opacity:.75;
+  opacity:.8;
 }
 
 /* ===== LEVELS ===== */
 .levels{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-  margin-bottom:50px;
+  gap:24px;
+  margin-bottom:55px;
 }
 
 .level{
   background:rgba(0,0,0,.45);
   border:1px solid var(--line);
-  border-radius:26px;
-  padding:24px;
-  transition:transform .4s ease, box-shadow .4s ease;
+  border-radius:28px;
+  padding:26px;
+  transition:transform .45s ease, box-shadow .45s ease;
+  position:relative;
+  overflow:hidden;
 }
 
-.level:hover{
-  transform:translateY(-6px);
-}
+.level:hover{transform:translateY(-8px)}
 
 .level.active{
-  box-shadow:0 0 120px rgba(255,255,255,.2);
+  box-shadow:0 0 120px rgba(255,255,255,.15);
 }
 
-/* ===== PRO SPECIAL ===== */
+/* PRO */
 .level.pro.active{
   outline:2px solid var(--pro);
-  box-shadow:0 0 120px rgba(255,211,106,.35);
-  animation:proPulse 2.8s infinite;
+  box-shadow:0 0 90px rgba(255,211,106,.35);
 }
 
-@keyframes proPulse{
-  0%{box-shadow:0 0 40px rgba(255,211,106,.2)}
-  50%{box-shadow:0 0 90px rgba(255,211,106,.45)}
-  100%{box-shadow:0 0 40px rgba(255,211,106,.2)}
-}
-
+/* VIP */
 .level.vip.active{
   outline:2px solid var(--vip);
-  box-shadow:0 0 140px rgba(255,255,255,.45);
+  box-shadow:
+    0 0 160px rgba(255,255,255,.6),
+    inset 0 0 40px rgba(255,255,255,.15);
+  animation:vipPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes vipPulse{
+  0%{box-shadow:0 0 120px rgba(255,255,255,.35)}
+  50%{box-shadow:0 0 200px rgba(255,255,255,.8)}
+  100%{box-shadow:0 0 120px rgba(255,255,255,.35)}
 }
 
 .level h3{
-  letter-spacing:.22em;
+  letter-spacing:.26em;
   font-size:14px;
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
 
 .level ul{
   list-style:none;
   font-size:13px;
-  opacity:.75;
-  line-height:1.6;
+  opacity:.78;
+  line-height:1.65;
 }
 
 /* ===== MISSIONS ===== */
 .missions{
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:28px;
-  padding:28px;
-  animation:fadeIn 1.4s ease;
+  border-radius:30px;
+  padding:30px;
 }
 
 .missions h2{
   font-size:14px;
-  letter-spacing:.26em;
-  margin-bottom:18px;
+  letter-spacing:.28em;
+  margin-bottom:20px;
 }
 
 .mission{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px;
-  border-radius:20px;
+  padding:20px;
+  border-radius:22px;
   border:1px solid var(--line);
-  margin-bottom:16px;
-  transition:transform .25s ease;
+  margin-bottom:18px;
+  transition:transform .3s ease;
 }
 
-.mission:hover{
-  transform:translateX(4px);
-}
+.mission:hover{transform:translateX(6px)}
 
 .mission span{
   font-size:13px;
-  opacity:.75;
+  opacity:.8;
 }
 
 .mission button{
   background:#fff;
   color:#000;
   border:none;
-  padding:12px 20px;
+  padding:14px 24px;
   border-radius:999px;
   font-size:11px;
-  font-weight:700;
+  font-weight:800;
   letter-spacing:.14em;
   cursor:pointer;
-  transition:transform .15s ease;
+  transition:transform .15s ease, box-shadow .15s ease;
 }
 
 .mission button:active{
   transform:scale(.95);
+  box-shadow:0 0 25px rgba(255,255,255,.8);
 }
 
 /* ===== FOOTER ===== */
 footer{
   text-align:center;
   font-size:12px;
-  opacity:.4;
-  margin-top:60px;
+  opacity:.45;
+  margin-top:70px;
   border-top:1px solid var(--line);
-  padding:30px 20px;
+  padding:34px 20px;
 }
 </style>
 </head>
@@ -263,10 +282,10 @@ footer{
 <main>
   <h1>TU NIVEL</h1>
   <div class="subtitle">
-    No es una tarjeta. Es estatus. Mantente activo y se nota.
+    Aquí no se viene solo a cortarse. Aquí se sube de estatus.
   </div>
 
-  <div class="xp-box">
+  <div class="xp-box" id="xpBox">
     <div class="rank" id="rank">BÁSICO</div>
     <div class="progress"><span id="bar"></span></div>
     <div class="xp-text" id="xpText"></div>
@@ -277,7 +296,6 @@ footer{
       <h3>BÁSICO</h3>
       <ul>
         <li>• Acceso al sistema</li>
-        <li>• Sin beneficios</li>
       </ul>
     </div>
 
@@ -337,10 +355,12 @@ function update(){
   let percent = Math.min(100, data.xp / 3.2);
 
   document.querySelectorAll(".level").forEach(l=>l.classList.remove("active"));
+  document.getElementById("xpBox").classList.remove("vip");
 
   if(data.xp >= 320){
     rank = "VIP";
     document.getElementById("lv3").classList.add("active");
+    document.getElementById("xpBox").classList.add("vip");
   }else if(data.xp >= 180){
     rank = "PRO";
     document.getElementById("lv2").classList.add("active");
@@ -352,7 +372,7 @@ function update(){
   document.getElementById("bar").style.width = percent + "%";
   document.getElementById("xpText").textContent =
     rank === "VIP"
-      ? "Nivel máximo activo"
+      ? "ESTATUS VIP ACTIVO · Beneficios desbloqueados"
       : "Sigue jugando para subir de nivel";
 
   localStorage.setItem("nivelBarber", JSON.stringify(data));
