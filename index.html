@@ -142,14 +142,12 @@ nav a:hover{opacity:1}
   margin-bottom:60px;
 }
 
-/* GRID */
 .services{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:26px;
 }
 
-/* CARD */
 .service-card{
   position:relative;
   border-radius:24px;
@@ -185,7 +183,7 @@ nav a:hover{opacity:1}
   opacity:.7;
 }
 
-/* ===== CTA FINAL ===== */
+/* ===== CTA ===== */
 .cta{
   padding:80px 20px;
   text-align:center;
@@ -210,6 +208,48 @@ footer{
   opacity:.45;
   border-top:1px solid rgba(255,255,255,.08);
 }
+
+/* ===== FLOTANTE CUPOS ===== */
+.cupos{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  background:rgba(20,20,20,.9);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(14px);
+  padding:18px 22px;
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+  z-index:100;
+  animation:pulse 2s infinite;
+}
+
+.cupos strong{
+  display:block;
+  font-size:13px;
+  letter-spacing:.12em;
+  margin-bottom:6px;
+}
+
+.cupos span{
+  font-size:12px;
+  opacity:.7;
+}
+
+.cerrar{
+  position:absolute;
+  top:8px;
+  right:10px;
+  cursor:pointer;
+  font-size:14px;
+  opacity:.6;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.03)}
+  100%{transform:scale(1)}
+}
 </style>
 </head>
 
@@ -222,7 +262,7 @@ footer{
   <nav>
     <a href="index.html">Inicio</a>
     <a href="servicios.html">Servicios</a>
-    <a href="reservar.html">Reservar</a>
+    <a href="propinas.html">Propinas</a>
   </nav>
 </header>
 
@@ -237,7 +277,6 @@ footer{
       Es una experiencia.
     </p>
     <a href="reservar.html" class="hero-btn primary">Reservar ahora</a>
-    <!-- CAMBIO ÚNICO AQUÍ -->
     <a href="tunivel.html" class="hero-btn outline">Tu Nivel</a>
   </div>
 </section>
@@ -300,6 +339,13 @@ footer{
 <footer>
   ©️ 2025 Barbería Premium · Todos los derechos reservados
 </footer>
+
+<!-- ===== FLOTANTE ===== -->
+<div class="cupos" id="cupos">
+  <div class="cerrar" onclick="document.getElementById('cupos').style.display='none'">✕</div>
+  <strong>QUEDAN 3 CUPOS</strong>
+  <span>Disponibles esta semana</span>
+</div>
 
 </body>
 </html>
