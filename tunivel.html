@@ -42,13 +42,12 @@ header{
   border-radius:8px;
 }
 
-/* Flecha volver */
 .back{
   display:flex;
   align-items:center;
   gap:8px;
-  font-size:13px;
-  letter-spacing:.14em;
+  font-size:12px;
+  letter-spacing:.18em;
   text-decoration:none;
   color:#fff;
   opacity:.75;
@@ -56,58 +55,57 @@ header{
 }
 .back:hover{opacity:1}
 
-/* ===== ESPACIO HEADER ===== */
+/* ===== ESPACIO ===== */
 .spacer{height:130px}
 
 /* ===== HERO ===== */
 .hero{
-  padding:40px 20px 70px;
+  padding:50px 20px 80px;
   display:flex;
   justify-content:center;
 }
 
 .hero-card{
-  background:rgba(255,255,255,.05);
-  backdrop-filter:blur(22px);
-  border-radius:30px;
-  padding:48px 32px;
-  max-width:480px;
+  background:radial-gradient(circle at top, rgba(255,255,255,.08), rgba(0,0,0,.85));
+  border-radius:32px;
+  padding:56px 34px;
+  max-width:520px;
   width:100%;
   text-align:center;
-  box-shadow:0 20px 60px rgba(0,0,0,.6);
-  animation:fadeUp .9s ease;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+  animation:fadeUp 1s ease;
 }
 
 @keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px)}
+  from{opacity:0;transform:translateY(50px)}
   to{opacity:1;transform:translateY(0)}
 }
 
 .hero-card h1{
-  font-size:34px;
+  font-size:36px;
   font-weight:800;
-  letter-spacing:.28em;
-  margin-bottom:14px;
+  letter-spacing:.32em;
+  margin-bottom:16px;
 }
 
 .hero-card p{
   font-size:14px;
   opacity:.75;
-  line-height:1.7;
+  line-height:1.8;
 }
 
-/* ===== NIVEL ACTUAL ===== */
+/* ===== ESTADO ===== */
 .status{
-  padding:70px 20px;
+  padding:80px 20px;
   max-width:900px;
   margin:auto;
   text-align:center;
 }
 
 .status h2{
-  font-size:24px;
+  font-size:22px;
   letter-spacing:.22em;
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 .status span{
@@ -115,14 +113,14 @@ header{
   opacity:.65;
 }
 
-/* PROGRESS */
+/* PROGRESO */
 .progress{
-  margin:36px auto 10px;
+  margin:40px auto 10px;
   max-width:520px;
 }
 
 .bar{
-  height:12px;
+  height:14px;
   background:#111;
   border-radius:999px;
   overflow:hidden;
@@ -132,7 +130,15 @@ header{
   width:62%;
   height:100%;
   background:linear-gradient(90deg,#fff,#aaa);
-  animation:load 1.3s ease;
+  animation:load 1.6s ease;
+  position:relative;
+}
+.fill::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  animation:shine 2.5s infinite;
 }
 
 @keyframes load{
@@ -140,15 +146,20 @@ header{
   to{width:62%}
 }
 
+@keyframes shine{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+
 .points{
-  margin-top:12px;
+  margin-top:14px;
   font-size:13px;
   opacity:.6;
 }
 
 /* ===== NIVELES ===== */
 .levels{
-  padding:70px 20px;
+  padding:90px 20px;
   max-width:1100px;
   margin:auto;
 }
@@ -156,74 +167,88 @@ header{
 .level-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:28px;
+  gap:30px;
 }
 
 /* CARD */
 .level-card{
-  background:#111;
-  border-radius:26px;
-  padding:36px 28px;
+  background:linear-gradient(to bottom, #111, #0a0a0a);
+  border-radius:28px;
+  padding:42px 30px;
   border:1px solid rgba(255,255,255,.08);
-  transition:.4s ease;
+  transition:.45s cubic-bezier(.2,.8,.2,1);
+  position:relative;
 }
 
 .level-card:hover{
-  transform:translateY(-8px);
+  transform:translateY(-10px) scale(1.02);
   border-color:rgba(255,255,255,.35);
 }
 
 .level-card h3{
-  font-size:17px;
-  letter-spacing:.16em;
-  margin-bottom:14px;
+  font-size:16px;
+  letter-spacing:.18em;
+  margin-bottom:18px;
 }
 
 .level-card ul{
   list-style:none;
   font-size:13px;
-  opacity:.7;
-  line-height:1.8;
+  opacity:.75;
+  line-height:1.9;
 }
 
 .level-card ul li::before{
-  content:"• ";
+  content:"✓ ";
   opacity:.5;
 }
 
-/* VIP DESTACADO */
+/* VIP */
 .vip{
-  border:1px solid rgba(255,255,255,.35);
-  box-shadow:0 0 40px rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.45);
+  box-shadow:0 0 60px rgba(255,255,255,.12);
+}
+.vip::after{
+  content:"VIP";
+  position:absolute;
+  top:18px;
+  right:18px;
+  font-size:11px;
+  letter-spacing:.22em;
+  opacity:.5;
 }
 
 /* ===== CTA ===== */
 .cta{
-  padding:80px 20px;
+  padding:90px 20px;
   text-align:center;
 }
 
 .cta h3{
-  font-size:24px;
-  letter-spacing:.2em;
-  margin-bottom:14px;
+  font-size:26px;
+  letter-spacing:.24em;
+  margin-bottom:16px;
 }
 
 .cta p{
-  opacity:.6;
-  margin-bottom:26px;
+  opacity:.65;
+  margin-bottom:30px;
 }
 
 .cta a{
   display:inline-block;
-  padding:14px 30px;
+  padding:16px 36px;
   border-radius:999px;
   background:#fff;
   color:#000;
   font-weight:600;
-  letter-spacing:.14em;
+  letter-spacing:.16em;
   text-decoration:none;
   font-size:12px;
+  transition:.3s;
+}
+.cta a:hover{
+  transform:scale(1.05);
 }
 
 /* ===== FOOTER ===== */
@@ -252,29 +277,28 @@ footer{
   <div class="hero-card">
     <h1>TU NIVEL</h1>
     <p>
-      Este no es un sistema de puntos.<br>
-      Es una forma de reconocer a quien vuelve,<br>
-      confía y se mantiene.
+      Aquí no todos son iguales.<br>
+      Cada visita suma.<br>
+      Cada decisión cuenta.
     </p>
   </div>
 </section>
 
 <section class="status">
-  <h2>NIVEL ACTUAL</h2>
+  <h2>TU ESTADO ACTUAL</h2>
   <span>Cliente PRO</span>
 
   <div class="progress">
     <div class="bar">
       <div class="fill"></div>
     </div>
-    <div class="points">62 / 100 puntos para Nivel VIP</div>
+    <div class="points">62 / 100 puntos · rumbo a Nivel VIP</div>
   </div>
 </section>
 
 <section class="levels">
   <div class="level-grid">
 
-    <!-- BASE -->
     <div class="level-card">
       <h3>NIVEL BASE</h3>
       <ul>
@@ -284,7 +308,6 @@ footer{
       </ul>
     </div>
 
-    <!-- PRO -->
     <div class="level-card">
       <h3>NIVEL PRO</h3>
       <ul>
@@ -294,15 +317,14 @@ footer{
       </ul>
     </div>
 
-    <!-- VIP -->
     <div class="level-card vip">
       <h3>NIVEL VIP</h3>
       <ul>
         <li>Prioridad TOTAL de reservaciones</li>
-        <li>Incluye días festivos</li>
+        <li>Días festivos incluidos</li>
         <li>6 cortes gratis al año</li>
         <li>Uso libre en cualquier ocasión</li>
-        <li>Atención VIP: agua, café u obsequio</li>
+        <li>Atención VIP (agua, café u obsequio)</li>
       </ul>
     </div>
 
@@ -310,10 +332,10 @@ footer{
 </section>
 
 <section class="cta">
-  <h3>Mantente en el nivel</h3>
+  <h3>Mantente arriba</h3>
   <p>
-    Reservar, asistir y apoyar<br>
-    te mantiene en la cima.
+    Los que se mantienen en el nivel<br>
+    no esperan turno.
   </p>
   <a href="reservar.html">Reservar ahora</a>
 </section>
