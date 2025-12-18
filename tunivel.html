@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Tu Nivel | Barbería Premium</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 :root{
-  --glass:rgba(255,255,255,.10);
-  --line:rgba(255,255,255,.22);
+  --bg:#000;
+  --glass:rgba(255,255,255,.08);
+  --glass2:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.18);
+  --muted:rgba(255,255,255,.72);
+  --muted2:rgba(255,255,255,.55);
   --neon:#00ffd5;
+  --neon2:#7c5cff;
   --vip:#ffd700;
+  --good:#9affc7;
+  --danger:#ff5c7c;
 }
 
+html,body{height:100%}
 body{
   font-family:'Inter',system-ui;
-  background:#000;
+  background:
+    radial-gradient(900px 520px at 50% 0%, rgba(255,255,255,.06), transparent 60%),
+    radial-gradient(820px 520px at 0% 100%, rgba(255,255,255,.05), transparent 60%),
+    #000;
   color:#fff;
   overflow-x:hidden;
-  transition:background 1s ease;
+  transition:background 900ms ease;
 }
+html, body{ touch-action: manipulation; -webkit-text-size-adjust:100%; }
 
-/* ===== VIP MODE ===== */
+/* ===== VIP MODE BACKGROUND ===== */
 body.vip{
   background:
-    radial-gradient(1400px 700px at 50% 0%, rgba(255,215,0,.45), transparent 60%),
-    radial-gradient(1200px 700px at 50% 100%, rgba(255,255,255,.15), transparent 70%),
+    radial-gradient(1100px 520px at 50% 0%, rgba(255,215,0,.22), transparent 60%),
+    radial-gradient(820px 520px at 50% 100%, rgba(255,255,255,.10), transparent 70%),
     #000;
 }
 
@@ -39,375 +50,1498 @@ body.vip{
   left:50%;
   transform:translateX(-50%);
   width:calc(100% - 36px);
-  max-width:1200px;
-  padding:16px 22px;
-  border-radius:22px;
-  background:rgba(0,0,0,.70);
-  backdrop-filter:blur(22px);
-  border:1px solid var(--line);
+  max-width:1100px;
+  padding:14px 18px;
+  border-radius:18px;
+  background:rgba(0,0,0,.60);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 18px 55px rgba(0,0,0,.65);
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  z-index:100;
+  z-index:80;
 }
-.topbar a{
+.back{
   color:#fff;
   text-decoration:none;
+  opacity:.78;
+  letter-spacing:.16em;
   font-size:12px;
-  letter-spacing:.18em;
-  opacity:.85;
 }
-.stats span{
-  margin-left:12px;
-  padding:8px 14px;
+.back:hover{opacity:1}
+.right{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.pill{
+  padding:9px 12px;
   border-radius:999px;
-  background:var(--glass);
-  border:1px solid var(--line);
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.07);
   font-size:11px;
+  letter-spacing:.14em;
+  opacity:.95;
 }
+.pill strong{opacity:1}
+.spacer{height:110px}
 
-/* ===== SPACER ===== */
-.spacer{height:140px}
-
-/* ===== MAIN ===== */
-main{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
+/* ===== HUD ===== */
+.hud{
+  padding:18px 20px 0;
+  max-width:1100px;
+  margin:0 auto;
 }
-
-h1{
-  font-size:48px;
-  letter-spacing:.36em;
-  margin-bottom:10px;
+.title{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+.title h1{
+  font-size:clamp(28px, 5vw, 46px);
+  letter-spacing:.26em;
+  font-weight:800;
+  text-transform:uppercase;
 }
 .subtitle{
-  opacity:.75;
-  margin-bottom:40px;
+  opacity:.68;
+  font-size:13px;
+  line-height:1.45;
+}
+.glowline{
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+  margin:18px 0 22px;
 }
 
-/* ===== XP CORE ===== */
-.xp-box{
-  background:var(--glass);
-  border:1px solid var(--line);
-  border-radius:40px;
-  padding:36px;
-  margin-bottom:60px;
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:16px;
+}
+.card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
   position:relative;
   overflow:hidden;
+  transform:translateY(18px);
+  opacity:0;
+  animation:cardIn .65s ease forwards;
 }
-
-.xp-box::after{
+.card:nth-child(2){animation-delay:.06s}
+.card:nth-child(3){animation-delay:.12s}
+.card:nth-child(4){animation-delay:.18s}
+.card:nth-child(5){animation-delay:.24s}
+.card:nth-child(6){animation-delay:.30s}
+@keyframes cardIn{
+  to{transform:translateY(0); opacity:1;}
+}
+.card::after{
   content:"";
   position:absolute;
   inset:-2px;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
-  animation:scan 3.5s linear infinite;
+  background:radial-gradient(520px 220px at 20% 0%, rgba(255,255,255,.14), transparent 60%);
+  pointer-events:none;
+  opacity:.6;
+}
+.col-7{grid-column:span 7}
+.col-5{grid-column:span 5}
+.col-6{grid-column:span 6}
+.col-12{grid-column:span 12}
+@media (max-width:900px){
+  .col-7,.col-5,.col-6{grid-column:span 12}
 }
 
-@keyframes scan{
-  from{transform:translateX(-140%)}
-  to{transform:translateX(140%)}
+/* ===== XP BAR ===== */
+.xpRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
 }
-
 .rank{
   font-weight:800;
-  letter-spacing:.30em;
-  margin-bottom:16px;
-  font-size:14px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:13px;
 }
-
-.progress{
-  height:20px;
-  background:rgba(255,255,255,.25);
+.xp{
+  font-size:12px;
+  opacity:.75;
+  letter-spacing:.12em;
+}
+.bar{
+  height:13px;
+  width:100%;
   border-radius:999px;
+  background:rgba(255,255,255,.12);
   overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
 }
-
-.progress span{
-  display:block;
+.fill{
   height:100%;
   width:0%;
   background:linear-gradient(90deg,#fff,var(--neon),#fff);
-  box-shadow:0 0 60px var(--neon);
-  transition:width 1.4s cubic-bezier(.2,.9,.2,1);
+  border-radius:999px;
+  box-shadow:0 0 22px rgba(0,255,213,.26);
+  transition:width .95s cubic-bezier(.2,.9,.2,1);
 }
-
-body.vip .progress span{
+body.vip .fill{
   background:linear-gradient(90deg,#fff,var(--vip),#fff);
-  box-shadow:0 0 100px var(--vip);
+  box-shadow:0 0 40px rgba(255,215,0,.38);
 }
 
-.xp-text{
-  margin-top:16px;
+/* XP shake when gain */
+.shake{ animation:shake .35s ease; }
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-3px)}
+  50%{transform:translateX(3px)}
+  75%{transform:translateX(-2px)}
+}
+
+.mini{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+.tag{
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(0,0,0,.28);
+  font-size:11px;
+  letter-spacing:.10em;
+  opacity:.92;
+}
+.tag b{opacity:1}
+
+/* ===== MAP / ROAD ===== */
+.road{
+  margin-top:14px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.26);
+  padding:14px;
+}
+.roadTop{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.roadTop h3{
   font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.roadTop span{
+  font-size:12px;
+  opacity:.65;
+}
+.track{
+  position:relative;
+  height:56px;
+  border-radius:18px;
+  background:linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  overflow:hidden;
+}
+.track::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(520px 160px at 30% 0%, rgba(0,255,213,.12), transparent 60%);
   opacity:.8;
 }
-
-/* ===== LEVELS ===== */
-.levels{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:36px;
-  margin-bottom:90px;
+body.vip .track::before{
+  background:radial-gradient(520px 160px at 30% 0%, rgba(255,215,0,.18), transparent 60%);
 }
-
-.level{
-  background:rgba(0,0,0,.65);
-  border:1px solid var(--line);
-  border-radius:44px;
-  padding:34px;
-  position:relative;
-  transition:.6s;
-}
-
-.level:hover{
-  transform:translateY(-18px) scale(1.06);
-  box-shadow:0 0 180px rgba(0,255,213,.5);
-}
-
-.level.active{
-  outline:2px solid #fff;
-}
-
-.level.vip.active{
-  outline:2px solid var(--vip);
-  box-shadow:0 0 240px var(--vip);
-}
-
-.level h3{
-  letter-spacing:.30em;
-  margin-bottom:14px;
-}
-
-.level ul{
-  list-style:none;
-  font-size:13px;
-  opacity:.9;
-  line-height:1.9;
-}
-
-/* ===== VIP CROWN ===== */
-.crown{
+.trackLine{
   position:absolute;
-  top:22px;
-  right:28px;
-  font-size:34px;
-  opacity:.12;
+  left:14px; right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  height:2px;
+  background:linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.22), rgba(255,255,255,.12));
+  opacity:.9;
+}
+.node{
+  position:absolute;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:40px;height:40px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.55);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 14px 40px rgba(0,0,0,.55);
+  transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease, opacity .25s ease;
+}
+.node small{font-size:10px;letter-spacing:.12em;opacity:.85}
+.node.locked{opacity:.35; filter:blur(.2px)}
+.node.active{
+  border-color:rgba(0,255,213,.45);
+  box-shadow:0 0 70px rgba(0,255,213,.22);
+  transform:translate(-50%,-50%) scale(1.05);
+}
+.node.proActive{
+  border-color:rgba(124,92,255,.55);
+  box-shadow:0 0 70px rgba(124,92,255,.22);
+}
+.node.vipActive{
+  border-color:rgba(255,215,0,.65);
+  box-shadow:0 0 120px rgba(255,215,0,.30);
+  transform:translate(-50%,-50%) scale(1.08);
+}
+.node.vipActive::after{
+  content:"👑";
+  position:absolute;
+  top:-14px; left:50%;
+  transform:translateX(-50%);
+  font-size:16px;
+  filter:drop-shadow(0 0 18px rgba(255,215,0,.65));
+  animation:vipFloat 2.2s ease-in-out infinite;
+}
+@keyframes vipFloat{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(-4px)}
+}
+.cursor{
+  position:absolute;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:28px;height:28px;border-radius:12px;
+  background:linear-gradient(135deg, rgba(255,255,255,.95), rgba(0,255,213,.85));
+  box-shadow:0 0 80px rgba(0,255,213,.35);
+  border:1px solid rgba(255,255,255,.18);
+  transition:left .95s cubic-bezier(.2,.9,.2,1);
+}
+body.vip .cursor{
+  background:linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,215,0,.90));
+  box-shadow:0 0 120px rgba(255,215,0,.35);
 }
 
-.level.vip.active .crown{
-  opacity:1;
-  filter:drop-shadow(0 0 30px var(--vip));
-  animation:crownFloat 2.2s ease-in-out infinite;
+/* ===== MISSIONS ===== */
+.mHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:14px;
+  margin-bottom:12px;
 }
-
-@keyframes crownFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
+.mHead h3{
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
 }
-
-/* ===== GAME HUB ===== */
-.hub{
-  margin-bottom:120px;
+.mHead span{
+  font-size:12px;
+  opacity:.65;
 }
-
-.hub h2{
-  text-align:center;
-  font-size:20px;
-  letter-spacing:.42em;
-  margin-bottom:50px;
-}
-
-.hub-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:40px;
-}
-
-.hub-card{
-  background:rgba(0,0,0,.75);
-  border:1px solid var(--line);
-  border-radius:46px;
-  padding:36px;
-  min-height:220px;
-  transition:.7s;
-  cursor:pointer;
+.mission{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:14px 12px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.28);
+  margin-bottom:10px;
+  transition:transform .25s ease, border-color .25s ease, background .25s ease;
   position:relative;
   overflow:hidden;
 }
-
-.hub-card::after{
+.mission::before{
   content:"";
   position:absolute;
-  inset:-2px;
-  background:radial-gradient(400px 200px at 20% 0%, rgba(0,255,213,.35), transparent 60%);
-  opacity:0;
-  transition:.6s;
+  inset:0;
+  background:radial-gradient(420px 160px at 0% 0%, rgba(0,255,213,.10), transparent 60%);
+  opacity:.35;
+  pointer-events:none;
 }
-
-.hub-card:hover::after{opacity:1}
-
-.hub-card:hover{
-  transform:scale(1.10) rotate(-1deg);
-  box-shadow:0 0 220px rgba(0,255,213,.7);
+body.vip .mission::before{
+  background:radial-gradient(420px 160px at 0% 0%, rgba(255,215,0,.14), transparent 60%);
 }
-
-.hub-card.vip{
-  border-color:var(--vip);
+.mission:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,.22);
+  background:rgba(255,255,255,.07);
 }
-
-.hub-icon{
-  font-size:34px;
-  margin-bottom:18px;
+.mText{display:flex;flex-direction:column;gap:4px}
+.mText strong{font-size:13px;letter-spacing:.06em}
+.mText small{font-size:12px;opacity:.68}
+.mBtn{
+  border:none;
+  cursor:pointer;
+  padding:11px 14px;
+  border-radius:999px;
+  background:#fff;
+  color:#000;
+  font-weight:900;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  transition:transform .12s ease, box-shadow .25s ease;
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
 }
+.mBtn:hover{box-shadow:0 16px 36px rgba(0,0,0,.45)}
+.mBtn:active{transform:scale(.98)}
+.mBtn[disabled]{opacity:.35; cursor:not-allowed}
 
-.hub-title{
-  letter-spacing:.30em;
+/* ===== LEVELS ===== */
+.levelsWrap h3{
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
   margin-bottom:12px;
 }
+.lGrid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:14px;
+}
+@media (max-width:900px){ .lGrid{grid-template-columns:1fr} }
 
-.hub-desc{
-  opacity:.8;
+.levelCard{
+  border-radius:22px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.28);
+  position:relative;
+  overflow:hidden;
+  transition:transform .25s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.levelCard:hover{transform:translateY(-2px)}
+.levelCard::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  background:radial-gradient(360px 180px at 30% 0%, rgba(255,255,255,.12), transparent 60%);
+  opacity:.55;
+  pointer-events:none;
+}
+.levelCard h4{
+  letter-spacing:.20em;
+  text-transform:uppercase;
   font-size:13px;
+  margin-bottom:10px;
+}
+.levelCard ul{
+  list-style:none;
+  opacity:.78;
+  font-size:13px;
+  line-height:1.6;
+}
+.levelCard ul li{margin-bottom:6px}
+.badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.07);
+  font-size:10px;
+  letter-spacing:.14em;
+  opacity:.9;
+}
+.now{
+  outline:2px solid rgba(255,255,255,.45);
+  box-shadow:0 0 60px rgba(255,255,255,.10);
+}
+
+/* ===== VIP PLAN (CROWN INSIDE VIP CARD) ===== */
+.vipPlan{ border-color:rgba(255,215,0,.22); }
+.vipCrown{
+  position:absolute;
+  left:16px;
+  top:14px;
+  font-size:24px;
+  opacity:.14;
+  transform:translateY(-6px) scale(.92);
+  transition:opacity .35s ease, transform .35s ease, filter .35s ease;
+}
+.vipOn .vipCrown{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:drop-shadow(0 0 18px rgba(255,215,0,.55));
+  animation:vipFloat2 2.2s ease-in-out infinite;
+}
+@keyframes vipFloat2{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-4px) scale(1.03)}
+}
+.vipGlow{
+  position:absolute;
+  inset:-2px;
+  background:radial-gradient(760px 260px at 20% 0%, rgba(255,215,0,.22), transparent 60%);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+}
+.vipOn .vipGlow{opacity:1}
+
+/* ===== GAME HUB / PORTALS ===== */
+.hubHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+  margin-bottom:12px;
+}
+.hubHead h3{
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.hubHead span{font-size:12px;opacity:.65}
+.portals{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:12px;
+}
+@media (max-width:900px){ .portals{grid-template-columns:1fr 1fr} }
+@media (max-width:520px){ .portals{grid-template-columns:1fr} }
+
+.portal{
+  border-radius:20px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.26);
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  min-height:110px;
+}
+.portal::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(520px 180px at 0% 0%, rgba(124,92,255,.18), transparent 60%);
+  opacity:.35;
+  pointer-events:none;
+}
+.portal:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+}
+.portal h4{
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:8px;
+}
+.portal p{
+  font-size:12px;
+  opacity:.72;
+  line-height:1.45;
+}
+.portal .icon{
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  font-size:20px;
+  opacity:.35;
+}
+.portal.locked{
+  opacity:.45;
+  filter:saturate(.7);
+}
+.portal.locked::after{
+  content:"🔒";
+  position:absolute;
+  top:14px; right:14px;
+  font-size:14px;
+  opacity:.9;
+}
+.portal.vipOnly{
+  border-color:rgba(255,215,0,.18);
+}
+.portal.vipOnly::before{
+  background:radial-gradient(520px 180px at 0% 0%, rgba(255,215,0,.20), transparent 60%);
+}
+.portal.vipOnly .icon{opacity:.55}
+.portal.vipOnly:hover{
+  border-color:rgba(255,215,0,.35);
+  box-shadow:0 22px 70px rgba(255,215,0,.10);
+}
+
+/* ===== PANELS (INTERNAL AREAS) ===== */
+.panelWrap{
+  margin-top:14px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.26);
+  overflow:hidden;
+}
+.panelTabs{
+  display:flex;
+  gap:10px;
+  padding:14px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.04);
+  flex-wrap:wrap;
+}
+.tab{
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.28);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.85;
+  cursor:pointer;
+  transition:transform .15s ease, opacity .25s ease, border-color .25s ease;
+}
+.tab:hover{opacity:1}
+.tab.active{
+  border-color:rgba(0,255,213,.35);
+  box-shadow:0 0 40px rgba(0,255,213,.12);
+  opacity:1;
+}
+body.vip .tab.active{
+  border-color:rgba(255,215,0,.45);
+  box-shadow:0 0 55px rgba(255,215,0,.12);
+}
+.panel{
+  display:none;
+  padding:18px;
+  animation:fadeIn .35s ease;
+}
+.panel.show{display:block}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(6px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* ===== COUPON BAR ===== */
+.couponBar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(135deg, rgba(0,255,213,.10), rgba(124,92,255,.10));
+  position:relative;
+  overflow:hidden;
+}
+body.vip .couponBar{
+  background:linear-gradient(135deg, rgba(255,215,0,.12), rgba(255,255,255,.06));
+}
+.couponBar strong{
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:12px;
+}
+.couponBar span{
+  font-size:12px;
+  opacity:.78;
+}
+.copyBtn{
+  border:none;
+  cursor:pointer;
+  padding:11px 14px;
+  border-radius:999px;
+  background:#fff;
+  color:#000;
+  font-weight:900;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  transition:transform .12s ease, box-shadow .25s ease;
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+.copyBtn:active{transform:scale(.98)}
+
+/* ===== ACHIEVEMENTS ===== */
+.achGrid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:12px;
+}
+@media (max-width:900px){ .achGrid{grid-template-columns:1fr 1fr} }
+@media (max-width:520px){ .achGrid{grid-template-columns:1fr} }
+
+.ach{
+  border-radius:18px;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.22);
+  opacity:.52;
+  transform:translateY(8px);
+  transition:opacity .35s ease, transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.ach.on{
+  opacity:1;
+  transform:translateY(0);
+  border-color:rgba(0,255,213,.28);
+  box-shadow:0 0 40px rgba(0,255,213,.10);
+}
+body.vip .ach.on{
+  border-color:rgba(255,215,0,.30);
+  box-shadow:0 0 55px rgba(255,215,0,.10);
+}
+.ach strong{
+  display:block;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.ach small{opacity:.72; font-size:12px}
+
+/* ===== TOAST ===== */
+.toast{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:18px;
+  width:calc(100% - 36px);
+  max-width:560px;
+  padding:14px 16px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 60px rgba(0,0,0,.65);
+  display:none;
+  z-index:120;
+}
+.toast.show{display:flex}
+.toast b{letter-spacing:.12em}
+.toast span{opacity:.75; margin-left:8px}
+
+/* ===== PARTICLES (VIP ONLY) ===== */
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:30;
+  opacity:0;
+  transition:opacity .6s ease;
+}
+body.vip #particles{opacity:1}
+
+/* ===== CONFETTI CANVAS ===== */
+#fx{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:140;
 }
 
 /* ===== FOOTER ===== */
 footer{
+  padding:40px 20px;
   text-align:center;
   font-size:12px;
-  opacity:.6;
-  padding:60px 20px;
-  border-top:1px solid var(--line);
+  opacity:.45;
+  border-top:1px solid rgba(255,255,255,.08);
+  margin-top:60px;
+}
+
+/* ===== EXTRA: NEON GLOW DIVIDER ===== */
+.neonDivider{
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(0,255,213,.22), transparent);
+  margin:18px 0 10px;
+}
+body.vip .neonDivider{
+  background:linear-gradient(90deg, transparent, rgba(255,215,0,.26), transparent);
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="particles"></canvas>
+<canvas id="fx"></canvas>
+
 <div class="topbar">
-  <a href="index.html">← INICIO</a>
-  <div class="stats">
-    <span>XP: <b id="xp">0</b></span>
-    <span>RACHA: <b id="racha">0</b>🔥</span>
+  <a class="back" href="index.html">← INICIO</a>
+  <div class="right">
+    <div class="pill">XP: <strong id="xp">0</strong></div>
+    <div class="pill">RACHA: <strong id="streak">0</strong>🔥</div>
   </div>
 </div>
 
 <div class="spacer"></div>
 
-<main>
-
-<h1>TU NIVEL</h1>
-<div class="subtitle">
-Esto no es una página. Es estatus.
-</div>
-
-<div class="xp-box">
-  <div class="rank" id="rank">BÁSICO</div>
-  <div class="progress"><span id="bar"></span></div>
-  <div class="xp-text" id="xpText"></div>
-</div>
-
-<div class="levels">
-  <div class="level" id="lv1">
-    <h3>BÁSICO</h3>
-    <ul>
-      <li>✔ Acceso al sistema</li>
-      <li>✖ Sin beneficios</li>
-    </ul>
+<section class="hud">
+  <div class="title">
+    <div>
+      <h1>TU NIVEL</h1>
+      <div class="subtitle">Esto se siente como juego. VIP se ve, se siente y se presume.</div>
+    </div>
+    <div class="subtitle" id="rankLine">Cargando estado…</div>
   </div>
+  <div class="glowline"></div>
 
-  <div class="level" id="lv2">
-    <h3>PRO</h3>
-    <ul>
-      <li>✔ Prioridad para reservar</li>
-      <li>✔ Festivos incluidos</li>
-      <li>✔ Nivel PRO (180 XP)</li>
-    </ul>
+  <div class="grid">
+
+    <!-- XP / PROGRESS -->
+    <div class="card col-7" id="xpCard">
+      <div class="xpRow">
+        <div class="rank" id="rank">BÁSICO</div>
+        <div class="xp" id="next">FALTAN 0 XP</div>
+      </div>
+
+      <div class="bar"><div class="fill" id="fill"></div></div>
+
+      <div class="mini">
+        <div class="tag">PRO: <b>prioridad (festivos)</b></div>
+        <div class="tag">VIP: <b>6 cortes gratis/año</b></div>
+        <div class="tag">VIP: <b>agua / café</b></div>
+      </div>
+
+      <!-- ROAD / MAP -->
+      <div class="road" style="margin-top:14px">
+        <div class="roadTop">
+          <h3>MAPA DE PROGRESO</h3>
+          <span>PRO 180 XP · VIP 300 XP</span>
+        </div>
+        <div class="track" id="track">
+          <div class="trackLine"></div>
+          <div class="cursor" id="cursor" style="left:14px"></div>
+
+          <div class="node active" id="node1" style="left:14%">
+            <small>BÁS</small>
+          </div>
+          <div class="node locked" id="node2" style="left:60%">
+            <small>PRO</small>
+          </div>
+          <div class="node locked" id="node3" style="left:90%">
+            <small>VIP</small>
+          </div>
+        </div>
+        <div class="neonDivider"></div>
+        <div style="font-size:12px; opacity:.70; line-height:1.5">
+          <b>Tip:</b> cuando subes de nivel, se activan portales y cupones. Esto engancha.
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSIONS -->
+    <div class="card col-5">
+      <div class="mHead">
+        <h3>MISIONES</h3>
+        <span>Reclama XP (demo)</span>
+      </div>
+
+      <div class="mission">
+        <div class="mText">
+          <strong>Propina (opcional)</strong>
+          <small>+20 XP (no es obligado)</small>
+        </div>
+        <button class="mBtn" id="mTip">RECLAMAR</button>
+      </div>
+
+      <div class="mission">
+        <div class="mText">
+          <strong>Reservar y asistir 3 veces en un mes</strong>
+          <small>+140 XP (sube duro)</small>
+        </div>
+        <button class="mBtn" id="m3x">RECLAMAR</button>
+      </div>
+
+      <div class="mission">
+        <div class="mText">
+          <strong>Mantener nivel activo</strong>
+          <small>+40 XP (mantente en tu nivel)</small>
+        </div>
+        <button class="mBtn" id="mKeep">RECLAMAR</button>
+      </div>
+
+      <div class="mission">
+        <div class="mText">
+          <strong>Recomendar la barbería</strong>
+          <small>+40 XP (crucial: ganas tú y gana el barbero)</small>
+        </div>
+        <button class="mBtn" id="mRef">RECLAMAR</button>
+      </div>
+
+      <div style="font-size:12px; opacity:.72; line-height:1.5; margin-top:8px">
+        <b>Nota:</b> Esto es demo. Luego se conecta con el sistema real del barbero para validar.
+      </div>
+    </div>
+
+    <!-- LEVELS -->
+    <div class="card col-12 levelsWrap" id="levels">
+      <h3>BENEFICIOS POR NIVEL</h3>
+
+      <div class="lGrid">
+        <div class="levelCard" id="lv1">
+          <div class="badge">NIVEL 1</div>
+          <h4>BÁSICO</h4>
+          <ul>
+            <li>✔ Acceso al sistema</li>
+            <li>✖ Sin beneficios</li>
+            <li>✔ Puedes subir con acciones</li>
+          </ul>
+        </div>
+
+        <div class="levelCard" id="lv2">
+          <div class="badge">NIVEL 2</div>
+          <h4>PRO (180 XP)</h4>
+          <ul>
+            <li>✔ Prioridad para reservar</li>
+            <li>✔ Incluye días festivos</li>
+            <li>✔ Soporte preferente en horarios llenos</li>
+          </ul>
+        </div>
+
+        <div class="levelCard vipPlan" id="lv3">
+          <div class="vipGlow"></div>
+          <div class="vipCrown">👑</div>
+          <div class="badge">VIP</div>
+          <h4>VIP (300 XP)</h4>
+          <ul>
+            <li>✔ Prioridad total (festivos incluidos)</li>
+            <li>✔ 6 cortes GRATIS al año</li>
+            <li>✔ Atención VIP (agua / café)</li>
+            <li>✔ Reservaciones preferenciales</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME HUB / PORTALS -->
+    <div class="card col-12" id="hub">
+      <div class="hubHead">
+        <h3>GAME HUB</h3>
+        <span>Toca y entra: portales, cupones, logros…</span>
+      </div>
+
+      <div class="portals">
+        <div class="portal" data-open="panelCoupons">
+          <h4>Bóveda de cupones</h4>
+          <p>Desbloquea códigos y presume tu nivel.</p>
+          <div class="icon">🎁</div>
+        </div>
+
+        <div class="portal" data-open="panelAch">
+          <h4>Logros</h4>
+          <p>Esto es lo que envicia. Se encienden y se guardan.</p>
+          <div class="icon">🏆</div>
+        </div>
+
+        <div class="portal" data-open="panelQuests">
+          <h4>Desafío semanal</h4>
+          <p>Reto rápido +40 XP (te mantiene activo).</p>
+          <div class="icon">⚡</div>
+        </div>
+
+        <div class="portal vipOnly locked" id="portalVip" data-open="panelVip">
+          <h4>Portal VIP</h4>
+          <p>Zona exclusiva: solo VIP entra.</p>
+          <div class="icon">👑</div>
+        </div>
+      </div>
+
+      <div class="panelWrap" style="margin-top:12px">
+        <div class="panelTabs">
+          <div class="tab active" data-tab="panelCoupons">CUPONES</div>
+          <div class="tab" data-tab="panelAch">LOGROS</div>
+          <div class="tab" data-tab="panelQuests">DESAFÍO</div>
+          <div class="tab" data-tab="panelVip">VIP</div>
+        </div>
+
+        <!-- COUPONS -->
+        <div class="panel show" id="panelCoupons">
+          <div class="couponBar">
+            <div>
+              <strong id="couponTitle">CUPÓN BLOQUEADO</strong><br>
+              <span id="couponDesc">Sube a PRO para desbloquear tu primer cupón.</span>
+            </div>
+            <button class="copyBtn" id="copyCoupon" disabled>COPIAR</button>
+          </div>
+
+          <div style="margin-top:12px; font-size:12px; opacity:.72; line-height:1.6">
+            <b>Cómo funciona:</b> el cliente se motiva porque ve cupón bloqueado.  
+            Cuando sube, lo copia y lo usa. Enganche total.
+          </div>
+        </div>
+
+        <!-- ACHIEVEMENTS -->
+        <div class="panel" id="panelAch">
+          <div style="font-size:12px; opacity:.72; margin-bottom:12px">
+            Logros que se encienden en tiempo real. Se quedan guardados en el dispositivo.
+          </div>
+
+          <div class="achGrid">
+            <div class="ach" id="ach1">
+              <strong>PRIMERA SUBIDA</strong>
+              <small>Llega a 180 XP (PRO).</small>
+            </div>
+            <div class="ach" id="ach2">
+              <strong>MODO VIP</strong>
+              <small>Llega a 300 XP (VIP).</small>
+            </div>
+            <div class="ach" id="ach3">
+              <strong>FIESTA</strong>
+              <small>Reclama 3 misiones.</small>
+            </div>
+            <div class="ach" id="ach4">
+              <strong>LEGENDARIO</strong>
+              <small>Alcanza 420 XP (extra).</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- WEEKLY QUEST -->
+        <div class="panel" id="panelQuests">
+          <div style="font-size:12px; opacity:.72; margin-bottom:12px">
+            Reto semanal. Esto mantiene al cliente pendiente y activo.
+          </div>
+
+          <div class="mission">
+            <div class="mText">
+              <strong>Reto semanal: 1 acción + 1 recomendación</strong>
+              <small>+40 XP (mantener nivel activo)</small>
+            </div>
+            <button class="mBtn" id="mWeekly">RECLAMAR</button>
+          </div>
+
+          <div style="font-size:12px; opacity:.72; line-height:1.6">
+            <b>Tip de venta:</b> esto le da al barbero retención y a ti te da valor del sistema.
+          </div>
+        </div>
+
+        <!-- VIP PANEL -->
+        <div class="panel" id="panelVip">
+          <div style="font-size:12px; opacity:.72; margin-bottom:12px">
+            <b>Zona VIP:</b> aquí se ven beneficios “de película”.  
+            Si no eres VIP, se queda bloqueado.
+          </div>
+
+          <div class="couponBar" style="background:linear-gradient(135deg, rgba(255,215,0,.14), rgba(255,255,255,.06))">
+            <div>
+              <strong id="vipTitle">PORTAL VIP BLOQUEADO</strong><br>
+              <span id="vipDesc">Llega a 300 XP para activar la corona.</span>
+            </div>
+            <button class="copyBtn" id="vipAction" disabled>ENTRAR</button>
+          </div>
+
+          <div style="margin-top:12px; font-size:12px; opacity:.72; line-height:1.6">
+            VIP puede tener: prioridad total, atención VIP, y sus cupones especiales.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="card col-12" style="text-align:center">
+      <div style="letter-spacing:.22em; text-transform:uppercase; font-size:13px; opacity:.85; margin-bottom:10px;">
+        SUBE DE NIVEL
+      </div>
+      <div style="opacity:.70; font-size:14px; margin-bottom:18px;">
+        PRO en <b>180 XP</b> · VIP en <b>300 XP</b>. Si te quedas VIP, tienes prioridad hasta en festivos.
+      </div>
+      <a href="propinas.html" class="mBtn" style="display:inline-block; text-decoration:none; padding:14px 18px;">
+        IR A PROPINAS
+      </a>
+    </div>
+
   </div>
-
-  <div class="level vip" id="lv3">
-    <div class="crown">👑</div>
-    <h3>VIP</h3>
-    <ul>
-      <li>✔ Prioridad total</li>
-      <li>✔ 6 cortes gratis</li>
-      <li>✔ Atención exclusiva</li>
-      <li>✔ Nivel VIP (300 XP)</li>
-    </ul>
-  </div>
-</div>
-
-<section class="hub">
-<h2>GAME HUB</h2>
-
-<div class="hub-grid">
-  <div class="hub-card">
-    <div class="hub-icon">🎟</div>
-    <div class="hub-title">CUPONES</div>
-    <div class="hub-desc">Recompensas que rotan.</div>
-  </div>
-
-  <div class="hub-card">
-    <div class="hub-icon">🔥</div>
-    <div class="hub-title">RACHA</div>
-    <div class="hub-desc">Mantente activo y gana.</div>
-  </div>
-
-  <div class="hub-card vip">
-    <div class="hub-icon">👑</div>
-    <div class="hub-title">PORTAL VIP</div>
-    <div class="hub-desc">Zona exclusiva.</div>
-  </div>
-
-  <div class="hub-card">
-    <div class="hub-icon">🧠</div>
-    <div class="hub-title">DESAFÍOS</div>
-    <div class="hub-desc">Misiones secretas.</div>
-  </div>
-</div>
 </section>
 
-</main>
-
 <footer>
-© 2025 Barbería Premium · Sistema de Nivel Real
+  ©️ 2025 Barbería Premium · Sistema de fidelidad (demo)
 </footer>
 
+<div class="toast" id="toast">
+  <b id="toastTitle">+XP</b><span id="toastText">Actualizado</span>
+</div>
+
 <script>
-let data=JSON.parse(localStorage.getItem("nivelGame"))||{xp:0,racha:0};
+/* =========================
+   PROGRESO (LOCAL POR DISPOSITIVO)
+========================= */
+const SKEY = "barber_game_final_v1";
+const DEFAULT = {
+  xp: 0,
+  streak: 0,
+  claims: 0,
+  lastTipDay: "",
+  last3xDay: "",
+  lastKeepDay: "",
+  lastRefDay: "",
+  lastWeeklyDay: "",
+  lastCouponCopy: "",
+};
 
-function update(){
-  document.getElementById("xp").textContent=data.xp;
-  document.getElementById("racha").textContent=data.racha;
+function dayId(t=Date.now()){
+  const d = new Date(t);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function loadState(){
+  try{
+    const raw = localStorage.getItem(SKEY);
+    if(!raw) return {...DEFAULT};
+    return {...DEFAULT, ...JSON.parse(raw)};
+  }catch(e){ return {...DEFAULT}; }
+}
+function saveState(s){ localStorage.setItem(SKEY, JSON.stringify(s)); }
 
-  let rank="BÁSICO";
-  let percent=Math.min(100,(data.xp/300)*100);
+/* =========================
+   NIVELES (PRO 180, VIP 300)
+========================= */
+const PRO_XP = 180;
+const VIP_XP = 300;
 
-  document.querySelectorAll(".level").forEach(l=>l.classList.remove("active"));
-  document.body.classList.remove("vip");
-
-  if(data.xp>=300){
-    rank="VIP";
-    document.getElementById("lv3").classList.add("active");
-    document.body.classList.add("vip");
-  }else if(data.xp>=180){
-    rank="PRO";
-    document.getElementById("lv2").classList.add("active");
-  }else{
-    document.getElementById("lv1").classList.add("active");
-  }
-
-  document.getElementById("rank").textContent=rank;
-  document.getElementById("bar").style.width=percent+"%";
-  document.getElementById("xpText").textContent=
-    rank==="VIP"?"Modo VIP activo 👑":
-    rank==="PRO"?"A 300 XP del VIP":
-    "A 180 XP del PRO";
-
-  localStorage.setItem("nivelGame",JSON.stringify(data));
+function getRank(xp){
+  if(xp >= VIP_XP) return {name:"VIP", level:3};
+  if(xp >= PRO_XP) return {name:"PRO", level:2};
+  return {name:"BÁSICO", level:1};
+}
+function percent(xp){
+  return Math.max(0, Math.min(100, (xp/VIP_XP)*100));
 }
 
-update();
+/* =========================
+   UI
+========================= */
+const elXP = document.getElementById("xp");
+const elStreak = document.getElementById("streak");
+const elRank = document.getElementById("rank");
+const elNext = document.getElementById("next");
+const elFill = document.getElementById("fill");
+const elRankLine = document.getElementById("rankLine");
+const xpCard = document.getElementById("xpCard");
+
+const lv1 = document.getElementById("lv1");
+const lv2 = document.getElementById("lv2");
+const lv3 = document.getElementById("lv3");
+
+const node1 = document.getElementById("node1");
+const node2 = document.getElementById("node2");
+const node3 = document.getElementById("node3");
+const cursor = document.getElementById("cursor");
+
+const toast = document.getElementById("toast");
+const toastTitle = document.getElementById("toastTitle");
+const toastText = document.getElementById("toastText");
+
+const portalVip = document.getElementById("portalVip");
+
+const couponTitle = document.getElementById("couponTitle");
+const couponDesc = document.getElementById("couponDesc");
+const copyCoupon = document.getElementById("copyCoupon");
+
+const vipTitle = document.getElementById("vipTitle");
+const vipDesc = document.getElementById("vipDesc");
+const vipAction = document.getElementById("vipAction");
+
+const ach1 = document.getElementById("ach1");
+const ach2 = document.getElementById("ach2");
+const ach3 = document.getElementById("ach3");
+const ach4 = document.getElementById("ach4");
+
+/* =========================
+   TOAST
+========================= */
+function showToast(title, text){
+  toastTitle.textContent = title;
+  toastText.textContent = text;
+  toast.classList.add("show");
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>toast.classList.remove("show"), 2200);
+}
+
+/* =========================
+   XP COUNTING (GAME FEEL)
+========================= */
+function animateNumber(el, from, to){
+  const diff = to - from;
+  const steps = Math.min(44, Math.max(12, Math.floor(Math.abs(diff)/6)));
+  let i = 0;
+  const t = setInterval(()=>{
+    i++;
+    const v = Math.round(from + (diff*(i/steps)));
+    el.textContent = v;
+    if(i>=steps){ el.textContent = to; clearInterval(t); }
+  }, 16);
+}
+
+/* =========================
+   FX: CONFETTI + BEEP
+========================= */
+const fx = document.getElementById("fx");
+const fctx = fx.getContext("2d");
+function resizeFX(){
+  fx.width = innerWidth * devicePixelRatio;
+  fx.height = innerHeight * devicePixelRatio;
+}
+addEventListener("resize", resizeFX);
+resizeFX();
+
+let conf = [];
+function popConfetti(vip=false){
+  conf = [];
+  const count = vip ? 220 : 150;
+  for(let i=0;i<count;i++){
+    conf.push({
+      x:(Math.random()*innerWidth)*devicePixelRatio,
+      y:(-30 - Math.random()*240)*devicePixelRatio,
+      vx:(-1 + Math.random()*2)*devicePixelRatio*(vip?1.5:1.2),
+      vy:(2 + Math.random()*5)*devicePixelRatio*(vip?1.2:1),
+      r:(2 + Math.random()*4)*devicePixelRatio,
+      rot:Math.random()*Math.PI,
+      vr:(-.2 + Math.random()*.4),
+      life:150 + Math.random()*120,
+      gold: vip ? (Math.random()>.25) : (Math.random()>.65)
+    });
+  }
+  renderConfetti();
+  beep(vip);
+}
+function renderConfetti(){
+  fctx.clearRect(0,0,fx.width,fx.height);
+  conf.forEach(p=>{
+    p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+    p.vy *= 1.012; p.life -= 1;
+
+    fctx.save();
+    fctx.translate(p.x,p.y);
+    fctx.rotate(p.rot);
+    fctx.globalAlpha = Math.max(0, Math.min(1, p.life/240));
+    fctx.fillStyle = p.gold ? "rgba(255,215,0,.95)" : "rgba(255,255,255,.95)";
+    fctx.fillRect(-p.r, -p.r, p.r*2.2, p.r*1.2);
+    fctx.restore();
+  });
+  conf = conf.filter(p=>p.life>0 && p.y < fx.height+380);
+  if(conf.length) requestAnimationFrame(renderConfetti);
+  else fctx.clearRect(0,0,fx.width,fx.height);
+}
+function beep(vip=false){
+  try{
+    const ac = new (window.AudioContext||window.webkitAudioContext)();
+    const o = ac.createOscillator();
+    const g = ac.createGain();
+    o.type = "sine";
+    o.frequency.value = vip ? 980 : 880;
+    g.gain.value = 0.03;
+    o.connect(g); g.connect(ac.destination);
+    o.start();
+    setTimeout(()=>{ o.frequency.value = vip ? 720 : 660; }, 70);
+    setTimeout(()=>{ o.stop(); ac.close(); }, 180);
+  }catch(e){}
+}
+
+/* =========================
+   VIP PARTICLES (BACKGROUND)
+========================= */
+const pcan = document.getElementById("particles");
+const pctx = pcan.getContext("2d");
+function resizeP(){
+  pcan.width = innerWidth * devicePixelRatio;
+  pcan.height = innerHeight * devicePixelRatio;
+}
+addEventListener("resize", resizeP);
+resizeP();
+
+let parts = [];
+function seedParticles(){
+  parts = [];
+  const n = 80;
+  for(let i=0;i<n;i++){
+    parts.push({
+      x:Math.random()*pcan.width,
+      y:Math.random()*pcan.height,
+      r:(0.9+Math.random()*2.4)*devicePixelRatio,
+      vy:(0.25+Math.random()*1.0)*devicePixelRatio,
+      a:0.12+Math.random()*0.35,
+      tw:(0.002+Math.random()*0.007)
+    });
+  }
+}
+seedParticles();
+function renderParticles(){
+  pctx.clearRect(0,0,pcan.width,pcan.height);
+  if(!document.body.classList.contains("vip")){
+    requestAnimationFrame(renderParticles);
+    return;
+  }
+  parts.forEach(p=>{
+    p.y += p.vy;
+    p.a += p.tw;
+    if(p.y > pcan.height+20) p.y = -20;
+    const alpha = 0.24 + Math.sin(p.a)*0.22;
+    pctx.beginPath();
+    pctx.fillStyle = `rgba(255,215,0,${alpha})`;
+    pctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    pctx.fill();
+  });
+  requestAnimationFrame(renderParticles);
+}
+renderParticles();
+
+/* =========================
+   PORTALS / TABS
+========================= */
+const tabs = document.querySelectorAll(".tab");
+const panels = document.querySelectorAll(".panel");
+
+function showPanel(id){
+  tabs.forEach(t=>t.classList.toggle("active", t.dataset.tab === id));
+  panels.forEach(p=>p.classList.toggle("show", p.id === id));
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+tabs.forEach(t=>t.addEventListener("click", ()=>showPanel(t.dataset.tab)));
+
+document.querySelectorAll(".portal").forEach(p=>{
+  p.addEventListener("click", ()=>{
+    const target = p.dataset.open;
+    if(p.classList.contains("locked")){
+      popConfetti(false);
+      showToast("BLOQUEADO", "Sube de nivel para entrar.");
+      return;
+    }
+    showPanel(target);
+    showToast("PORTAL", "Entraste a la zona.");
+  });
+});
+
+/* =========================
+   MISSIONS
+========================= */
+const mTip  = document.getElementById("mTip");
+const m3x   = document.getElementById("m3x");
+const mKeep = document.getElementById("mKeep");
+const mRef  = document.getElementById("mRef");
+const mWeekly = document.getElementById("mWeekly");
+
+function disableIfUsedToday(btn, lastDay){
+  const today = dayId();
+  if(lastDay === today){
+    btn.disabled = true;
+    btn.textContent = "HECHO";
+  }else{
+    btn.disabled = false;
+    btn.textContent = "RECLAMAR";
+  }
+}
+
+function updateAchievements(s){
+  if(s.xp >= PRO_XP) ach1.classList.add("on");
+  if(s.xp >= VIP_XP) ach2.classList.add("on");
+  if(s.claims >= 3) ach3.classList.add("on");
+  if(s.xp >= 420) ach4.classList.add("on");
+}
+
+/* =========================
+   COUPONS / VIP PORTAL LOCK
+========================= */
+function applyUnlocks(s){
+  const r = getRank(s.xp);
+
+  // COUPONS
+  if(r.level === 1){
+    couponTitle.textContent = "CUPÓN BLOQUEADO";
+    couponDesc.textContent  = "Sube a PRO para desbloquear tu primer cupón.";
+    copyCoupon.disabled = true;
+  }else if(r.level === 2){
+    couponTitle.textContent = "CUPÓN PRO: PRO10";
+    couponDesc.textContent  = "10% OFF (solo clientes PRO).";
+    copyCoupon.disabled = false;
+    copyCoupon.dataset.code = "PRO10";
+  }else{
+    couponTitle.textContent = "CUPÓN VIP: VIP15";
+    couponDesc.textContent  = "15% OFF + prioridad de reservas (VIP).";
+    copyCoupon.disabled = false;
+    copyCoupon.dataset.code = "VIP15";
+  }
+
+  // VIP PORTAL
+  if(r.level === 3){
+    portalVip.classList.remove("locked");
+    vipTitle.textContent = "PORTAL VIP ACTIVO 👑";
+    vipDesc.textContent  = "Zona exclusiva desbloqueada.";
+    vipAction.disabled = false;
+  }else{
+    portalVip.classList.add("locked");
+    vipTitle.textContent = "PORTAL VIP BLOQUEADO";
+    vipDesc.textContent  = "Llega a 300 XP para activar la corona.";
+    vipAction.disabled = true;
+  }
+}
+
+copyCoupon.addEventListener("click", async ()=>{
+  const s = loadState();
+  const code = copyCoupon.dataset.code || "";
+  if(!code) return;
+  try{
+    await navigator.clipboard.writeText(code);
+    s.lastCouponCopy = dayId();
+    saveState(s);
+    popConfetti(getRank(s.xp).level===3);
+    showToast("COPIADO", `Cupón: ${code}`);
+  }catch(e){
+    showToast("COPIA", "No se pudo copiar (en iPhone a veces requiere https).");
+  }
+});
+
+vipAction.addEventListener("click", ()=>{
+  popConfetti(true);
+  showToast("VIP", "Entraste al Portal VIP 👑 (demo).");
+});
+
+/* =========================
+   RENDER
+========================= */
+function render(s, leveled=false){
+  const r = getRank(s.xp);
+
+  // XP number animation
+  const prev = Number(elXP.textContent || 0);
+  animateNumber(elXP, prev, s.xp);
+
+  elStreak.textContent = s.streak;
+
+  elRank.textContent = r.name;
+  elFill.style.width = `${percent(s.xp)}%`;
+
+  // next line
+  if(r.level === 3){
+    elNext.textContent = "MODO VIP ACTIVO";
+    elRankLine.textContent = "VIP: prioridad total + 6 cortes/año + atención VIP.";
+  }else if(r.level === 2){
+    elNext.textContent = `FALTAN ${VIP_XP - s.xp} XP PARA VIP`;
+    elRankLine.textContent = "PRO: prioridad al reservar (festivos incluidos).";
+  }else{
+    elNext.textContent = `FALTAN ${PRO_XP - s.xp} XP PARA PRO`;
+    elRankLine.textContent = "BÁSICO: acceso al sistema (sin beneficios).";
+  }
+
+  // highlight level cards
+  [lv1,lv2,lv3].forEach(x=>x.classList.remove("now","vipOn"));
+  if(r.level===1) lv1.classList.add("now");
+  if(r.level===2) lv2.classList.add("now");
+  if(r.level===3){ lv3.classList.add("now","vipOn"); }
+
+  // VIP body mode
+  document.body.classList.toggle("vip", r.level===3);
+
+  // MAP nodes and cursor
+  node1.className = "node" + (r.level===1 ? " active" : " locked");
+  node2.className = "node" + (r.level===2 ? " active proActive" : (r.level>2 ? " proActive" : " locked"));
+  node3.className = "node" + (r.level===3 ? " vipActive" : " locked");
+
+  // cursor positions: basic 14%, pro 60%, vip 90% with smooth motion
+  let left = "14%";
+  if(s.xp >= VIP_XP) left = "90%";
+  else if(s.xp >= PRO_XP) left = "60%";
+  else left = `${Math.max(14, Math.min(55, 14 + (s.xp/PRO_XP)*46))}%`;
+  cursor.style.left = left;
+
+  // shake xp card
+  xpCard.classList.remove("shake");
+  void xpCard.offsetWidth;
+  xpCard.classList.add("shake");
+
+  // achievements and unlocks
+  updateAchievements(s);
+  applyUnlocks(s);
+
+  if(leveled){
+    popConfetti(r.level===3);
+    showToast("SUBISTE DE NIVEL", r.level===3 ? "VIP desbloqueado 👑" : "PRO desbloqueado");
+  }
+
+  saveState(s);
+}
+
+/* =========================
+   XP ADD
+========================= */
+function addXP(s, amount, label){
+  const before = getRank(s.xp).level;
+  s.xp += amount;
+  s.streak += 1; // sensación de juego
+  s.claims += 1;
+
+  const after = getRank(s.xp).level;
+  render(s, after>before);
+
+  showToast(`+${amount} XP`, label || "Progreso guardado (demo).");
+}
+
+/* =========================
+   INIT
+========================= */
+function init(){
+  const s = loadState();
+
+  // daily disables
+  disableIfUsedToday(mTip,  s.lastTipDay);
+  disableIfUsedToday(m3x,   s.last3xDay);
+  disableIfUsedToday(mKeep, s.lastKeepDay);
+  disableIfUsedToday(mRef,  s.lastRefDay);
+  disableIfUsedToday(mWeekly, s.lastWeeklyDay);
+
+  mTip.addEventListener("click", ()=>{
+    const today = dayId();
+    if(s.lastTipDay === today) return;
+    s.lastTipDay = today;
+    addXP(s, 20, "Propina opcional (no es obligado).");
+    disableIfUsedToday(mTip, s.lastTipDay);
+  });
+
+  m3x.addEventListener("click", ()=>{
+    const today = dayId();
+    if(s.last3xDay === today) return;
+    s.last3xDay = today;
+    addXP(s, 140, "Reservar y asistir 3 veces en el mes.");
+    disableIfUsedToday(m3x, s.last3xDay);
+  });
+
+  mKeep.addEventListener("click", ()=>{
+    const today = dayId();
+    if(s.lastKeepDay === today) return;
+    s.lastKeepDay = today;
+    addXP(s, 40, "Mantener nivel activo (constancia).");
+    disableIfUsedToday(mKeep, s.lastKeepDay);
+  });
+
+  mRef.addEventListener("click", ()=>{
+    const today = dayId();
+    if(s.lastRefDay === today) return;
+    s.lastRefDay = today;
+    addXP(s, 40, "Recomendaste la barbería (gana el barbero + ganas tú).");
+    disableIfUsedToday(mRef, s.lastRefDay);
+  });
+
+  mWeekly.addEventListener("click", ()=>{
+    const today = dayId();
+    if(s.lastWeeklyDay === today) return;
+    s.lastWeeklyDay = today;
+    addXP(s, 40, "Desafío semanal completado.");
+    disableIfUsedToday(mWeekly, s.lastWeeklyDay);
+    popConfetti(getRank(s.xp).level===3);
+  });
+
+  render(s, false);
+}
+init();
 </script>
 
 </body>
