@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Propinas | Barbería Premium</title>
+<title>Propinas · Barbería Premium</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -14,197 +15,252 @@ body{
   font-family:'Inter',system-ui;
   background:#000;
   color:#fff;
+  overflow-x:hidden;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 header{
-  padding:24px;
-  text-align:center;
-  font-size:14px;
-  letter-spacing:.2em;
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:calc(100% - 36px);
+  max-width:1100px;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  padding:14px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:50;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand img{
+  width:34px;
+  height:34px;
+  border-radius:8px;
+}
+
+nav{
+  display:flex;
+  gap:26px;
+  font-size:13px;
+  letter-spacing:.12em;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
   opacity:.7;
 }
 
-/* CARD */
-.card{
-  max-width:420px;
-  margin:30px auto;
+nav a:hover{opacity:1}
+
+/* ===== ESPACIO HEADER ===== */
+.spacer{height:130px}
+
+/* ===== HERO ===== */
+.hero{
+  padding:40px 20px 60px;
+  display:flex;
+  justify-content:center;
+}
+
+.hero-card{
   background:rgba(255,255,255,.05);
+  backdrop-filter:blur(22px);
   border-radius:28px;
-  padding:36px 26px;
-  box-shadow:0 30px 80px rgba(0,0,0,.7);
+  padding:46px 30px;
+  max-width:420px;
+  width:100%;
   text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
 }
 
-/* TITULO */
-.card h1{
-  font-size:24px;
-  letter-spacing:.2em;
-  margin-bottom:10px;
-}
-
-.card p{
-  font-size:13px;
-  opacity:.65;
-  line-height:1.6;
-  margin-bottom:26px;
-}
-
-/* NIVEL */
-.nivel{
-  font-size:15px;
+.hero-card h1{
+  font-size:34px;
+  font-weight:800;
+  letter-spacing:.22em;
   margin-bottom:14px;
 }
 
-.nivel span{
-  font-weight:600;
-}
-
-/* PROGRESO */
-.progress{
-  height:10px;
-  background:#111;
-  border-radius:999px;
-  overflow:hidden;
-  margin-bottom:24px;
-}
-
-.progress span{
-  display:block;
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#fff,#aaa);
-  transition:.4s ease;
-}
-
-/* BOTONES */
-.propinas{
-  display:grid;
-  gap:12px;
-  margin-bottom:26px;
-}
-
-.propinas button{
-  padding:14px;
-  border-radius:999px;
-  border:none;
-  font-size:12px;
-  letter-spacing:.14em;
-  cursor:pointer;
-  background:#fff;
-  color:#000;
-  font-weight:600;
-}
-
-.custom{
-  background:transparent !important;
-  color:#fff !important;
-  border:1px solid rgba(255,255,255,.35);
-}
-
-/* TEXTO FINAL */
-.info{
-  font-size:12px;
-  opacity:.55;
+.hero-card p{
+  font-size:14px;
+  opacity:.8;
   line-height:1.6;
 }
 
-/* FOOTER */
-footer{
-  margin-top:40px;
+/* ===== PROPINA OPCIONES ===== */
+.propinas{
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
   text-align:center;
-  font-size:11px;
-  opacity:.4;
+}
+
+.propinas h2{
+  font-size:26px;
+  letter-spacing:.2em;
+  margin-bottom:14px;
+}
+
+.propinas p{
+  opacity:.65;
+  margin-bottom:50px;
+}
+
+/* GRID */
+.propina-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:26px;
+}
+
+/* CARD */
+.propina-card{
+  background:#111;
+  border-radius:24px;
+  padding:36px 26px;
+  transition:.4s ease;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.propina-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,255,255,.35);
+}
+
+.propina-card h3{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.propina-card span{
+  font-size:13px;
+  opacity:.6;
+  display:block;
+  margin-bottom:20px;
+}
+
+.propina-card button{
+  width:100%;
+  padding:14px;
+  border-radius:999px;
+  border:none;
+  background:#fff;
+  color:#000;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+/* ===== MENSAJE ===== */
+.mensaje{
+  padding:80px 20px;
+  text-align:center;
+  max-width:720px;
+  margin:auto;
+}
+
+.mensaje h3{
+  font-size:24px;
+  letter-spacing:.18em;
+  margin-bottom:16px;
+}
+
+.mensaje p{
+  font-size:14px;
+  opacity:.7;
+  line-height:1.7;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:40px 20px;
+  text-align:center;
+  font-size:12px;
+  opacity:.45;
+  border-top:1px solid rgba(255,255,255,.08);
 }
 </style>
 </head>
 
 <body>
 
-<header>PROPINA</header>
+<header>
+  <div class="brand">
+    <img src="logo.jpg" alt="Logo">
+  </div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="tunivel.html">Tu Nivel</a>
+    <a href="reservar.html">Reservar</a>
+  </nav>
+</header>
 
-<div class="card">
+<div class="spacer"></div>
 
-  <h1>APOYA TU BARBERO</h1>
+<section class="hero">
+  <div class="hero-card">
+    <h1>PROPINA</h1>
+    <p>
+      Un gesto simple.<br>
+      Un detalle que suma.<br>
+      Aquí todo cuenta.
+    </p>
+  </div>
+</section>
+
+<section class="propinas">
+  <h2>ELIGE TU PROPINA</h2>
+  <p>Cada aporte suma puntos para tu nivel</p>
+
+  <div class="propina-grid">
+
+    <div class="propina-card">
+      <h3>$1</h3>
+      <span>+5 puntos a tu nivel</span>
+      <button>Dar propina</button>
+    </div>
+
+    <div class="propina-card">
+      <h3>$5</h3>
+      <span>+15 puntos a tu nivel</span>
+      <button>Dar propina</button>
+    </div>
+
+    <div class="propina-card">
+      <h3>$10</h3>
+      <span>+30 puntos a tu nivel</span>
+      <button>Dar propina</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="mensaje">
+  <h3>No es obligatorio</h3>
   <p>
-    Cada propina suma puntos.<br>
-    Más puntos = más beneficios.
+    La propina no es una obligación.<br>
+    Es solo una forma de apoyar, agradecer<br>
+    y avanzar dentro de tu nivel.<br><br>
+    Si decides hacerlo, suma.<br>
+    Si no, tu experiencia sigue intacta.
   </p>
-
-  <div class="nivel">
-    Tu nivel actual: <span id="nivel">Fresh</span><br>
-    Puntos: <strong><span id="puntos">0</span></strong>
-  </div>
-
-  <div class="progress">
-    <span id="barra"></span>
-  </div>
-
-  <div class="propinas">
-    <button onclick="darPropina(5)">💸 $5 PROPINA</button>
-    <button onclick="darPropina(10)">💸 $10 PROPINA</button>
-    <button onclick="darPropina(20)">💸 $20 PROPINA</button>
-    <button class="custom" onclick="darPropina(15)">OTRA CANTIDAD</button>
-  </div>
-
-  <div class="info" id="beneficios">
-    • Sumas puntos automáticamente<br>
-    • Acércate a tu corte gratis
-  </div>
-
-</div>
+</section>
 
 <footer>
-© 2025 Barbería Premium · Sistema Tu Nivel
+  ©️ 2025 Barbería Premium · Todos los derechos reservados
 </footer>
-
-<script>
-let puntos = localStorage.getItem('puntos')
-  ? parseInt(localStorage.getItem('puntos'))
-  : 0;
-
-function render(){
-  let nivel = 'Fresh';
-  let progreso = Math.min(puntos,100);
-  let beneficios = `
-    • Acumulas puntos con propinas<br>
-    • Desbloquea beneficios
-  `;
-
-  if(puntos >= 40){
-    nivel = 'Pro';
-    progreso = Math.min((puntos-40)*2,100);
-    beneficios = `
-      • Prioridad en reservas<br>
-      • Bonos especiales
-    `;
-  }
-
-  if(puntos >= 100){
-    nivel = 'VIP';
-    progreso = 100;
-    beneficios = `
-      • 🎉 1 corte GRATIS al mes<br>
-      • Atención exclusiva
-    `;
-  }
-
-  document.getElementById('nivel').innerText = nivel;
-  document.getElementById('puntos').innerText = puntos;
-  document.getElementById('barra').style.width = progreso + '%';
-  document.getElementById('beneficios').innerHTML = beneficios;
-
-  localStorage.setItem('puntos', puntos);
-}
-
-function darPropina(dolares){
-  let ganados = dolares * 2;
-  puntos += ganados;
-  render();
-}
-
-render();
-</script>
 
 </body>
 </html>
