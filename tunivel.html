@@ -8,280 +8,260 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 :root{
-  --glass:rgba(255,255,255,.08);
-  --line:rgba(255,255,255,.18);
+  --glass:rgba(255,255,255,.10);
+  --line:rgba(255,255,255,.20);
+  --neon:#00ffd5;
   --vip:#ffd700;
 }
 
 body{
   font-family:'Inter',system-ui;
-  background:
-    radial-gradient(900px 520px at 50% 0%, rgba(255,255,255,.06), transparent 60%),
-    radial-gradient(820px 520px at 0% 100%, rgba(255,255,255,.05), transparent 60%),
-    #000;
+  background:#000;
   color:#fff;
   overflow-x:hidden;
   transition:background 1s ease;
 }
+
 body.vip{
   background:
-    radial-gradient(1100px 520px at 50% 0%, rgba(255,215,0,.25), transparent 60%),
-    radial-gradient(900px 520px at 50% 100%, rgba(255,255,255,.12), transparent 70%),
+    radial-gradient(1200px 600px at 50% 0%, rgba(255,215,0,.40), transparent 60%),
+    radial-gradient(1000px 600px at 50% 100%, rgba(255,255,255,.12), transparent 70%),
     #000;
 }
 
-/* ===== TOP BAR ===== */
+/* ===== TOP ===== */
 .topbar{
   position:fixed;
-  top:18px;
+  top:16px;
   left:50%;
   transform:translateX(-50%);
-  width:calc(100% - 36px);
-  max-width:1100px;
-  padding:14px 18px;
-  border-radius:18px;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(18px);
+  width:calc(100% - 32px);
+  max-width:1200px;
+  padding:16px 22px;
+  border-radius:22px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(22px);
   border:1px solid var(--line);
   display:flex;
   justify-content:space-between;
-  z-index:50;
+  z-index:100;
 }
 .topbar a{
   color:#fff;
   text-decoration:none;
-  letter-spacing:.14em;
   font-size:12px;
-  opacity:.75;
-}
-.stats{
-  display:flex;
-  gap:10px;
-  font-size:11px;
+  letter-spacing:.18em;
+  opacity:.8;
 }
 .stats span{
-  padding:8px 12px;
+  margin-left:12px;
+  padding:8px 14px;
   border-radius:999px;
-  border:1px solid var(--line);
   background:var(--glass);
+  border:1px solid var(--line);
+  font-size:11px;
 }
 
 /* ===== SPACER ===== */
-.spacer{height:120px}
+.spacer{height:130px}
 
 /* ===== MAIN ===== */
 main{
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
   padding:20px;
 }
 
 h1{
-  font-size:42px;
-  letter-spacing:.28em;
-  margin-bottom:6px;
+  font-size:46px;
+  letter-spacing:.34em;
+  margin-bottom:8px;
 }
 .subtitle{
-  opacity:.65;
-  font-size:14px;
-  margin-bottom:30px;
+  opacity:.7;
+  margin-bottom:36px;
 }
 
-/* ===== XP BOX ===== */
+/* ===== XP CORE ===== */
 .xp-box{
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:28px;
-  padding:26px;
-  margin-bottom:40px;
-  box-shadow:0 0 80px rgba(255,255,255,.08);
+  border-radius:34px;
+  padding:34px;
+  margin-bottom:50px;
+  position:relative;
+  overflow:hidden;
 }
+
+.xp-box::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
+  animation:scan 4s linear infinite;
+}
+
+@keyframes scan{
+  from{transform:translateX(-120%)}
+  to{transform:translateX(120%)}
+}
+
 .rank{
   font-weight:800;
-  letter-spacing:.2em;
-  margin-bottom:10px;
+  letter-spacing:.28em;
+  margin-bottom:14px;
 }
+
 .progress{
-  height:14px;
-  background:rgba(255,255,255,.15);
+  height:18px;
+  background:rgba(255,255,255,.2);
   border-radius:999px;
   overflow:hidden;
 }
+
 .progress span{
   display:block;
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#fff,#bbb,#fff);
-  transition:width 1s ease;
-  box-shadow:0 0 25px rgba(255,255,255,.4);
+  background:linear-gradient(90deg,#fff,var(--neon),#fff);
+  box-shadow:0 0 50px var(--neon);
+  transition:width 1.2s cubic-bezier(.2,.9,.2,1);
 }
+
 body.vip .progress span{
   background:linear-gradient(90deg,#fff,var(--vip),#fff);
-  box-shadow:0 0 35px rgba(255,215,0,.6);
+  box-shadow:0 0 80px var(--vip);
 }
+
 .xp-text{
-  margin-top:12px;
+  margin-top:14px;
   font-size:12px;
-  opacity:.7;
+  opacity:.75;
 }
 
 /* ===== LEVELS ===== */
 .levels{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-  margin-bottom:50px;
+  gap:30px;
+  margin-bottom:80px;
 }
+
 .level{
-  background:rgba(0,0,0,.4);
+  background:rgba(0,0,0,.55);
   border:1px solid var(--line);
-  border-radius:26px;
-  padding:22px;
+  border-radius:36px;
+  padding:30px;
   position:relative;
-  transition:.35s;
+  transition:.5s;
 }
+
+.level:hover{
+  transform:translateY(-14px) scale(1.05);
+  box-shadow:0 0 120px rgba(0,255,213,.4);
+}
+
 .level.active{
-  outline:2px solid rgba(255,255,255,.6);
-  box-shadow:0 0 80px rgba(255,255,255,.2);
+  outline:2px solid #fff;
 }
+
 .level.vip.active{
   outline:2px solid var(--vip);
-  box-shadow:0 0 120px rgba(255,215,0,.6);
+  box-shadow:0 0 180px var(--vip);
 }
+
 .level h3{
-  letter-spacing:.22em;
-  font-size:14px;
+  letter-spacing:.28em;
   margin-bottom:14px;
 }
+
 .level ul{
   list-style:none;
   font-size:13px;
-  opacity:.78;
-  line-height:1.7;
+  opacity:.85;
+  line-height:1.8;
 }
+
 .crown{
   position:absolute;
-  top:16px;
-  right:18px;
-  font-size:24px;
+  top:20px;
+  right:24px;
+  font-size:28px;
   opacity:.15;
 }
+
 .level.vip.active .crown{
   opacity:1;
   animation:float 2.2s ease-in-out infinite;
 }
+
 @keyframes float{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
+  50%{transform:translateY(-10px)}
 }
 
-/* ===== MISSIONS ===== */
-.missions{
-  background:var(--glass);
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:26px;
-  margin-bottom:60px;
-}
-.missions h2{
-  font-size:14px;
-  letter-spacing:.28em;
-  margin-bottom:18px;
-}
-.mission{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px;
-  border-radius:18px;
-  border:1px solid var(--line);
-  margin-bottom:14px;
-}
-.mission span{
-  font-size:13px;
-  opacity:.75;
-}
-.mission button{
-  background:#fff;
-  color:#000;
-  border:none;
-  padding:11px 18px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.14em;
-  cursor:pointer;
-}
-.mission button:disabled{
-  opacity:.4;
+/* ===== HUB ===== */
+.hub{
+  margin-bottom:100px;
 }
 
-/* ===== ARCADE HUB ===== */
-.arcade{
-  margin-bottom:80px;
-}
-.arcade h2{
-  font-size:15px;
-  letter-spacing:.3em;
-  margin-bottom:28px;
+.hub h2{
   text-align:center;
+  font-size:18px;
+  letter-spacing:.38em;
+  margin-bottom:40px;
 }
-.arcade-grid{
+
+.hub-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:26px;
+  gap:34px;
 }
-.arcade-card{
-  background:rgba(0,0,0,.5);
+
+.hub-card{
+  background:rgba(0,0,0,.6);
   border:1px solid var(--line);
-  border-radius:30px;
-  padding:28px;
-  min-height:170px;
-  position:relative;
+  border-radius:40px;
+  padding:34px;
+  min-height:200px;
+  transition:.6s;
   cursor:pointer;
-  transition:.4s;
 }
-.arcade-card:hover{
-  transform:translateY(-8px) scale(1.03);
+
+.hub-card:hover{
+  transform:scale(1.08) rotate(-1deg);
+  box-shadow:0 0 160px rgba(0,255,213,.6);
 }
-.arcade-card::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
-  animation:scan 3.5s linear infinite;
-  opacity:.25;
+
+.hub-card.vip{
+  border-color:var(--vip);
+  box-shadow:0 0 60px rgba(255,215,0,.5);
 }
-@keyframes scan{
-  from{transform:translateX(-120%)}
-  to{transform:translateX(120%)}
+
+.hub-icon{
+  font-size:30px;
+  margin-bottom:16px;
 }
-.arcade-title{
-  font-size:13px;
-  letter-spacing:.24em;
+
+.hub-title{
+  letter-spacing:.28em;
   margin-bottom:10px;
 }
-.arcade-desc{
-  font-size:13px;
+
+.hub-desc{
   opacity:.75;
-  line-height:1.6;
-}
-.arcade-icon{
-  position:absolute;
-  top:18px;
-  right:20px;
-  font-size:22px;
+  font-size:13px;
 }
 
 /* ===== FOOTER ===== */
 footer{
   text-align:center;
   font-size:12px;
-  opacity:.45;
-  margin-top:80px;
+  opacity:.55;
+  padding:50px 20px;
   border-top:1px solid var(--line);
-  padding:40px 20px;
 }
 </style>
 </head>
@@ -299,9 +279,10 @@ footer{
 <div class="spacer"></div>
 
 <main>
+
 <h1>TU NIVEL</h1>
 <div class="subtitle">
-Esto es un juego real. Si vienes, subes. Si no, te quedas atrás.
+Esto no es una web. Es un sistema de estatus.
 </div>
 
 <div class="xp-box">
@@ -332,74 +313,54 @@ Esto es un juego real. Si vienes, subes. Si no, te quedas atrás.
     <h3>VIP</h3>
     <ul>
       <li>✔ Prioridad total</li>
-      <li>✔ 6 cortes gratis / año</li>
-      <li>✔ Agua / café</li>
+      <li>✔ 6 cortes gratis</li>
+      <li>✔ Atención exclusiva</li>
     </ul>
   </div>
 </div>
 
-<div class="missions">
-  <h2>MISIONES</h2>
+<section class="hub">
+<h2>ZONA DE PODER</h2>
 
-  <div class="mission">
-    <span>Propina opcional (+20 XP)</span>
-    <button onclick="gain(20)">RECLAMAR</button>
+<div class="hub-grid">
+  <div class="hub-card">
+    <div class="hub-icon">🎟</div>
+    <div class="hub-title">CUPONES</div>
+    <div class="hub-desc">Desbloquea descuentos ocultos.</div>
   </div>
 
-  <div class="mission">
-    <span>Reservar y asistir 3 veces en un mes (+140 XP)</span>
-    <button onclick="gain(140)">RECLAMAR</button>
+  <div class="hub-card">
+    <div class="hub-icon">🔥</div>
+    <div class="hub-title">RACHA</div>
+    <div class="hub-desc">Rompe tu récord mensual.</div>
   </div>
 
-  <div class="mission">
-    <span>Mantener nivel activo (+40 XP)</span>
-    <button onclick="gain(40)">RECLAMAR</button>
+  <div class="hub-card vip">
+    <div class="hub-icon">👑</div>
+    <div class="hub-title">PORTAL VIP</div>
+    <div class="hub-desc">Solo para los que mandan.</div>
   </div>
-</div>
 
-<section class="arcade">
-<h2>ZONA EXCLUSIVA</h2>
-<div class="arcade-grid">
-
-<div class="arcade-card">
-  <div class="arcade-icon">🎟</div>
-  <div class="arcade-title">CUPONES</div>
-  <div class="arcade-desc">Desbloqueables según constancia.</div>
-</div>
-
-<div class="arcade-card">
-  <div class="arcade-icon">🧠</div>
-  <div class="arcade-title">RETOS SECRETOS</div>
-  <div class="arcade-desc">No todos los clientes los ven.</div>
-</div>
-
-<div class="arcade-card">
-  <div class="arcade-icon">🔥</div>
-  <div class="arcade-title">BONUS OCULTO</div>
-  <div class="arcade-desc">Se activa con disciplina mensual.</div>
-</div>
-
-<div class="arcade-card">
-  <div class="arcade-icon">👑</div>
-  <div class="arcade-title">CAMINO VIP</div>
-  <div class="arcade-desc">VIP se gana. No se compra.</div>
-</div>
-
+  <div class="hub-card">
+    <div class="hub-icon">🧠</div>
+    <div class="hub-title">RETOS</div>
+    <div class="hub-desc">Misiones secretas del mes.</div>
+  </div>
 </div>
 </section>
 
 </main>
 
 <footer>
-© 2025 Barbería Premium · Sistema de fidelidad
+© 2025 Barbería Premium · Sistema de nivel real
 </footer>
 
 <script>
-let data = JSON.parse(localStorage.getItem("nivelGame")) || {xp:0,racha:0};
+let data=JSON.parse(localStorage.getItem("nivelHard"))||{xp:0,racha:0};
 
 function update(){
-  document.getElementById("xp").textContent = data.xp;
-  document.getElementById("racha").textContent = data.racha;
+  document.getElementById("xp").textContent=data.xp;
+  document.getElementById("racha").textContent=data.racha;
 
   let rank="BÁSICO";
   let percent=Math.min(100,(data.xp/300)*100);
@@ -421,17 +382,11 @@ function update(){
   document.getElementById("rank").textContent=rank;
   document.getElementById("bar").style.width=percent+"%";
   document.getElementById("xpText").textContent=
-    rank==="VIP"?"Nivel máximo alcanzado":
+    rank==="VIP"?"Modo VIP activo 👑":
     rank==="PRO"?"A 300 XP del VIP":
     "A 180 XP del PRO";
 
-  localStorage.setItem("nivelGame",JSON.stringify(data));
-}
-
-function gain(x){
-  data.xp+=x;
-  data.racha++;
-  update();
+  localStorage.setItem("nivelHard",JSON.stringify(data));
 }
 
 update();
