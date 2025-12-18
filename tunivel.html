@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>Tu Nivel | Barbería Premium</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 :root{
-  --bg:#000;
   --glass:rgba(255,255,255,.08);
   --line:rgba(255,255,255,.18);
-  --muted:rgba(255,255,255,.72);
-  --muted2:rgba(255,255,255,.55);
   --vip:#ffd700;
 }
 
-html,body{height:100%}
 body{
   font-family:'Inter',system-ui;
   background:
@@ -26,14 +23,13 @@ body{
     #000;
   color:#fff;
   overflow-x:hidden;
-  transition:background 900ms ease;
+  transition:background .8s ease;
 }
 
-/* ===== VIP MODE BACKGROUND ===== */
 body.vip{
   background:
-    radial-gradient(1100px 520px at 50% 0%, rgba(255,215,0,.22), transparent 60%),
-    radial-gradient(820px 520px at 50% 100%, rgba(255,255,255,.10), transparent 70%),
+    radial-gradient(1000px 520px at 50% 0%, rgba(255,215,0,.18), transparent 60%),
+    radial-gradient(820px 520px at 50% 100%, rgba(255,255,255,.08), transparent 70%),
     #000;
 }
 
@@ -47,832 +43,374 @@ body.vip{
   max-width:1100px;
   padding:14px 18px;
   border-radius:18px;
-  background:rgba(0,0,0,.60);
+  background:rgba(0,0,0,.6);
   backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 18px 55px rgba(0,0,0,.65);
+  border:1px solid var(--line);
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  z-index:60;
+  z-index:50;
 }
-.back{
+.topbar a{
   color:#fff;
   text-decoration:none;
-  opacity:.78;
-  letter-spacing:.16em;
-  font-size:12px;
-}
-.back:hover{opacity:1}
-.right{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-.pill{
-  padding:9px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(255,255,255,.07);
-  font-size:11px;
   letter-spacing:.14em;
-  opacity:.95;
-}
-.pill strong{opacity:1}
-.spacer{height:110px}
-
-/* ===== HUD ===== */
-.hud{
-  padding:18px 20px 0;
-  max-width:1100px;
-  margin:0 auto;
-}
-.title{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:18px;
-}
-.title h1{
-  font-size:clamp(28px, 5vw, 46px);
-  letter-spacing:.26em;
-  font-weight:800;
-  text-transform:uppercase;
-}
-.subtitle{
-  opacity:.68;
-  font-size:13px;
-  line-height:1.45;
-}
-.glowline{
-  height:1px;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
-  margin:18px 0 22px;
-}
-
-/* ===== GRID ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(12, 1fr);
-  gap:16px;
-}
-.card{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:24px;
-  padding:18px;
-  box-shadow:0 20px 60px rgba(0,0,0,.55);
-  position:relative;
-  overflow:hidden;
-  transform:translateY(18px);
-  opacity:0;
-  animation:cardIn .65s ease forwards;
-}
-.card:nth-child(2){animation-delay:.06s}
-.card:nth-child(3){animation-delay:.12s}
-.card:nth-child(4){animation-delay:.18s}
-@keyframes cardIn{
-  to{transform:translateY(0); opacity:1;}
-}
-.card::after{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background:radial-gradient(520px 220px at 20% 0%, rgba(255,255,255,.14), transparent 60%);
-  pointer-events:none;
-  opacity:.6;
-}
-.col-7{grid-column:span 7}
-.col-5{grid-column:span 5}
-.col-12{grid-column:span 12}
-@media (max-width:900px){
-  .col-7,.col-5{grid-column:span 12}
-}
-
-/* ===== XP BAR ===== */
-.xpRow{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:12px;
-}
-.rank{
-  font-weight:800;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  font-size:13px;
-}
-.xp{
   font-size:12px;
   opacity:.75;
-  letter-spacing:.12em;
 }
-.bar{
-  height:13px;
-  width:100%;
+.topbar a:hover{opacity:1}
+.stats{
+  display:flex;
+  gap:12px;
+  font-size:11px;
+  letter-spacing:.14em;
+}
+.stats span{
+  padding:8px 12px;
   border-radius:999px;
-  background:rgba(255,255,255,.12);
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.10);
+  border:1px solid var(--line);
+  background:var(--glass);
 }
-.fill{
+
+/* ===== SPACER ===== */
+.spacer{height:120px}
+
+/* ===== MAIN ===== */
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+h1{
+  font-size:42px;
+  letter-spacing:.28em;
+  margin-bottom:6px;
+}
+
+.subtitle{
+  opacity:.65;
+  font-size:14px;
+  margin-bottom:30px;
+}
+
+/* ===== XP ===== */
+.xp-box{
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:26px;
+  margin-bottom:34px;
+  box-shadow:0 0 80px rgba(255,255,255,.08);
+  transition:box-shadow .4s ease;
+}
+body.vip .xp-box{
+  box-shadow:0 0 120px rgba(255,215,0,.25);
+}
+
+.rank{
+  font-weight:800;
+  letter-spacing:.22em;
+  margin-bottom:12px;
+}
+
+.progress{
+  height:14px;
+  background:rgba(255,255,255,.15);
+  border-radius:999px;
+  overflow:hidden;
+}
+.progress span{
+  display:block;
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#fff,#bdbdbd,#fff);
-  border-radius:999px;
-  box-shadow:0 0 18px rgba(255,255,255,.20);
-  transition:width .85s cubic-bezier(.2,.9,.2,1);
+  background:linear-gradient(90deg,#fff,#bbb,#fff);
+  transition:width .9s ease;
 }
-body.vip .fill{
+body.vip .progress span{
   background:linear-gradient(90deg,#fff,var(--vip),#fff);
-  box-shadow:0 0 28px rgba(255,215,0,.35);
+  box-shadow:0 0 25px rgba(255,215,0,.45);
 }
 
-/* XP shake when gain */
-.shake{
-  animation:shake .35s ease;
-}
-@keyframes shake{
-  0%,100%{transform:translateX(0)}
-  25%{transform:translateX(-3px)}
-  50%{transform:translateX(3px)}
-  75%{transform:translateX(-2px)}
+.xp-text{
+  margin-top:10px;
+  font-size:12px;
+  opacity:.7;
 }
 
-.mini{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-  flex-wrap:wrap;
+/* ===== LEVELS ===== */
+.levels{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  margin-bottom:40px;
 }
-.tag{
-  padding:8px 10px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(0,0,0,.28);
-  font-size:11px;
-  letter-spacing:.10em;
-  opacity:.92;
+
+.level{
+  background:rgba(0,0,0,.35);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+  position:relative;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.level:hover{transform:translateY(-4px)}
+
+.level.active{
+  outline:2px solid rgba(255,255,255,.6);
+  box-shadow:0 0 80px rgba(255,255,255,.15);
+}
+
+.level h3{
+  letter-spacing:.22em;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.level ul{
+  list-style:none;
+  font-size:13px;
+  opacity:.75;
+  line-height:1.7;
+}
+
+/* VIP */
+.level.vip{
+  border-color:rgba(255,215,0,.4);
+}
+.level.vip .crown{
+  position:absolute;
+  top:14px;
+  right:16px;
+  font-size:26px;
+  animation:float 2.5s infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
 }
 
 /* ===== MISSIONS ===== */
-.mHead{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:14px;
-  margin-bottom:12px;
+.missions{
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:26px;
+  margin-bottom:40px;
 }
-.mHead h3{
-  font-size:13px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
+
+.missions h2{
+  font-size:14px;
+  letter-spacing:.24em;
+  margin-bottom:18px;
 }
-.mHead span{
-  font-size:12px;
-  opacity:.65;
-}
+
 .mission{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:12px;
-  padding:14px 12px;
+  padding:16px;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(0,0,0,.28);
-  margin-bottom:10px;
-  transition:transform .25s ease, border-color .25s ease, background .25s ease;
+  border:1px solid var(--line);
+  margin-bottom:14px;
+  transition:transform .3s ease;
 }
-.mission:hover{
-  transform:translateY(-2px);
-  border-color:rgba(255,255,255,.22);
-  background:rgba(255,255,255,.07);
-}
-.mText{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-.mText strong{
+.mission:hover{transform:translateY(-2px)}
+
+.mission span{
   font-size:13px;
-  letter-spacing:.06em;
+  opacity:.75;
 }
-.mText small{
-  font-size:12px;
-  opacity:.68;
-}
-.mBtn{
-  border:none;
-  cursor:pointer;
-  padding:11px 14px;
-  border-radius:999px;
+
+.mission button{
   background:#fff;
   color:#000;
-  font-weight:800;
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  transition:transform .12s ease;
-}
-.mBtn:active{transform:scale(.98)}
-.mBtn[disabled]{opacity:.35; cursor:not-allowed}
-
-/* ===== LEVELS ===== */
-.levelsWrap h3{
-  font-size:13px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  margin-bottom:12px;
-}
-.lGrid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:14px;
-}
-@media (max-width:900px){ .lGrid{grid-template-columns:1fr} }
-
-.levelCard{
-  border-radius:22px;
-  padding:18px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(0,0,0,.28);
-  position:relative;
-  overflow:hidden;
-  transition:transform .25s ease, box-shadow .35s ease, border-color .35s ease;
-}
-.levelCard:hover{transform:translateY(-2px)}
-.levelCard::before{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  background:radial-gradient(360px 180px at 30% 0%, rgba(255,255,255,.12), transparent 60%);
-  opacity:.55;
-  pointer-events:none;
-}
-.levelCard h4{
-  letter-spacing:.20em;
-  text-transform:uppercase;
-  font-size:13px;
-  margin-bottom:10px;
-}
-.levelCard ul{
-  list-style:none;
-  opacity:.78;
-  font-size:13px;
-  line-height:1.6;
-}
-.levelCard ul li{margin-bottom:6px}
-.badge{
-  position:absolute;
-  top:14px;
-  right:14px;
-  padding:7px 10px;
+  border:none;
+  padding:12px 18px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(255,255,255,.07);
-  font-size:10px;
+  font-size:11px;
+  font-weight:800;
   letter-spacing:.14em;
-  opacity:.9;
+  cursor:pointer;
 }
 
-.now{
-  outline:2px solid rgba(255,255,255,.45);
-  box-shadow:0 0 60px rgba(255,255,255,.10);
+/* ===== REWARDS ===== */
+.rewards{
+  margin-bottom:50px;
+}
+.rewards h2{
+  font-size:14px;
+  letter-spacing:.26em;
+  margin-bottom:18px;
 }
 
-/* ===== VIP PLAN (CROWN INSIDE THE VIP CARD) ===== */
-.vipPlan{
-  border-color:rgba(255,215,0,.22);
+.reward-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
 }
-.vipCrown{
-  position:absolute;
-  left:16px;
-  top:14px;
-  font-size:22px;
-  opacity:.15;            /* apagada si NO es VIP */
-  transform:translateY(-6px) scale(.9);
-  transition:opacity .35s ease, transform .35s ease, filter .35s ease;
-}
-.vipOn .vipCrown{
-  opacity:1;
-  transform:translateY(0) scale(1);
-  filter:drop-shadow(0 0 18px rgba(255,215,0,.55));
-  animation:vipFloat 2.3s ease-in-out infinite;
-}
-@keyframes vipFloat{
-  0%,100%{transform:translateY(0) scale(1)}
-  50%{transform:translateY(-4px) scale(1.02)}
-}
-.vipGlow{
-  position:absolute;
-  inset:-2px;
-  background:radial-gradient(600px 240px at 20% 0%, rgba(255,215,0,.22), transparent 60%);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .4s ease;
-}
-.vipOn .vipGlow{opacity:1}
 
-/* ===== TOAST ===== */
-.toast{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:18px;
-  width:calc(100% - 36px);
-  max-width:520px;
-  padding:14px 16px;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(18px);
-  box-shadow:0 20px 60px rgba(0,0,0,.65);
-  display:none;
-  z-index:100;
+.reward{
+  background:rgba(0,0,0,.35);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px;
+  position:relative;
+  transition:transform .3s ease;
 }
-.toast.show{display:flex}
-.toast b{letter-spacing:.12em}
-.toast span{opacity:.75; margin-left:8px}
+.reward:hover{transform:translateY(-4px)}
 
-/* ===== PARTICLES (VIP ONLY) ===== */
-#particles{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:40;
-  opacity:0;
-  transition:opacity .6s ease;
+.reward.active{
+  animation:pulse 2.6s infinite;
 }
-body.vip #particles{opacity:1}
-
-/* ===== CONFETTI CANVAS ===== */
-#fx{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:120;
+@keyframes pulse{
+  0%{box-shadow:0 0 0 rgba(255,255,255,.2)}
+  50%{box-shadow:0 0 25px rgba(255,255,255,.35)}
+  100%{box-shadow:0 0 0 rgba(255,255,255,.2)}
 }
 
 /* ===== FOOTER ===== */
 footer{
-  padding:40px 20px;
   text-align:center;
   font-size:12px;
   opacity:.45;
-  border-top:1px solid rgba(255,255,255,.08);
   margin-top:60px;
+  border-top:1px solid var(--line);
+  padding:30px 20px;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
-<canvas id="fx"></canvas>
-
 <div class="topbar">
-  <a class="back" href="index.html">← INICIO</a>
-  <div class="right">
-    <div class="pill">XP: <strong id="xp">0</strong></div>
-    <div class="pill">RACHA: <strong id="streak">0</strong>🔥</div>
+  <a href="index.html">← INICIO</a>
+  <div class="stats">
+    <span>XP: <b id="xp">0</b></span>
+    <span>RACHA: <b id="racha">0</b>🔥</span>
   </div>
 </div>
 
 <div class="spacer"></div>
 
-<section class="hud">
-  <div class="title">
-    <div>
-      <h1>TU NIVEL</h1>
-      <div class="subtitle">Esto es un juego real: subes por acciones. VIP se siente VIP.</div>
-    </div>
-    <div class="subtitle" id="rankLine">Cargando estado…</div>
+<main>
+  <h1>TU NIVEL</h1>
+  <div class="subtitle">
+    Esto no es decoración. Es un sistema que premia al que vuelve.
   </div>
-  <div class="glowline"></div>
 
-  <div class="grid">
-
-    <!-- XP / PROGRESS -->
-    <div class="card col-7" id="xpCard">
-      <div class="xpRow">
-        <div class="rank" id="rank">BÁSICO</div>
-        <div class="xp" id="next">FALTAN 0 XP</div>
-      </div>
-
-      <div class="bar"><div class="fill" id="fill"></div></div>
-
-      <div class="mini">
-        <div class="tag">PRO: <b>prioridad (festivos)</b></div>
-        <div class="tag">VIP: <b>6 cortes gratis/año</b></div>
-        <div class="tag">VIP: <b>agua / café</b></div>
-      </div>
-    </div>
-
-    <!-- MISSIONS -->
-    <div class="card col-5">
-      <div class="mHead">
-        <h3>MISIONES</h3>
-        <span>Reclama XP (demo)</span>
-      </div>
-
-      <div class="mission">
-        <div class="mText">
-          <strong>Propina (opcional)</strong>
-          <small>+20 XP (no es obligado)</small>
-        </div>
-        <button class="mBtn" id="mTip">RECLAMAR</button>
-      </div>
-
-      <div class="mission">
-        <div class="mText">
-          <strong>Reservar y asistir 3 veces en un mes</strong>
-          <small>+140 XP (sube duro)</small>
-        </div>
-        <button class="mBtn" id="m3x">RECLAMAR</button>
-      </div>
-
-      <div class="mission">
-        <div class="mText">
-          <strong>Mantener nivel activo</strong>
-          <small>+40 XP (mantente en tu nivel)</small>
-        </div>
-        <button class="mBtn" id="mKeep">RECLAMAR</button>
-      </div>
-    </div>
-
-    <!-- LEVELS -->
-    <div class="card col-12 levelsWrap">
-      <h3>BENEFICIOS POR NIVEL</h3>
-
-      <div class="lGrid">
-        <div class="levelCard" id="lv1">
-          <div class="badge">NIVEL 1</div>
-          <h4>BÁSICO</h4>
-          <ul>
-            <li>✔ Acceso al sistema</li>
-            <li>✖ Sin beneficios</li>
-            <li>✔ Puedes subir con acciones</li>
-          </ul>
-        </div>
-
-        <div class="levelCard" id="lv2">
-          <div class="badge">NIVEL 2</div>
-          <h4>PRO</h4>
-          <ul>
-            <li>✔ Prioridad para reservar</li>
-            <li>✔ Incluye días festivos</li>
-            <li>✔ Subes más rápido</li>
-          </ul>
-        </div>
-
-        <div class="levelCard vipPlan" id="lv3">
-          <div class="vipGlow"></div>
-          <div class="vipCrown">👑</div>
-          <div class="badge">VIP</div>
-          <h4>VIP</h4>
-          <ul>
-            <li>✔ Prioridad total (festivos incluidos)</li>
-            <li>✔ 6 cortes GRATIS al año</li>
-            <li>✔ Atención VIP (agua / café)</li>
-            <li>✔ Reservaciones preferenciales</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="card col-12" style="text-align:center">
-      <div style="letter-spacing:.22em; text-transform:uppercase; font-size:13px; opacity:.85; margin-bottom:10px;">
-        SUBE DE NIVEL
-      </div>
-      <div style="opacity:.65; font-size:14px; margin-bottom:18px;">
-        PRO en 180 XP · VIP en 300 XP. Esto engancha.
-      </div>
-      <a href="propinas.html" class="mBtn" style="display:inline-block; text-decoration:none; padding:14px 18px;">
-        IR A PROPINAS
-      </a>
-    </div>
-
+  <div class="xp-box">
+    <div class="rank" id="rank">BÁSICO</div>
+    <div class="progress"><span id="bar"></span></div>
+    <div class="xp-text" id="xpText"></div>
   </div>
-</section>
+
+  <div class="levels">
+    <div class="level active" id="lv1">
+      <h3>BÁSICO</h3>
+      <ul>
+        <li>• Acceso al sistema</li>
+        <li>• Sin beneficios</li>
+      </ul>
+    </div>
+
+    <div class="level" id="lv2">
+      <h3>PRO</h3>
+      <ul>
+        <li>• Prioridad para reservar</li>
+        <li>• Incluye días festivos</li>
+      </ul>
+    </div>
+
+    <div class="level vip" id="lv3">
+      <div class="crown">👑</div>
+      <h3>VIP</h3>
+      <ul>
+        <li>• Prioridad total</li>
+        <li>• 6 cortes gratis al año</li>
+        <li>• Atención VIP</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="missions">
+    <h2>MISIONES</h2>
+
+    <div class="mission">
+      <span>Propina opcional (+20 XP)</span>
+      <button onclick="gain(20)">RECLAMAR</button>
+    </div>
+
+    <div class="mission">
+      <span>Reservar y asistir 3 veces en un mes (+140 XP)</span>
+      <button onclick="gain(140)">RECLAMAR</button>
+    </div>
+
+    <div class="mission">
+      <span>Mantener nivel activo (+40 XP)</span>
+      <button onclick="gain(40)">RECLAMAR</button>
+    </div>
+  </div>
+
+  <div class="rewards">
+    <h2>RECOMPENSAS</h2>
+    <div class="reward-grid">
+      <div class="reward active">
+        🎁 -10% en tu próxima visita
+      </div>
+      <div class="reward">
+        🔒 Corte gratis (solo VIP)
+      </div>
+      <div class="reward">
+        ⭐ Bonus mensual activo
+      </div>
+    </div>
+  </div>
+</main>
 
 <footer>
-  ©️ 2025 Barbería Premium · Sistema de fidelidad
+  © 2025 Barbería Premium · Sistema de fidelidad
 </footer>
 
-<div class="toast" id="toast">
-  <b id="toastTitle">+XP</b><span id="toastText">Actualizado</span>
-</div>
-
 <script>
-/* =========================
-   PROGRESO (LOCAL POR DISPOSITIVO)
-========================= */
-const SKEY = "barber_game_v2";
-const DEFAULT = {
-  xp: 0,
-  streak: 0,
-  lastTipDay: "",
-  last3xDay: "",
-  lastKeepDay: ""
+let data = JSON.parse(localStorage.getItem("nivelBarber")) || {
+  xp:0, racha:0
 };
 
-function dayId(t=Date.now()){
-  const d = new Date(t);
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-}
-function loadState(){
-  try{
-    const raw = localStorage.getItem(SKEY);
-    if(!raw) return {...DEFAULT};
-    return {...DEFAULT, ...JSON.parse(raw)};
-  }catch(e){ return {...DEFAULT}; }
-}
-function saveState(s){ localStorage.setItem(SKEY, JSON.stringify(s)); }
+function update(){
+  document.getElementById("xp").textContent = data.xp;
+  document.getElementById("racha").textContent = data.racha;
 
-/* =========================
-   NIVELES (PRO 180, VIP 300)
-========================= */
-function getRank(xp){
-  if(xp >= 300) return {name:"VIP", level:3};
-  if(xp >= 180) return {name:"PRO", level:2};
-  return {name:"BÁSICO", level:1};
-}
-function percent(xp){
-  // barra total 0..300
-  return Math.max(0, Math.min(100, (xp/300)*100));
-}
+  let rank="BÁSICO";
+  let percent=Math.min(100,(data.xp/300)*100);
 
-/* =========================
-   UI
-========================= */
-const elXP = document.getElementById("xp");
-const elStreak = document.getElementById("streak");
-const elRank = document.getElementById("rank");
-const elNext = document.getElementById("next");
-const elFill = document.getElementById("fill");
-const elRankLine = document.getElementById("rankLine");
-const xpCard = document.getElementById("xpCard");
+  document.querySelectorAll(".level").forEach(l=>l.classList.remove("active"));
+  document.body.classList.remove("vip");
 
-const lv1 = document.getElementById("lv1");
-const lv2 = document.getElementById("lv2");
-const lv3 = document.getElementById("lv3");
-
-const toast = document.getElementById("toast");
-const toastTitle = document.getElementById("toastTitle");
-const toastText = document.getElementById("toastText");
-
-function showToast(title, text){
-  toastTitle.textContent = title;
-  toastText.textContent = text;
-  toast.classList.add("show");
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(()=>toast.classList.remove("show"), 2200);
-}
-
-/* =========================
-   XP COUNTING (GAME FEEL)
-========================= */
-function animateNumber(el, from, to){
-  const diff = to - from;
-  const steps = Math.min(40, Math.max(12, Math.floor(Math.abs(diff)/6)));
-  let i = 0;
-  const t = setInterval(()=>{
-    i++;
-    const v = Math.round(from + (diff*(i/steps)));
-    el.textContent = v;
-    if(i>=steps){ el.textContent = to; clearInterval(t); }
-  }, 18);
-}
-
-/* =========================
-   FX: CONFETTI + BEEP
-========================= */
-const fx = document.getElementById("fx");
-const fctx = fx.getContext("2d");
-function resizeFX(){
-  fx.width = innerWidth * devicePixelRatio;
-  fx.height = innerHeight * devicePixelRatio;
-}
-addEventListener("resize", resizeFX);
-resizeFX();
-
-let conf = [];
-function popConfetti(){
-  conf = [];
-  const count = 140;
-  for(let i=0;i<count;i++){
-    conf.push({
-      x:(Math.random()*innerWidth)*devicePixelRatio,
-      y:(-30 - Math.random()*240)*devicePixelRatio,
-      vx:(-1 + Math.random()*2)*devicePixelRatio*1.2,
-      vy:(2 + Math.random()*5)*devicePixelRatio,
-      r:(2 + Math.random()*4)*devicePixelRatio,
-      rot:Math.random()*Math.PI,
-      vr:(-.2 + Math.random()*.4),
-      life:150 + Math.random()*90,
-      gold:Math.random()>.55
-    });
-  }
-  renderConfetti();
-  beep();
-}
-function renderConfetti(){
-  fctx.clearRect(0,0,fx.width,fx.height);
-  conf.forEach(p=>{
-    p.x += p.vx; p.y += p.vy; p.rot += p.vr;
-    p.vy *= 1.01; p.life -= 1;
-
-    fctx.save();
-    fctx.translate(p.x,p.y);
-    fctx.rotate(p.rot);
-    fctx.globalAlpha = Math.max(0, Math.min(1, p.life/220));
-    fctx.fillStyle = p.gold ? "rgba(255,215,0,.95)" : "rgba(255,255,255,.95)";
-    fctx.fillRect(-p.r, -p.r, p.r*2.2, p.r*1.2);
-    fctx.restore();
-  });
-  conf = conf.filter(p=>p.life>0 && p.y < fx.height+300);
-  if(conf.length) requestAnimationFrame(renderConfetti);
-  else fctx.clearRect(0,0,fx.width,fx.height);
-}
-function beep(){
-  try{
-    const ac = new (window.AudioContext||window.webkitAudioContext)();
-    const o = ac.createOscillator();
-    const g = ac.createGain();
-    o.type = "sine";
-    o.frequency.value = 880;
-    g.gain.value = 0.03;
-    o.connect(g); g.connect(ac.destination);
-    o.start();
-    setTimeout(()=>{ o.frequency.value = 660; }, 70);
-    setTimeout(()=>{ o.stop(); ac.close(); }, 160);
-  }catch(e){}
-}
-
-/* =========================
-   VIP PARTICLES (BACKGROUND)
-========================= */
-const pcan = document.getElementById("particles");
-const pctx = pcan.getContext("2d");
-function resizeP(){
-  pcan.width = innerWidth * devicePixelRatio;
-  pcan.height = innerHeight * devicePixelRatio;
-}
-addEventListener("resize", resizeP);
-resizeP();
-
-let parts = [];
-function seedParticles(){
-  parts = [];
-  const n = 70;
-  for(let i=0;i<n;i++){
-    parts.push({
-      x:Math.random()*pcan.width,
-      y:Math.random()*pcan.height,
-      r:(0.8+Math.random()*2.2)*devicePixelRatio,
-      vy:(0.25+Math.random()*0.9)*devicePixelRatio,
-      a:0.12+Math.random()*0.35,
-      tw:(0.002+Math.random()*0.006)
-    });
-  }
-}
-seedParticles();
-
-function renderParticles(){
-  pctx.clearRect(0,0,pcan.width,pcan.height);
-  if(!document.body.classList.contains("vip")){
-    requestAnimationFrame(renderParticles);
-    return;
-  }
-  parts.forEach(p=>{
-    p.y += p.vy;
-    p.a += p.tw;
-    if(p.y > pcan.height+20) p.y = -20;
-    const alpha = 0.25 + Math.sin(p.a)*0.2;
-    pctx.beginPath();
-    pctx.fillStyle = `rgba(255,215,0,${alpha})`;
-    pctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    pctx.fill();
-  });
-  requestAnimationFrame(renderParticles);
-}
-renderParticles();
-
-/* =========================
-   MISSIONS BUTTONS (demo daily)
-========================= */
-const mTip  = document.getElementById("mTip");
-const m3x   = document.getElementById("m3x");
-const mKeep = document.getElementById("mKeep");
-
-function disableIfUsedToday(btn, lastDay){
-  const today = dayId();
-  if(lastDay === today){
-    btn.disabled = true;
-    btn.textContent = "HECHO";
+  if(data.xp>=300){
+    rank="VIP";
+    document.getElementById("lv3").classList.add("active");
+    document.body.classList.add("vip");
+  }else if(data.xp>=180){
+    rank="PRO";
+    document.getElementById("lv2").classList.add("active");
   }else{
-    btn.disabled = false;
-    btn.textContent = "RECLAMAR";
-  }
-}
-
-function render(s, leveled=false){
-  const r = getRank(s.xp);
-
-  // XP number animation
-  const prev = Number(elXP.textContent || 0);
-  animateNumber(elXP, prev, s.xp);
-
-  elStreak.textContent = s.streak;
-
-  elRank.textContent = r.name;
-  elFill.style.width = `${percent(s.xp)}%`;
-
-  // next line
-  if(r.level === 3){
-    elNext.textContent = "MODO VIP ACTIVO";
-    elRankLine.textContent = "VIP activo: prioridad total + beneficios reales.";
-  }else if(r.level === 2){
-    elNext.textContent = `FALTAN ${300 - s.xp} XP PARA VIP`;
-    elRankLine.textContent = "PRO activo: prioridad para reservar (festivos incluidos).";
-  }else{
-    elNext.textContent = `FALTAN ${180 - s.xp} XP PARA PRO`;
-    elRankLine.textContent = "BÁSICO: acceso al sistema (sin beneficios).";
+    document.getElementById("lv1").classList.add("active");
   }
 
-  // highlight cards
-  [lv1,lv2,lv3].forEach(x=>x.classList.remove("now","vipOn"));
-  if(r.level===1) lv1.classList.add("now");
-  if(r.level===2) lv2.classList.add("now");
-  if(r.level===3){
-    lv3.classList.add("now","vipOn"); // <- enciende corona del VIP plan
-  }
-
-  // VIP body mode
-  document.body.classList.toggle("vip", r.level===3);
-
-  // xp shake
-  xpCard.classList.remove("shake");
-  void xpCard.offsetWidth;
-  xpCard.classList.add("shake");
-
-  if(leveled){
-    popConfetti();
-    showToast("SUBISTE DE NIVEL", r.level===3 ? "VIP desbloqueado 👑" : "PRO desbloqueado");
-  }
-
-  saveState(s);
+  document.getElementById("rank").textContent=rank;
+  document.getElementById("bar").style.width=percent+"%";
+  document.getElementById("xpText").textContent=
+    rank==="VIP"?"Nivel máximo alcanzado":"Sigue jugando para subir";
+  localStorage.setItem("nivelBarber",JSON.stringify(data));
 }
 
-function addXP(s, amount){
-  const before = getRank(s.xp).level;
-  s.xp += amount;
-  const after = getRank(s.xp).level;
-  s.streak += 1; // demo "racha" como sensación de juego
-  render(s, after>before);
-  showToast(`+${amount} XP`, "Progreso guardado (demo).");
+function gain(x){
+  data.xp+=x;
+  data.racha++;
+  update();
 }
 
-function init(){
-  const s = loadState();
-
-  // daily disables
-  disableIfUsedToday(mTip,  s.lastTipDay);
-  disableIfUsedToday(m3x,   s.last3xDay);
-  disableIfUsedToday(mKeep, s.lastKeepDay);
-
-  mTip.addEventListener("click", ()=>{
-    const today = dayId();
-    if(s.lastTipDay === today) return;
-    s.lastTipDay = today;
-    addXP(s, 20);
-    disableIfUsedToday(mTip, s.lastTipDay);
-  });
-
-  m3x.addEventListener("click", ()=>{
-    const today = dayId();
-    if(s.last3xDay === today) return;
-    s.last3xDay = today;
-    addXP(s, 140);
-    disableIfUsedToday(m3x, s.last3xDay);
-  });
-
-  mKeep.addEventListener("click", ()=>{
-    const today = dayId();
-    if(s.lastKeepDay === today) return;
-    s.lastKeepDay = today;
-    addXP(s, 40);
-    disableIfUsedToday(mKeep, s.lastKeepDay);
-  });
-
-  render(s, false);
-}
-init();
+update();
 </script>
 
 </body>
