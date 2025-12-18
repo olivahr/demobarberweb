@@ -11,7 +11,7 @@
 
 :root{
   --glass:rgba(255,255,255,.10);
-  --line:rgba(255,255,255,.20);
+  --line:rgba(255,255,255,.22);
   --neon:#00ffd5;
   --vip:#ffd700;
 }
@@ -24,24 +24,25 @@ body{
   transition:background 1s ease;
 }
 
+/* ===== VIP MODE ===== */
 body.vip{
   background:
-    radial-gradient(1200px 600px at 50% 0%, rgba(255,215,0,.40), transparent 60%),
-    radial-gradient(1000px 600px at 50% 100%, rgba(255,255,255,.12), transparent 70%),
+    radial-gradient(1400px 700px at 50% 0%, rgba(255,215,0,.45), transparent 60%),
+    radial-gradient(1200px 700px at 50% 100%, rgba(255,255,255,.15), transparent 70%),
     #000;
 }
 
-/* ===== TOP ===== */
+/* ===== TOP BAR ===== */
 .topbar{
   position:fixed;
-  top:16px;
+  top:18px;
   left:50%;
   transform:translateX(-50%);
-  width:calc(100% - 32px);
+  width:calc(100% - 36px);
   max-width:1200px;
   padding:16px 22px;
   border-radius:22px;
-  background:rgba(0,0,0,.65);
+  background:rgba(0,0,0,.70);
   backdrop-filter:blur(22px);
   border:1px solid var(--line);
   display:flex;
@@ -53,7 +54,7 @@ body.vip{
   text-decoration:none;
   font-size:12px;
   letter-spacing:.18em;
-  opacity:.8;
+  opacity:.85;
 }
 .stats span{
   margin-left:12px;
@@ -65,7 +66,7 @@ body.vip{
 }
 
 /* ===== SPACER ===== */
-.spacer{height:130px}
+.spacer{height:140px}
 
 /* ===== MAIN ===== */
 main{
@@ -75,22 +76,22 @@ main{
 }
 
 h1{
-  font-size:46px;
-  letter-spacing:.34em;
-  margin-bottom:8px;
+  font-size:48px;
+  letter-spacing:.36em;
+  margin-bottom:10px;
 }
 .subtitle{
-  opacity:.7;
-  margin-bottom:36px;
+  opacity:.75;
+  margin-bottom:40px;
 }
 
 /* ===== XP CORE ===== */
 .xp-box{
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:34px;
-  padding:34px;
-  margin-bottom:50px;
+  border-radius:40px;
+  padding:36px;
+  margin-bottom:60px;
   position:relative;
   overflow:hidden;
 }
@@ -99,24 +100,25 @@ h1{
   content:"";
   position:absolute;
   inset:-2px;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
-  animation:scan 4s linear infinite;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
+  animation:scan 3.5s linear infinite;
 }
 
 @keyframes scan{
-  from{transform:translateX(-120%)}
-  to{transform:translateX(120%)}
+  from{transform:translateX(-140%)}
+  to{transform:translateX(140%)}
 }
 
 .rank{
   font-weight:800;
-  letter-spacing:.28em;
-  margin-bottom:14px;
+  letter-spacing:.30em;
+  margin-bottom:16px;
+  font-size:14px;
 }
 
 .progress{
-  height:18px;
-  background:rgba(255,255,255,.2);
+  height:20px;
+  background:rgba(255,255,255,.25);
   border-radius:999px;
   overflow:hidden;
 }
@@ -126,41 +128,41 @@ h1{
   height:100%;
   width:0%;
   background:linear-gradient(90deg,#fff,var(--neon),#fff);
-  box-shadow:0 0 50px var(--neon);
-  transition:width 1.2s cubic-bezier(.2,.9,.2,1);
+  box-shadow:0 0 60px var(--neon);
+  transition:width 1.4s cubic-bezier(.2,.9,.2,1);
 }
 
 body.vip .progress span{
   background:linear-gradient(90deg,#fff,var(--vip),#fff);
-  box-shadow:0 0 80px var(--vip);
+  box-shadow:0 0 100px var(--vip);
 }
 
 .xp-text{
-  margin-top:14px;
+  margin-top:16px;
   font-size:12px;
-  opacity:.75;
+  opacity:.8;
 }
 
 /* ===== LEVELS ===== */
 .levels{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-  margin-bottom:80px;
+  gap:36px;
+  margin-bottom:90px;
 }
 
 .level{
-  background:rgba(0,0,0,.55);
+  background:rgba(0,0,0,.65);
   border:1px solid var(--line);
-  border-radius:36px;
-  padding:30px;
+  border-radius:44px;
+  padding:34px;
   position:relative;
-  transition:.5s;
+  transition:.6s;
 }
 
 .level:hover{
-  transform:translateY(-14px) scale(1.05);
-  box-shadow:0 0 120px rgba(0,255,213,.4);
+  transform:translateY(-18px) scale(1.06);
+  box-shadow:0 0 180px rgba(0,255,213,.5);
 }
 
 .level.active{
@@ -169,89 +171,103 @@ body.vip .progress span{
 
 .level.vip.active{
   outline:2px solid var(--vip);
-  box-shadow:0 0 180px var(--vip);
+  box-shadow:0 0 240px var(--vip);
 }
 
 .level h3{
-  letter-spacing:.28em;
+  letter-spacing:.30em;
   margin-bottom:14px;
 }
 
 .level ul{
   list-style:none;
   font-size:13px;
-  opacity:.85;
-  line-height:1.8;
+  opacity:.9;
+  line-height:1.9;
 }
 
+/* ===== VIP CROWN ===== */
 .crown{
   position:absolute;
-  top:20px;
-  right:24px;
-  font-size:28px;
-  opacity:.15;
+  top:22px;
+  right:28px;
+  font-size:34px;
+  opacity:.12;
 }
 
 .level.vip.active .crown{
   opacity:1;
-  animation:float 2.2s ease-in-out infinite;
+  filter:drop-shadow(0 0 30px var(--vip));
+  animation:crownFloat 2.2s ease-in-out infinite;
 }
 
-@keyframes float{
+@keyframes crownFloat{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
+  50%{transform:translateY(-12px)}
 }
 
-/* ===== HUB ===== */
+/* ===== GAME HUB ===== */
 .hub{
-  margin-bottom:100px;
+  margin-bottom:120px;
 }
 
 .hub h2{
   text-align:center;
-  font-size:18px;
-  letter-spacing:.38em;
-  margin-bottom:40px;
+  font-size:20px;
+  letter-spacing:.42em;
+  margin-bottom:50px;
 }
 
 .hub-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:34px;
+  gap:40px;
 }
 
 .hub-card{
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.75);
   border:1px solid var(--line);
-  border-radius:40px;
-  padding:34px;
-  min-height:200px;
-  transition:.6s;
+  border-radius:46px;
+  padding:36px;
+  min-height:220px;
+  transition:.7s;
   cursor:pointer;
+  position:relative;
+  overflow:hidden;
 }
 
+.hub-card::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:radial-gradient(400px 200px at 20% 0%, rgba(0,255,213,.35), transparent 60%);
+  opacity:0;
+  transition:.6s;
+}
+
+.hub-card:hover::after{opacity:1}
+
 .hub-card:hover{
-  transform:scale(1.08) rotate(-1deg);
-  box-shadow:0 0 160px rgba(0,255,213,.6);
+  transform:scale(1.10) rotate(-1deg);
+  box-shadow:0 0 220px rgba(0,255,213,.7);
 }
 
 .hub-card.vip{
   border-color:var(--vip);
-  box-shadow:0 0 60px rgba(255,215,0,.5);
 }
 
 .hub-icon{
-  font-size:30px;
-  margin-bottom:16px;
+  font-size:34px;
+  margin-bottom:18px;
 }
 
 .hub-title{
-  letter-spacing:.28em;
-  margin-bottom:10px;
+  letter-spacing:.30em;
+  margin-bottom:12px;
 }
 
 .hub-desc{
-  opacity:.75;
+  opacity:.8;
   font-size:13px;
 }
 
@@ -259,8 +275,8 @@ body.vip .progress span{
 footer{
   text-align:center;
   font-size:12px;
-  opacity:.55;
-  padding:50px 20px;
+  opacity:.6;
+  padding:60px 20px;
   border-top:1px solid var(--line);
 }
 </style>
@@ -282,7 +298,7 @@ footer{
 
 <h1>TU NIVEL</h1>
 <div class="subtitle">
-Esto no es una web. Es un sistema de estatus.
+Esto no es una página. Es estatus.
 </div>
 
 <div class="xp-box">
@@ -305,6 +321,7 @@ Esto no es una web. Es un sistema de estatus.
     <ul>
       <li>✔ Prioridad para reservar</li>
       <li>✔ Festivos incluidos</li>
+      <li>✔ Nivel PRO (180 XP)</li>
     </ul>
   </div>
 
@@ -315,36 +332,37 @@ Esto no es una web. Es un sistema de estatus.
       <li>✔ Prioridad total</li>
       <li>✔ 6 cortes gratis</li>
       <li>✔ Atención exclusiva</li>
+      <li>✔ Nivel VIP (300 XP)</li>
     </ul>
   </div>
 </div>
 
 <section class="hub">
-<h2>ZONA DE PODER</h2>
+<h2>GAME HUB</h2>
 
 <div class="hub-grid">
   <div class="hub-card">
     <div class="hub-icon">🎟</div>
     <div class="hub-title">CUPONES</div>
-    <div class="hub-desc">Desbloquea descuentos ocultos.</div>
+    <div class="hub-desc">Recompensas que rotan.</div>
   </div>
 
   <div class="hub-card">
     <div class="hub-icon">🔥</div>
     <div class="hub-title">RACHA</div>
-    <div class="hub-desc">Rompe tu récord mensual.</div>
+    <div class="hub-desc">Mantente activo y gana.</div>
   </div>
 
   <div class="hub-card vip">
     <div class="hub-icon">👑</div>
     <div class="hub-title">PORTAL VIP</div>
-    <div class="hub-desc">Solo para los que mandan.</div>
+    <div class="hub-desc">Zona exclusiva.</div>
   </div>
 
   <div class="hub-card">
     <div class="hub-icon">🧠</div>
-    <div class="hub-title">RETOS</div>
-    <div class="hub-desc">Misiones secretas del mes.</div>
+    <div class="hub-title">DESAFÍOS</div>
+    <div class="hub-desc">Misiones secretas.</div>
   </div>
 </div>
 </section>
@@ -352,11 +370,11 @@ Esto no es una web. Es un sistema de estatus.
 </main>
 
 <footer>
-© 2025 Barbería Premium · Sistema de nivel real
+© 2025 Barbería Premium · Sistema de Nivel Real
 </footer>
 
 <script>
-let data=JSON.parse(localStorage.getItem("nivelHard"))||{xp:0,racha:0};
+let data=JSON.parse(localStorage.getItem("nivelGame"))||{xp:0,racha:0};
 
 function update(){
   document.getElementById("xp").textContent=data.xp;
@@ -386,7 +404,7 @@ function update(){
     rank==="PRO"?"A 300 XP del VIP":
     "A 180 XP del PRO";
 
-  localStorage.setItem("nivelHard",JSON.stringify(data));
+  localStorage.setItem("nivelGame",JSON.stringify(data));
 }
 
 update();
