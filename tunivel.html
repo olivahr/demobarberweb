@@ -219,7 +219,7 @@ footer{
   <a href="index.html">← INICIO</a>
   <div class="stats">
     <span>XP: <b id="xp">0</b></span>
-    <span>RACHA: <b id="racha">0</b></span>
+    <span>RACHA MES: <b id="racha">0</b>/3</span>
   </div>
 </div>
 
@@ -249,15 +249,16 @@ footer{
     <div class="level" id="lv2">
       <h3>PRO</h3>
       <ul>
-        <li>• Racha de 3 reservaciones al mes</li>
+        <li>• 3 reservaciones al mes</li>
         <li>• Prioridad para reservar</li>
+        <li>• Incluye días festivos</li>
       </ul>
     </div>
 
     <div class="level" id="lv3">
       <h3>VIP</h3>
       <ul>
-        <li>• Prioridad total (festivos incluidos)</li>
+        <li>• Prioridad total</li>
         <li>• 6 cortes gratis al año</li>
         <li>• Atención VIP (agua / café)</li>
       </ul>
@@ -269,17 +270,17 @@ footer{
 
     <div class="mission">
       <span>Asistir a tu cita (+120 XP)</span>
-      <button onclick="gain(120)">RECLAMAR</button>
+      <button onclick="gain(120,false)">RECLAMAR</button>
     </div>
 
     <div class="mission">
       <span>Reservar este mes (+80 XP)</span>
-      <button onclick="gain(80)">RECLAMAR</button>
+      <button onclick="gain(80,true)">RECLAMAR</button>
     </div>
 
     <div class="mission">
       <span>Propina opcional (+20 XP)</span>
-      <button onclick="gain(20)">RECLAMAR</button>
+      <button onclick="gain(20,false)">RECLAMAR</button>
     </div>
   </div>
 </main>
@@ -291,10 +292,17 @@ footer{
 <script>
 let data = JSON.parse(localStorage.getItem("nivelBarber")) || {
   xp: 0,
-  racha: 0
+  racha: 0,
+  mes: new Date().getMonth()
 };
 
 function update(){
+  const currentMonth = new Date().getMonth();
+  if(data.mes !== currentMonth){
+    data.racha = 0;
+    data.mes = currentMonth;
+  }
+
   document.getElementById("xp").textContent = data.xp;
   document.getElementById("racha").textContent = data.racha;
 
@@ -306,7 +314,7 @@ function update(){
   if(data.xp >= 400){
     rank = "VIP";
     document.getElementById("lv3").classList.add("active");
-  }else if(data.xp >= 150){
+  }else if(data.xp >= 150 && data.racha >= 3){
     rank = "PRO";
     document.getElementById("lv2").classList.add("active");
   }else{
@@ -315,16 +323,17 @@ function update(){
 
   document.getElementById("rank").textContent = rank;
   document.getElementById("bar").style.width = percent + "%";
-  document.getElementById("xpText").textContent = rank === "VIP"
-    ? "Nivel máximo alcanzado"
-    : "Sigue viniendo para subir de nivel";
+  document.getElementById("xpText").textContent =
+    rank === "VIP"
+      ? "Nivel máximo activo. Todos los beneficios desbloqueados."
+      : "Mantén tu racha mensual para subir de nivel.";
 
   localStorage.setItem("nivelBarber", JSON.stringify(data));
 }
 
-function gain(x){
+function gain(x, countsForStreak){
   data.xp += x;
-  if(x >= 80) data.racha++;
+  if(countsForStreak) data.racha++;
   update();
 }
 
