@@ -1,262 +1,871 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Servicios | Barbería Premium</title>
+<meta charset="UTF-8" />
+<title>Servicios · Barbería Premium</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#000000" />
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#000;
+    --card:rgba(255,255,255,.055);
+    --card2:rgba(255,255,255,.035);
+    --line:rgba(255,255,255,.10);
+    --txt:#fff;
+    --muted:rgba(255,255,255,.72);
+    --muted2:rgba(255,255,255,.55);
+    --shadow:0 22px 70px rgba(0,0,0,.65);
+    --radius:24px;
+  }
 
-body{
-  font-family:'Inter',system-ui;
-  background:#000;
-  color:#fff;
-  overflow-x:hidden;
-}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation; /* reduce double-tap zoom */
+  }
 
-/* ===== HEADER ===== */
-header{
-  position:fixed;
-  top:18px;
-  left:50%;
-  transform:translateX(-50%);
-  width:calc(100% - 36px);
-  max-width:1100px;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(18px);
-  border-radius:20px;
-  padding:14px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  z-index:50;
-}
+  /* ===== BACKGLOW ===== */
+  .glow{
+    position:fixed;
+    inset:-20%;
+    background:
+      radial-gradient(900px 520px at 20% 18%, rgba(255,255,255,.10), transparent 60%),
+      radial-gradient(820px 540px at 80% 25%, rgba(255,255,255,.07), transparent 62%),
+      radial-gradient(880px 600px at 50% 85%, rgba(255,255,255,.06), transparent 65%);
+    filter: blur(10px);
+    opacity:.9;
+    z-index:-3;
+    pointer-events:none;
+  }
 
-.brand img{
-  width:34px;
-  height:34px;
-  border-radius:8px;
-}
+  /* ===== HEADER ===== */
+  header{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:calc(100% - 36px);
+    max-width:1150px;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:20px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    z-index:50;
+    box-shadow: 0 14px 50px rgba(0,0,0,.55);
+  }
 
-nav{
-  display:flex;
-  gap:26px;
-  font-size:13px;
-  letter-spacing:.12em;
-}
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:160px;
+  }
+  .brand img{
+    width:34px;height:34px;border-radius:10px;
+    object-fit:cover;
+    border:1px solid rgba(255,255,255,.14);
+  }
+  .brand .tag{
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    opacity:.85;
+    white-space:nowrap;
+  }
 
-nav a{
-  color:#fff;
-  text-decoration:none;
-  opacity:.7;
-}
+  nav{
+    display:flex;
+    gap:18px;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    align-items:center;
+  }
+  nav a{
+    color:var(--txt);
+    text-decoration:none;
+    opacity:.68;
+    padding:10px 10px;
+    border-radius:14px;
+    transition: all .25s ease;
+  }
+  nav a:hover{opacity:1;background:rgba(255,255,255,.06)}
+  nav a.active{
+    opacity:1;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.12);
+  }
 
-nav a:hover{opacity:1}
+  .spacer{height:120px}
 
-/* ===== ESPACIO HEADER ===== */
-.spacer{height:130px}
+  /* ===== HERO ===== */
+  .hero{
+    padding:26px 18px 20px;
+    max-width:1150px;
+    margin:0 auto;
+  }
+  .hero-wrap{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap:18px;
+  }
 
-/* ===== HERO ===== */
-.hero{
-  padding:50px 20px 90px;
-  text-align:center;
-}
+  .hero-left{
+    border-radius: var(--radius);
+    background: linear-gradient(to bottom, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border: 1px solid rgba(255,255,255,.10);
+    box-shadow: var(--shadow);
+    overflow:hidden;
+    position:relative;
+    min-height:320px;
+  }
+  .hero-left::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.80)),
+      url('experience6.jpg') center/cover no-repeat;
+    opacity:.92;
+    transform:scale(1.02);
+  }
+  .hero-left::after{
+    content:"";
+    position:absolute; inset:0;
+    background: radial-gradient(700px 420px at 20% 25%, rgba(255,255,255,.10), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-left .content{
+    position:relative;
+    padding:32px 26px 28px;
+  }
 
-.hero h1{
-  font-size:34px;
-  letter-spacing:.28em;
-  margin-bottom:16px;
-}
+  .kicker{
+    font-size:12px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    opacity:.78;
+    margin-bottom:12px;
+  }
+  .title{
+    font-weight:800;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-size: clamp(28px, 3.2vw, 44px);
+    line-height:1.05;
+    text-shadow: 0 18px 60px rgba(0,0,0,.65);
+  }
+  .subtitle{
+    margin-top:14px;
+    max-width:560px;
+    font-size:14px;
+    opacity:.86;
+    line-height:1.6;
+    color:rgba(255,255,255,.82);
+  }
 
-.hero p{
-  opacity:.65;
-  max-width:520px;
-  margin:auto;
-  line-height:1.6;
-}
+  .hero-actions{
+    margin-top:18px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .btn{
+    appearance:none;
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+    color:#000;
+    background:#fff;
+    padding:14px 16px;
+    border-radius:999px;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:700;
+    transition: transform .18s ease, opacity .18s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn:active{transform:translateY(1px);opacity:.9}
 
-/* ===== SERVICIOS ===== */
-.section{
-  max-width:1100px;
-  margin:auto;
-  padding:20px 20px 100px;
-}
+  .btn-outline{
+    background:transparent;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.32);
+  }
 
-.service{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:22px;
-  background:rgba(255,255,255,.04);
-  border-radius:26px;
-  padding:26px;
-  margin-bottom:26px;
-}
+  .hero-right{
+    border-radius: var(--radius);
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.10);
+    box-shadow: var(--shadow);
+    padding:18px;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero-right h3{
+    font-size:12px;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    opacity:.85;
+    margin-bottom:12px;
+  }
+  .perks{
+    display:grid;
+    gap:10px;
+  }
+  .perk{
+    border-radius:18px;
+    background: rgba(0,0,0,.40);
+    border:1px solid rgba(255,255,255,.10);
+    padding:14px 14px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .perk b{
+    display:block;
+    font-size:13px;
+    letter-spacing:.02em;
+    margin-bottom:2px;
+  }
+  .perk span{
+    font-size:12.5px;
+    color:var(--muted2);
+    line-height:1.45;
+  }
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:rgba(255,255,255,.85);
+    margin-top:4px;
+    box-shadow: 0 0 18px rgba(255,255,255,.35);
+    flex:0 0 auto;
+  }
 
-.service h3{
-  font-size:16px;
-  letter-spacing:.18em;
-}
+  /* ===== SECTION ===== */
+  .section{
+    max-width:1150px;
+    margin:0 auto;
+    padding:34px 18px 10px;
+  }
+  .section-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:16px;
+  }
+  .section-head h2{
+    font-size: clamp(20px, 2.2vw, 28px);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:800;
+    text-shadow: 0 18px 70px rgba(0,0,0,.65);
+  }
+  .section-head p{
+    max-width:520px;
+    font-size:13px;
+    color:var(--muted2);
+    line-height:1.5;
+  }
 
-.service p{
-  opacity:.65;
-  line-height:1.6;
-  font-size:14px;
-}
+  /* ===== SERVICE GRID ===== */
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap:14px;
+  }
 
-.service-meta{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:10px;
-}
+  .card{
+    grid-column: span 4;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.10);
+    background: var(--card);
+    box-shadow: 0 18px 60px rgba(0,0,0,.55);
+    position:relative;
 
-.time{
-  font-size:12px;
-  opacity:.6;
-}
+    opacity:0;
+    transform: translateY(26px) scale(.98);
+    transition: all .85s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.show{opacity:1;transform:none}
 
-.price{
-  font-size:14px;
-  font-weight:600;
-  letter-spacing:.08em;
-}
+  .media{
+    height:220px;
+    background:#0c0c0c;
+    position:relative;
+    overflow:hidden;
+  }
+  .media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1.03);
+    transition: transform .7s ease, filter .7s ease;
+    filter: contrast(1.05) saturate(1.02);
+    display:block;
+  }
+  .card:hover .media img{transform:scale(1.10)}
+  .media::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.10));
+    pointer-events:none;
+  }
 
-/* ===== CTA ===== */
-.cta{
-  padding:80px 20px;
-  text-align:center;
-}
+  .body{
+    padding:16px 16px 16px;
+  }
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:8px;
+  }
+  .name{
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:12px;
+  }
+  .price{
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:.12em;
+    opacity:.9;
+    border:1px solid rgba(255,255,255,.14);
+    padding:8px 10px;
+    border-radius:999px;
+    background: rgba(0,0,0,.35);
+  }
+  .desc{
+    color:var(--muted2);
+    font-size:12.5px;
+    line-height:1.5;
+  }
+  .meta{
+    margin-top:12px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .pill{
+    font-size:11px;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    padding:8px 10px;
+    border-radius:999px;
+    background: rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.10);
+    color:rgba(255,255,255,.80);
+  }
 
-.cta h2{
-  font-size:26px;
-  letter-spacing:.22em;
-  margin-bottom:14px;
-}
+  /* Best seller badge */
+  .badge{
+    position:absolute;
+    top:14px; left:14px;
+    z-index:2;
+    padding:10px 12px;
+    border-radius:999px;
+    background: rgba(255,255,255,.92);
+    color:#000;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    font-size:10px;
+    box-shadow: 0 16px 50px rgba(0,0,0,.55);
+  }
 
-.cta p{
-  opacity:.6;
-  margin-bottom:28px;
-}
+  /* ===== ADDONS + FAQ ===== */
+  .two{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:14px;
+    margin-top:14px;
+  }
+  .panel{
+    border-radius:22px;
+    background: rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow: 0 18px 60px rgba(0,0,0,.55);
+    padding:18px;
+    overflow:hidden;
 
-.cta a{
-  display:inline-block;
-  padding:16px 34px;
-  border-radius:999px;
-  background:#fff;
-  color:#000;
-  font-size:12px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  text-decoration:none;
-  font-weight:600;
-}
+    opacity:0;
+    transform: translateY(22px);
+    transition: all .85s cubic-bezier(.2,.8,.2,1);
+  }
+  .panel.show{opacity:1;transform:none}
 
-/* ===== FOOTER ===== */
-footer{
-  padding:40px 20px;
-  text-align:center;
-  font-size:12px;
-  opacity:.45;
-  border-top:1px solid rgba(255,255,255,.08);
-}
+  .panel h3{
+    font-size:12px;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    opacity:.85;
+    margin-bottom:12px;
+  }
+  .list{
+    display:grid;
+    gap:10px;
+  }
+  .li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:12px 12px;
+    border-radius:16px;
+    background: rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .li b{
+    font-size:12.5px;
+    letter-spacing:.06em;
+  }
+  .li span{
+    display:block;
+    margin-top:2px;
+    font-size:12.5px;
+    color:var(--muted2);
+    line-height:1.45;
+  }
+
+  details{
+    border-radius:16px;
+    background: rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.08);
+    padding:12px 12px;
+  }
+  summary{
+    cursor:pointer;
+    list-style:none;
+    font-weight:700;
+    letter-spacing:.02em;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+  }
+  summary::-webkit-details-marker{display:none}
+  details p{
+    margin-top:10px;
+    color:var(--muted2);
+    font-size:12.5px;
+    line-height:1.55;
+  }
+  .chev{
+    opacity:.7;
+    transition: transform .2s ease;
+  }
+  details[open] .chev{transform:rotate(180deg)}
+
+  /* ===== BOTTOM CTA BAR ===== */
+  .cta-bar{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:16px;
+    width:calc(100% - 36px);
+    max-width:1150px;
+    border-radius:18px;
+    background: rgba(0,0,0,.62);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow: 0 18px 70px rgba(0,0,0,.70);
+    z-index:70;
+    padding:12px 12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    opacity:0;
+    transform:translateX(-50%) translateY(18px);
+    transition: all .55s ease;
+  }
+  .cta-bar.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+  .cta-bar .left{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    padding-left:6px;
+  }
+  .cta-bar .left b{
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .cta-bar .left span{
+    font-size:12px;
+    color:var(--muted2);
+  }
+  .cta-bar .right{
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+  .mini{
+    padding:12px 14px;
+    font-size:11px;
+    letter-spacing:.14em;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    max-width:1150px;
+    margin:0 auto;
+    padding:34px 18px 110px;
+    text-align:center;
+    font-size:12px;
+    color:rgba(255,255,255,.42);
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 980px){
+    .hero-wrap{grid-template-columns: 1fr}
+    .hero-right{order:2}
+    .hero-left{order:1}
+    .card{grid-column: span 6}
+    .section-head{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width: 620px){
+    header{padding:12px 12px}
+    .brand .tag{display:none}
+    nav{gap:10px}
+    nav a{padding:10px 8px}
+    .card{grid-column: span 12}
+    .two{grid-template-columns: 1fr}
+    .cta-bar{bottom:12px}
+  }
 </style>
 </head>
 
 <body>
+<div class="glow"></div>
 
 <header>
   <div class="brand">
     <img src="logo.jpg" alt="Logo">
+    <div class="tag">Barbería Premium</div>
   </div>
+
   <nav>
     <a href="index.html">Inicio</a>
-    <a href="servicios.html">Servicios</a>
-    <a href="reservar.html">Reservar</a>
+    <a class="active" href="servicios.html">Servicios</a>
+    <a href="propinas.html">Propinas</a>
+    <a href="tunivel.html">Tu Nivel</a>
   </nav>
 </header>
 
 <div class="spacer"></div>
 
 <section class="hero">
-  <h1>SERVICIOS</h1>
-  <p>
-    Cada servicio está diseñado para elevar tu imagen.  
-    No trabajamos rápido. Trabajamos bien.
-  </p>
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="content">
+        <div class="kicker">Servicios · Presencia · Detalle</div>
+        <div class="title">Cortes que se sienten<br>premium desde el primer minuto</div>
+        <div class="subtitle">
+          Aquí no se trata de “cortar y ya”. Se trata de imagen, seguridad y resultado limpio.
+          Elige tu servicio, sube de nivel y reserva con prioridad.
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn" href="reservar.html">Reservar ahora →</a>
+          <a class="btn btn-outline" href="#menu">Ver menú ↓</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <h3>Lo que te llevas</h3>
+      <div class="perks">
+        <div class="perk">
+          <div class="dot"></div>
+          <div>
+            <b>Resultado limpio</b>
+            <span>Detalle en líneas, terminaciones y forma (se nota en cámara y en persona).</span>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="dot"></div>
+          <div>
+            <b>Tiempo bien usado</b>
+            <span>Servicio organizado: entras, te atienden y sales con presencia.</span>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="dot"></div>
+          <div>
+            <b>Beneficios por fidelidad</b>
+            <span>Tu Nivel + Propinas: subes puntos y ganas prioridad + ventajas VIP.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section">
-
-  <div class="service">
-    <h3>CORTE MODERNO</h3>
-    <p>
-      Fade limpio, estructura precisa y estilo urbano adaptado a tu rostro.
-    </p>
-    <div class="service-meta">
-      <span class="time">45 minutos</span>
-      <span class="price">$30</span>
+<section id="menu" class="section">
+  <div class="section-head">
+    <div>
+      <h2>Menú de Servicios</h2>
     </div>
+    <p>
+      Precios ejemplo para maqueta (tú los ajustas). Lo importante es la presentación: se ve caro, se siente serio.
+    </p>
   </div>
 
-  <div class="service">
-    <h3>BARBA PROFESIONAL</h3>
-    <p>
-      Perfilado exacto, líneas definidas y acabado pulido.
-    </p>
-    <div class="service-meta">
-      <span class="time">30 minutos</span>
-      <span class="price">$20</span>
-    </div>
+  <div class="grid">
+
+    <!-- BEST SELLER -->
+    <article class="card" data-anim>
+      <div class="badge">Más pedido</div>
+      <div class="media">
+        <img src="experience2.jpg" alt="Corte Signature">
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="name">Corte Signature</div>
+          <div class="price">$35</div>
+        </div>
+        <div class="desc">
+          Fade moderno + detalle premium. Diseñado para que se vea duro desde todos los ángulos.
+        </div>
+        <div class="meta">
+          <span class="pill">fade</span>
+          <span class="pill">terminación</span>
+          <span class="pill">perfilado</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-anim>
+      <div class="media">
+        <img src="barba.jpg" alt="Barba Profesional">
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="name">Barba Profesional</div>
+          <div class="price">$25</div>
+        </div>
+        <div class="desc">
+          Perfilado preciso, simetría y acabado limpio. Te cambia la cara completo.
+        </div>
+        <div class="meta">
+          <span class="pill">perfilado</span>
+          <span class="pill">líneas</span>
+          <span class="pill">acabado</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-anim>
+      <div class="media">
+        <img src="experience3.jpg" alt="Diseño Personalizado">
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="name">Diseño Personalizado</div>
+          <div class="price">$15+</div>
+        </div>
+        <div class="desc">
+          Líneas, símbolos y creatividad con precisión. Un toque que te diferencia.
+        </div>
+        <div class="meta">
+          <span class="pill">diseño</span>
+          <span class="pill">detalle</span>
+          <span class="pill">custom</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-anim>
+      <div class="media">
+        <img src="experience1.jpg" alt="Experiencia VIP">
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="name">Experiencia VIP</div>
+          <div class="price">$60</div>
+        </div>
+        <div class="desc">
+          Atención sin prisas, detalle al máximo y prioridad real. Para quien no juega con su imagen.
+        </div>
+        <div class="meta">
+          <span class="pill">vip</span>
+          <span class="pill">prioridad</span>
+          <span class="pill">premium</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-anim>
+      <div class="media">
+        <img src="experience5.jpg" alt="Detalle Final">
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="name">Detalle Final</div>
+          <div class="price">Incl.</div>
+        </div>
+        <div class="desc">
+          Terminación y presentación. Ese “final” que hace que la gente te mire diferente.
+        </div>
+        <div class="meta">
+          <span class="pill">terminación</span>
+          <span class="pill">presentación</span>
+          <span class="pill">clean</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-anim>
+      <div class="media">
+        <img src="experience4.jpg" alt="Combo Corte + Barba">
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="name">Combo Corte + Barba</div>
+          <div class="price">$55</div>
+        </div>
+        <div class="desc">
+          Cambio completo. Corte con presencia + barba limpia. Resultado “de película”.
+        </div>
+        <div class="meta">
+          <span class="pill">combo</span>
+          <span class="pill">full</span>
+          <span class="pill">top</span>
+        </div>
+      </div>
+    </article>
+
   </div>
 
-  <div class="service">
-    <h3>CORTE + BARBA</h3>
-    <p>
-      Servicio completo para una imagen sólida y bien presentada.
-    </p>
-    <div class="service-meta">
-      <span class="time">60 minutos</span>
-      <span class="price">$45</span>
+  <div class="two">
+    <div class="panel" data-anim>
+      <h3>Add-ons premium</h3>
+      <div class="list">
+        <div class="li">
+          <div class="dot"></div>
+          <div>
+            <b>Ceja / Línea extra</b>
+            <span>Micro detalle para que el corte se vea más caro.</span>
+          </div>
+        </div>
+        <div class="li">
+          <div class="dot"></div>
+          <div>
+            <b>Paquete de fidelidad</b>
+            <span>Acumulas puntos más rápido y subes tu nivel con prioridad.</span>
+          </div>
+        </div>
+        <div class="li">
+          <div class="dot"></div>
+          <div>
+            <b>VIP + Prioridad festivos</b>
+            <span>Los VIP tienen prioridad incluso en días fuertes (cuando otros no encuentran espacio).</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-anim>
+      <h3>Preguntas rápidas</h3>
+      <div class="list">
+        <details>
+          <summary>¿Cuánto dura un servicio? <span class="chev">▾</span></summary>
+          <p>Depende del servicio. La idea es que sea un proceso limpio y sin apuro: se nota en el resultado final.</p>
+        </details>
+        <details>
+          <summary>¿Qué gano con “Tu Nivel”? <span class="chev">▾</span></summary>
+          <p>Prioridad para reservar, beneficios VIP (incluye festivos), y cortes gratis según tu nivel y constancia.</p>
+        </details>
+        <details>
+          <summary>¿Propinas son obligatorias? <span class="chev">▾</span></summary>
+          <p>No. Es opcional. Solo te ayuda a acumular puntos más rápido si quieres subir de nivel.</p>
+        </details>
+      </div>
     </div>
   </div>
-
-  <div class="service">
-    <h3>DISEÑO PERSONALIZADO</h3>
-    <p>
-      Líneas, símbolos y detalles únicos creados para ti.
-    </p>
-    <div class="service-meta">
-      <span class="time">15 minutos</span>
-      <span class="price">$10+</span>
-    </div>
-  </div>
-
-  <div class="service">
-    <h3>EXPERIENCIA VIP</h3>
-    <p>
-      Atención exclusiva, sin prisas, con máximo detalle y comodidad.
-    </p>
-    <div class="service-meta">
-      <span class="time">90 minutos</span>
-      <span class="price">$70</span>
-    </div>
-  </div>
-
-</section>
-
-<section class="cta">
-  <h2>RESERVA TU ESPACIO</h2>
-  <p>Los mejores cortes no se improvisan. Se reservan.</p>
-  <a href="reservar.html">Reservar ahora</a>
 </section>
 
 <footer>
-  © 2025 Barbería Premium · Todos los derechos reservados
+  ©️ 2025 Barbería Premium · Todos los derechos reservados
 </footer>
+
+<!-- CTA BAR (sale al scrollear un poco) -->
+<div class="cta-bar" id="ctaBar" aria-hidden="true">
+  <div class="left">
+    <b>Listo para reservar</b>
+    <span>Elige tu servicio y asegura tu espacio.</span>
+  </div>
+  <div class="right">
+    <a class="btn btn-outline mini" href="index.html">← Inicio</a>
+    <a class="btn mini" href="reservar.html">Reservar →</a>
+  </div>
+</div>
+
+<script>
+  // Animación suave al entrar (cards/panels)
+  const animItems = document.querySelectorAll('[data-anim]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('show');
+    });
+  },{threshold:.18});
+  animItems.forEach(el=>io.observe(el));
+
+  // CTA bar aparece al bajar
+  const ctaBar = document.getElementById('ctaBar');
+  const showAt = 280;
+  const onScroll = () => {
+    if (window.scrollY > showAt) ctaBar.classList.add('show');
+    else ctaBar.classList.remove('show');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Fallback si no existe experience6.jpg: usa experience2
+  (function(){
+    const heroBg = document.querySelector('.hero-left');
+    // Nada heavy: solo detecta imagen 6 por load.
+    const test = new Image();
+    test.onload = ()=>{};
+    test.onerror = ()=>{
+      // Cambia a experience2 si experience6 no existe
+      const style = document.createElement('style');
+      style.textContent = ".hero-left::before{background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.80)), url('experience2.jpg') center/cover no-repeat;}";
+      document.head.appendChild(style);
+    };
+    test.src = 'experience6.jpg';
+  })();
+</script>
 
 </body>
 </html>
