@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Tu Nivel · Barbería Premium</title>
+<title>Tu Nivel | Barbería Premium</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,237 +18,169 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== HEADER ===== */
-header{
-  position:fixed;
-  top:18px;
-  left:50%;
-  transform:translateX(-50%);
-  width:calc(100% - 36px);
-  max-width:1100px;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(18px);
-  border-radius:20px;
-  padding:14px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  z-index:50;
-}
-
-.brand img{
-  width:34px;
-  height:34px;
-  border-radius:8px;
-}
-
+/* ===== FLECHA ATRÁS ===== */
 .back{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:12px;
-  letter-spacing:.18em;
+  position:fixed;
+  top:22px;
+  left:22px;
+  z-index:50;
+  font-size:14px;
+  letter-spacing:.14em;
+  opacity:.7;
   text-decoration:none;
   color:#fff;
-  opacity:.75;
-  transition:.3s;
 }
 .back:hover{opacity:1}
 
-/* ===== ESPACIO ===== */
-.spacer{height:130px}
-
-/* ===== HERO ===== */
-.hero{
-  padding:50px 20px 80px;
-  display:flex;
-  justify-content:center;
-}
-
-.hero-card{
-  background:radial-gradient(circle at top, rgba(255,255,255,.08), rgba(0,0,0,.85));
-  border-radius:32px;
-  padding:56px 34px;
-  max-width:520px;
-  width:100%;
+/* ===== HUD JUEGO ===== */
+.hud{
+  padding:80px 20px 40px;
   text-align:center;
-  box-shadow:0 30px 80px rgba(0,0,0,.7);
-  animation:fadeUp 1s ease;
 }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(50px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.hero-card h1{
+.hud h1{
   font-size:36px;
-  font-weight:800;
-  letter-spacing:.32em;
-  margin-bottom:16px;
+  letter-spacing:.28em;
+  margin-bottom:14px;
 }
 
-.hero-card p{
-  font-size:14px;
-  opacity:.75;
-  line-height:1.8;
-}
-
-/* ===== ESTADO ===== */
-.status{
-  padding:80px 20px;
-  max-width:900px;
-  margin:auto;
-  text-align:center;
-}
-
-.status h2{
-  font-size:22px;
-  letter-spacing:.22em;
-  margin-bottom:8px;
-}
-
-.status span{
-  font-size:14px;
+.hud p{
   opacity:.65;
+  font-size:14px;
 }
 
-/* PROGRESO */
-.progress{
-  margin:40px auto 10px;
-  max-width:520px;
+/* ===== PROGRESO ===== */
+.progress-box{
+  max-width:420px;
+  margin:40px auto;
+  background:rgba(255,255,255,.06);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
 }
 
-.bar{
-  height:14px;
-  background:#111;
+.progress-label{
+  font-size:12px;
+  letter-spacing:.12em;
+  opacity:.7;
+  margin-bottom:10px;
+}
+
+.progress-bar{
+  width:100%;
+  height:10px;
   border-radius:999px;
+  background:rgba(255,255,255,.15);
   overflow:hidden;
 }
 
-.fill{
-  width:62%;
+.progress-fill{
+  width:45%;
   height:100%;
   background:linear-gradient(90deg,#fff,#aaa);
-  animation:load 1.6s ease;
-  position:relative;
-}
-.fill::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
-  animation:shine 2.5s infinite;
+  animation:load 2s ease-out;
 }
 
 @keyframes load{
   from{width:0}
-  to{width:62%}
+  to{width:45%}
 }
 
-@keyframes shine{
-  0%{transform:translateX(-100%)}
-  100%{transform:translateX(100%)}
-}
-
-.points{
-  margin-top:14px;
+.progress-text{
+  margin-top:12px;
   font-size:13px;
-  opacity:.6;
+  opacity:.7;
 }
 
 /* ===== NIVELES ===== */
 .levels{
-  padding:90px 20px;
   max-width:1100px;
-  margin:auto;
-}
-
-.level-grid{
+  margin:80px auto;
+  padding:0 20px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;
 }
 
-/* CARD */
-.level-card{
-  background:linear-gradient(to bottom, #111, #0a0a0a);
-  border-radius:28px;
-  padding:42px 30px;
-  border:1px solid rgba(255,255,255,.08);
-  transition:.45s cubic-bezier(.2,.8,.2,1);
+.level{
+  background:rgba(255,255,255,.05);
+  border-radius:24px;
+  padding:28px;
   position:relative;
+  overflow:hidden;
+  transform:translateY(40px);
+  opacity:0;
+  animation:enter .8s ease forwards;
 }
 
-.level-card:hover{
-  transform:translateY(-10px) scale(1.02);
-  border-color:rgba(255,255,255,.35);
+.level:nth-child(1){animation-delay:.2s}
+.level:nth-child(2){animation-delay:.4s}
+.level:nth-child(3){animation-delay:.6s}
+
+@keyframes enter{
+  to{transform:translateY(0);opacity:1}
 }
 
-.level-card h3{
-  font-size:16px;
-  letter-spacing:.18em;
-  margin-bottom:18px;
+.level h3{
+  font-size:18px;
+  letter-spacing:.2em;
+  margin-bottom:14px;
 }
 
-.level-card ul{
+.level ul{
   list-style:none;
-  font-size:13px;
+  font-size:14px;
   opacity:.75;
-  line-height:1.9;
+  line-height:1.6;
 }
 
-.level-card ul li::before{
-  content:"✓ ";
-  opacity:.5;
+.level ul li{
+  margin-bottom:8px;
 }
 
-/* VIP */
-.vip{
-  border:1px solid rgba(255,255,255,.45);
-  box-shadow:0 0 60px rgba(255,255,255,.12);
+/* ===== DESTACADO ===== */
+.active{
+  outline:2px solid rgba(255,255,255,.5);
+  box-shadow:0 0 60px rgba(255,255,255,.08);
 }
-.vip::after{
-  content:"VIP";
+
+.badge{
   position:absolute;
   top:18px;
   right:18px;
   font-size:11px;
-  letter-spacing:.22em;
-  opacity:.5;
+  letter-spacing:.14em;
+  opacity:.7;
 }
 
-/* ===== CTA ===== */
-.cta{
-  padding:90px 20px;
+/* ===== PROPINA ===== */
+.tip{
   text-align:center;
+  margin:80px 20px;
 }
 
-.cta h3{
-  font-size:26px;
-  letter-spacing:.24em;
-  margin-bottom:16px;
+.tip h4{
+  font-size:22px;
+  letter-spacing:.2em;
+  margin-bottom:12px;
 }
 
-.cta p{
-  opacity:.65;
-  margin-bottom:30px;
+.tip p{
+  opacity:.6;
+  font-size:14px;
+  margin-bottom:26px;
 }
 
-.cta a{
+.tip-btn{
   display:inline-block;
-  padding:16px 36px;
+  padding:14px 26px;
   border-radius:999px;
   background:#fff;
   color:#000;
-  font-weight:600;
-  letter-spacing:.16em;
-  text-decoration:none;
   font-size:12px;
-  transition:.3s;
-}
-.cta a:hover{
-  transform:scale(1.05);
+  letter-spacing:.14em;
+  text-decoration:none;
+  font-weight:600;
 }
 
 /* ===== FOOTER ===== */
@@ -264,84 +196,64 @@ footer{
 
 <body>
 
-<header>
-  <div class="brand">
-    <img src="logo.jpg" alt="Logo">
-  </div>
-  <a href="index.html" class="back">← INICIO</a>
-</header>
+<a href="index.html" class="back">← INICIO</a>
 
-<div class="spacer"></div>
-
-<section class="hero">
-  <div class="hero-card">
-    <h1>TU NIVEL</h1>
-    <p>
-      Aquí no todos son iguales.<br>
-      Cada visita suma.<br>
-      Cada decisión cuenta.
-    </p>
-  </div>
+<section class="hud">
+  <h1>TU NIVEL</h1>
+  <p>Mientras más visitas, más privilegios.</p>
 </section>
 
-<section class="status">
-  <h2>TU ESTADO ACTUAL</h2>
-  <span>Cliente PRO</span>
-
-  <div class="progress">
-    <div class="bar">
-      <div class="fill"></div>
-    </div>
-    <div class="points">62 / 100 puntos · rumbo a Nivel VIP</div>
+<div class="progress-box">
+  <div class="progress-label">PROGRESO ACTUAL</div>
+  <div class="progress-bar">
+    <div class="progress-fill"></div>
   </div>
-</section>
+  <div class="progress-text">Nivel Intermedio · 45% completado</div>
+</div>
 
 <section class="levels">
-  <div class="level-grid">
 
-    <div class="level-card">
-      <h3>NIVEL BASE</h3>
-      <ul>
-        <li>Acceso estándar</li>
-        <li>Acumulación básica de puntos</li>
-        <li>Reservaciones normales</li>
-      </ul>
-    </div>
-
-    <div class="level-card">
-      <h3>NIVEL PRO</h3>
-      <ul>
-        <li>Prioridad para reservar</li>
-        <li>Acceso anticipado a horarios</li>
-        <li>Beneficios mensuales</li>
-      </ul>
-    </div>
-
-    <div class="level-card vip">
-      <h3>NIVEL VIP</h3>
-      <ul>
-        <li>Prioridad TOTAL de reservaciones</li>
-        <li>Días festivos incluidos</li>
-        <li>6 cortes gratis al año</li>
-        <li>Uso libre en cualquier ocasión</li>
-        <li>Atención VIP (agua, café u obsequio)</li>
-      </ul>
-    </div>
-
+  <div class="level">
+    <div class="badge">NIVEL 1</div>
+    <h3>BÁSICO</h3>
+    <ul>
+      <li>✔ Reservaciones normales</li>
+      <li>✔ Acumulación de puntos</li>
+      <li>✔ Acceso al sistema</li>
+    </ul>
   </div>
+
+  <div class="level active">
+    <div class="badge">TU NIVEL</div>
+    <h3>INTERMEDIO</h3>
+    <ul>
+      <li>✔ Prioridad para reservar</li>
+      <li>✔ Acceso preferente en horarios llenos</li>
+      <li>✔ Acumulas puntos más rápido</li>
+    </ul>
+  </div>
+
+  <div class="level">
+    <div class="badge">MÁXIMO</div>
+    <h3>VIP</h3>
+    <ul>
+      <li>✔ Prioridad incluso en días festivos</li>
+      <li>✔ 6 cortes GRATIS al año</li>
+      <li>✔ Atención VIP (agua / café)</li>
+      <li>✔ Reservaciones preferenciales</li>
+    </ul>
+  </div>
+
 </section>
 
-<section class="cta">
-  <h3>Mantente arriba</h3>
-  <p>
-    Los que se mantienen en el nivel<br>
-    no esperan turno.
-  </p>
-  <a href="reservar.html">Reservar ahora</a>
+<section class="tip">
+  <h4>SUBE MÁS RÁPIDO</h4>
+  <p>Las propinas y la asistencia constante te hacen avanzar de nivel.</p>
+  <a href="propinas.html" class="tip-btn">IR A PROPINAS</a>
 </section>
 
 <footer>
-  ©️ 2025 Barbería Premium · Todos los derechos reservados
+  ©️ 2025 Barbería Premium · Sistema de fidelidad
 </footer>
 
 </body>
