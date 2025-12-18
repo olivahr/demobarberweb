@@ -36,6 +36,12 @@ header{
   z-index:50;
 }
 
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
 .brand img{
   width:34px;
   height:34px;
@@ -54,8 +60,10 @@ nav a{
   text-decoration:none;
   opacity:.7;
 }
+
 nav a:hover{opacity:1}
 
+/* ===== ESPACIO HEADER ===== */
 .spacer{height:130px}
 
 /* ===== HERO ===== */
@@ -69,6 +77,7 @@ nav a:hover{opacity:1}
   background:
     linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.85)),
     url('portada.jpg') center/cover no-repeat;
+  backdrop-filter:blur(22px);
   border-radius:28px;
   padding:46px 30px;
   max-width:420px;
@@ -120,12 +129,27 @@ nav a:hover{opacity:1}
   margin:auto;
 }
 
+.section h2{
+  text-align:center;
+  font-size:32px;
+  letter-spacing:.24em;
+  margin-bottom:12px;
+}
+
+.section p{
+  text-align:center;
+  opacity:.6;
+  margin-bottom:60px;
+}
+
+/* GRID */
 .services{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:26px;
 }
 
+/* CARD */
 .service-card{
   position:relative;
   border-radius:24px;
@@ -137,6 +161,7 @@ nav a:hover{opacity:1}
   width:100%;
   height:260px;
   object-fit:cover;
+  display:block;
 }
 
 .service-overlay{
@@ -149,67 +174,35 @@ nav a:hover{opacity:1}
   padding:22px;
 }
 
-/* ===== CTA ===== */
+.service-overlay h3{
+  font-size:15px;
+  letter-spacing:.14em;
+  margin-bottom:6px;
+}
+
+.service-overlay span{
+  font-size:13px;
+  opacity:.7;
+}
+
+/* ===== CTA FINAL ===== */
 .cta{
   padding:80px 20px;
   text-align:center;
 }
 
-/* ===== AVISO CUPOS ===== */
-.cupos-flotante{
-  position:fixed;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:18px;
-  padding:18px 22px 16px;
-  display:flex;
-  align-items:center;
-  gap:16px;
-  z-index:80;
-  animation:pulseFloat 2.6s ease-in-out infinite;
+.cta h3{
+  font-size:26px;
+  letter-spacing:.2em;
+  margin-bottom:14px;
 }
 
-.cupos-text{
-  font-size:13px;
-  opacity:.85;
+.cta p{
+  opacity:.6;
+  margin-bottom:28px;
 }
 
-.cupos-flotante a{
-  padding:10px 18px;
-  border-radius:999px;
-  background:#fff;
-  color:#000;
-  font-size:11px;
-  letter-spacing:.14em;
-  text-decoration:none;
-  font-weight:600;
-}
-
-/* ❌ BOTÓN CERRAR */
-.cerrar-cupos{
-  position:absolute;
-  top:6px;
-  right:8px;
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  border:none;
-  background:rgba(255,255,255,.12);
-  color:#fff;
-  font-size:14px;
-  cursor:pointer;
-}
-.cerrar-cupos:hover{background:rgba(255,255,255,.25)}
-
-@keyframes pulseFloat{
-  0%,100%{transform:translateX(-50%) translateY(0)}
-  50%{transform:translateX(-50%) translateY(-6px)}
-}
-
+/* ===== FOOTER ===== */
 footer{
   padding:40px 20px;
   text-align:center;
@@ -224,7 +217,7 @@ footer{
 
 <header>
   <div class="brand">
-    <img src="logo.jpg">
+    <img src="logo.jpg" alt="Logo">
   </div>
   <nav>
     <a href="index.html">Inicio</a>
@@ -238,54 +231,75 @@ footer{
 <section class="hero">
   <div class="hero-card">
     <h1>BARBER</h1>
-    <p>Presencia. Estilo. Detalle.<br>No es un corte rápido.<br>Es una experiencia.</p>
-    <a href="reservar.html" class="hero-btn primary reservar-btn">Reservar ahora</a>
-    <a href="#experiencias" class="hero-btn outline">Ver experiencia</a>
+    <p>
+      Presencia. Estilo. Detalle.<br>
+      No es un corte rápido.<br>
+      Es una experiencia.
+    </p>
+    <a href="reservar.html" class="hero-btn primary">Reservar ahora</a>
+    <!-- CAMBIO ÚNICO AQUÍ -->
+    <a href="tunivel.html" class="hero-btn outline">Tu Nivel</a>
   </div>
 </section>
 
 <section id="experiencias" class="section">
+  <h2>EXPERIENCIA</h2>
+  <p>Servicios diseñados para clientes que saben lo que quieren.</p>
+
   <div class="services">
-    <div class="service-card"><img src="barba.jpg"></div>
-    <div class="service-card"><img src="experience2.jpg"></div>
-    <div class="service-card"><img src="experience3.jpg"></div>
-    <div class="service-card"><img src="experience1.jpg"></div>
-    <div class="service-card"><img src="experience5.jpg"></div>
+
+    <div class="service-card">
+      <img src="barba.jpg">
+      <div class="service-overlay">
+        <h3>Barba profesional</h3>
+        <span>Perfilado preciso y acabado limpio</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="experience2.jpg">
+      <div class="service-overlay">
+        <h3>Corte moderno</h3>
+        <span>Fade, estilo urbano y detalle</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="experience3.jpg">
+      <div class="service-overlay">
+        <h3>Diseño personalizado</h3>
+        <span>Líneas, símbolos y creatividad</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="experience1.jpg">
+      <div class="service-overlay">
+        <h3>Experiencia VIP</h3>
+        <span>Atención exclusiva sin prisas</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img src="experience5.jpg">
+      <div class="service-overlay">
+        <h3>Detalle final</h3>
+        <span>Acabado premium y presentación</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section class="cta">
-  <a href="reservar.html" class="hero-btn primary reservar-btn">Reservar ahora</a>
+  <h3>Agenda tu espacio</h3>
+  <p>Los mejores cortes no se improvisan. Se reservan.</p>
+  <a href="reservar.html" class="hero-btn primary">Reservar ahora</a>
 </section>
-
-<!-- AVISO CUPOS -->
-<div class="cupos-flotante" id="cuposBox">
-  <button class="cerrar-cupos" id="cerrarCupos">×</button>
-  <span class="cupos-text">⚠️ Solo 3 cupos disponibles esta semana</span>
-  <a href="reservar.html" class="reservar-btn">Reservar</a>
-</div>
 
 <footer>
   ©️ 2025 Barbería Premium · Todos los derechos reservados
 </footer>
-
-<script>
-const box = document.getElementById('cuposBox');
-const cerrar = document.getElementById('cerrarCupos');
-
-if(localStorage.getItem('cuposOculto')) box.style.display='none';
-
-cerrar.onclick = () => {
-  box.style.display = 'none';
-  localStorage.setItem('cuposOculto','1');
-};
-
-document.querySelectorAll('.reservar-btn').forEach(btn=>{
-  btn.onclick=()=>{
-    localStorage.setItem('cuposOculto','1');
-  }
-});
-</script>
 
 </body>
 </html>
