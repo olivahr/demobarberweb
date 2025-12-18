@@ -64,9 +64,7 @@ nav a{
 nav a:hover{opacity:1}
 
 /* ===== ESPACIO HEADER ===== */
-.spacer{
-  height:130px;
-}
+.spacer{height:130px}
 
 /* ===== HERO ===== */
 .hero{
@@ -76,7 +74,9 @@ nav a:hover{opacity:1}
 }
 
 .hero-card{
-  background:rgba(255,255,255,.05);
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.85)),
+    url('portada.jpg') center/cover no-repeat;
   backdrop-filter:blur(22px);
   border-radius:28px;
   padding:46px 30px;
@@ -95,7 +95,7 @@ nav a:hover{opacity:1}
 
 .hero-card p{
   font-size:14px;
-  opacity:.7;
+  opacity:.8;
   line-height:1.6;
   margin-bottom:30px;
 }
@@ -246,14 +246,17 @@ footer{
   <p>Servicios diseñados para clientes que saben lo que quieren.</p>
 
   <div class="services">
+
+    <!-- BARBA -->
     <div class="service-card">
-      <img src="experience1.jpg">
+      <img src="barba.jpg">
       <div class="service-overlay">
         <h3>Barba profesional</h3>
         <span>Perfilado preciso y acabado limpio</span>
       </div>
     </div>
 
+    <!-- CORTE -->
     <div class="service-card">
       <img src="experience2.jpg">
       <div class="service-overlay">
@@ -262,6 +265,7 @@ footer{
       </div>
     </div>
 
+    <!-- DISEÑO -->
     <div class="service-card">
       <img src="experience3.jpg">
       <div class="service-overlay">
@@ -270,14 +274,16 @@ footer{
       </div>
     </div>
 
+    <!-- VIP -->
     <div class="service-card">
-      <img src="experience4.jpg">
+      <img src="experience1.jpg">
       <div class="service-overlay">
         <h3>Experiencia VIP</h3>
         <span>Atención exclusiva sin prisas</span>
       </div>
     </div>
 
+    <!-- DETALLE -->
     <div class="service-card">
       <img src="experience5.jpg">
       <div class="service-overlay">
@@ -285,6 +291,7 @@ footer{
         <span>Acabado premium y presentación</span>
       </div>
     </div>
+
   </div>
 </section>
 
