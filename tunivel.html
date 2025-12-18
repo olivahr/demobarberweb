@@ -36,22 +36,21 @@ header{
   z-index:50;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
 .brand img{
   width:34px;
   height:34px;
   border-radius:8px;
 }
 
-/* FLECHA ATRÁS */
+/* Flecha volver */
 .back{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  letter-spacing:.14em;
   text-decoration:none;
-  font-size:18px;
+  color:#fff;
   opacity:.75;
   transition:.3s;
 }
@@ -62,7 +61,7 @@ header{
 
 /* ===== HERO ===== */
 .hero{
-  padding:40px 20px 60px;
+  padding:40px 20px 70px;
   display:flex;
   justify-content:center;
 }
@@ -71,12 +70,12 @@ header{
   background:rgba(255,255,255,.05);
   backdrop-filter:blur(22px);
   border-radius:30px;
-  padding:46px 30px;
-  max-width:460px;
+  padding:48px 32px;
+  max-width:480px;
   width:100%;
   text-align:center;
   box-shadow:0 20px 60px rgba(0,0,0,.6);
-  animation:fadeUp .8s ease;
+  animation:fadeUp .9s ease;
 }
 
 @keyframes fadeUp{
@@ -85,40 +84,40 @@ header{
 }
 
 .hero-card h1{
-  font-size:36px;
+  font-size:34px;
   font-weight:800;
-  letter-spacing:.22em;
-  margin-bottom:12px;
+  letter-spacing:.28em;
+  margin-bottom:14px;
 }
 
 .hero-card p{
   font-size:14px;
   opacity:.75;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 /* ===== NIVEL ACTUAL ===== */
-.nivel{
-  padding:80px 20px;
+.status{
+  padding:70px 20px;
   max-width:900px;
   margin:auto;
   text-align:center;
 }
 
-.nivel h2{
-  font-size:26px;
-  letter-spacing:.2em;
-  margin-bottom:16px;
+.status h2{
+  font-size:24px;
+  letter-spacing:.22em;
+  margin-bottom:10px;
 }
 
-.nivel span{
+.status span{
   font-size:14px;
-  opacity:.6;
+  opacity:.65;
 }
 
-/* PROGRESS BAR */
+/* PROGRESS */
 .progress{
-  margin:40px auto;
+  margin:36px auto 10px;
   max-width:520px;
 }
 
@@ -130,60 +129,72 @@ header{
 }
 
 .fill{
-  width:45%; /* progreso ejemplo */
+  width:62%;
   height:100%;
   background:linear-gradient(90deg,#fff,#aaa);
-  animation:load 1.2s ease;
+  animation:load 1.3s ease;
 }
 
 @keyframes load{
   from{width:0}
-  to{width:45%}
+  to{width:62%}
 }
 
 .points{
-  margin-top:14px;
+  margin-top:12px;
   font-size:13px;
-  opacity:.65;
+  opacity:.6;
 }
 
 /* ===== NIVELES ===== */
 .levels{
-  padding:60px 20px;
+  padding:70px 20px;
   max-width:1100px;
   margin:auto;
 }
 
 .level-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
 }
 
 /* CARD */
 .level-card{
   background:#111;
   border-radius:26px;
-  padding:34px 26px;
+  padding:36px 28px;
   border:1px solid rgba(255,255,255,.08);
   transition:.4s ease;
 }
 
 .level-card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-8px);
   border-color:rgba(255,255,255,.35);
 }
 
 .level-card h3{
-  font-size:18px;
-  letter-spacing:.14em;
-  margin-bottom:10px;
+  font-size:17px;
+  letter-spacing:.16em;
+  margin-bottom:14px;
 }
 
-.level-card p{
+.level-card ul{
+  list-style:none;
   font-size:13px;
-  opacity:.65;
-  line-height:1.6;
+  opacity:.7;
+  line-height:1.8;
+}
+
+.level-card ul li::before{
+  content:"• ";
+  opacity:.5;
+}
+
+/* VIP DESTACADO */
+.vip{
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:0 0 40px rgba(255,255,255,.08);
 }
 
 /* ===== CTA ===== */
@@ -194,7 +205,7 @@ header{
 
 .cta h3{
   font-size:24px;
-  letter-spacing:.18em;
+  letter-spacing:.2em;
   margin-bottom:14px;
 }
 
@@ -205,7 +216,7 @@ header{
 
 .cta a{
   display:inline-block;
-  padding:14px 28px;
+  padding:14px 30px;
   border-radius:999px;
   background:#fff;
   color:#000;
@@ -232,7 +243,7 @@ footer{
   <div class="brand">
     <img src="logo.jpg" alt="Logo">
   </div>
-  <a href="index.html" class="back">→ Inicio</a>
+  <a href="index.html" class="back">← INICIO</a>
 </header>
 
 <div class="spacer"></div>
@@ -241,63 +252,68 @@ footer{
   <div class="hero-card">
     <h1>TU NIVEL</h1>
     <p>
-      Cada visita cuenta.<br>
-      Cada propina suma.<br>
-      Tu constancia se premia.
+      Este no es un sistema de puntos.<br>
+      Es una forma de reconocer a quien vuelve,<br>
+      confía y se mantiene.
     </p>
   </div>
 </section>
 
-<section class="nivel">
+<section class="status">
   <h2>NIVEL ACTUAL</h2>
-  <span>Cliente Pro</span>
+  <span>Cliente PRO</span>
 
   <div class="progress">
     <div class="bar">
       <div class="fill"></div>
     </div>
-    <div class="points">45 / 100 puntos para subir de nivel</div>
+    <div class="points">62 / 100 puntos para Nivel VIP</div>
   </div>
 </section>
 
 <section class="levels">
   <div class="level-grid">
 
+    <!-- BASE -->
     <div class="level-card">
       <h3>NIVEL BASE</h3>
-      <p>
-        Acceso estándar.<br>
-        Sumas puntos con cada visita.<br>
-        Empiezas tu recorrido.
-      </p>
+      <ul>
+        <li>Acceso estándar</li>
+        <li>Acumulación básica de puntos</li>
+        <li>Reservaciones normales</li>
+      </ul>
     </div>
 
+    <!-- PRO -->
     <div class="level-card">
       <h3>NIVEL PRO</h3>
-      <p>
-        Prioridad en reservas.<br>
-        Beneficios mensuales.<br>
-        Atención preferencial.
-      </p>
+      <ul>
+        <li>Prioridad para reservar</li>
+        <li>Acceso anticipado a horarios</li>
+        <li>Beneficios mensuales</li>
+      </ul>
     </div>
 
-    <div class="level-card">
-      <h3>NIVEL ELITE</h3>
-      <p>
-        Corte gratis mensual.<br>
-        Invitaciones exclusivas.<br>
-        Máximo estatus.
-      </p>
+    <!-- VIP -->
+    <div class="level-card vip">
+      <h3>NIVEL VIP</h3>
+      <ul>
+        <li>Prioridad TOTAL de reservaciones</li>
+        <li>Incluye días festivos</li>
+        <li>6 cortes gratis al año</li>
+        <li>Uso libre en cualquier ocasión</li>
+        <li>Atención VIP: agua, café u obsequio</li>
+      </ul>
     </div>
 
   </div>
 </section>
 
 <section class="cta">
-  <h3>Sigue subiendo</h3>
+  <h3>Mantente en el nivel</h3>
   <p>
     Reservar, asistir y apoyar<br>
-    te acerca al siguiente nivel.
+    te mantiene en la cima.
   </p>
   <a href="reservar.html">Reservar ahora</a>
 </section>
