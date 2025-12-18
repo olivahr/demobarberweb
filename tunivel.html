@@ -8,7 +8,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 :root{
   --glass:rgba(255,255,255,.08);
   --line:rgba(255,255,255,.18);
@@ -23,13 +22,12 @@ body{
     #000;
   color:#fff;
   overflow-x:hidden;
-  transition:background .8s ease;
+  transition:background 1s ease;
 }
-
 body.vip{
   background:
-    radial-gradient(1000px 520px at 50% 0%, rgba(255,215,0,.18), transparent 60%),
-    radial-gradient(820px 520px at 50% 100%, rgba(255,255,255,.08), transparent 70%),
+    radial-gradient(1100px 520px at 50% 0%, rgba(255,215,0,.25), transparent 60%),
+    radial-gradient(900px 520px at 50% 100%, rgba(255,255,255,.12), transparent 70%),
     #000;
 }
 
@@ -57,12 +55,10 @@ body.vip{
   font-size:12px;
   opacity:.75;
 }
-.topbar a:hover{opacity:1}
 .stats{
   display:flex;
-  gap:12px;
+  gap:10px;
   font-size:11px;
-  letter-spacing:.14em;
 }
 .stats span{
   padding:8px 12px;
@@ -86,33 +82,26 @@ h1{
   letter-spacing:.28em;
   margin-bottom:6px;
 }
-
 .subtitle{
   opacity:.65;
   font-size:14px;
   margin-bottom:30px;
 }
 
-/* ===== XP ===== */
+/* ===== XP BOX ===== */
 .xp-box{
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:26px;
+  border-radius:28px;
   padding:26px;
-  margin-bottom:34px;
+  margin-bottom:40px;
   box-shadow:0 0 80px rgba(255,255,255,.08);
-  transition:box-shadow .4s ease;
 }
-body.vip .xp-box{
-  box-shadow:0 0 120px rgba(255,215,0,.25);
-}
-
 .rank{
   font-weight:800;
-  letter-spacing:.22em;
-  margin-bottom:12px;
+  letter-spacing:.2em;
+  margin-bottom:10px;
 }
-
 .progress{
   height:14px;
   background:rgba(255,255,255,.15);
@@ -124,15 +113,15 @@ body.vip .xp-box{
   height:100%;
   width:0%;
   background:linear-gradient(90deg,#fff,#bbb,#fff);
-  transition:width .9s ease;
+  transition:width 1s ease;
+  box-shadow:0 0 25px rgba(255,255,255,.4);
 }
 body.vip .progress span{
   background:linear-gradient(90deg,#fff,var(--vip),#fff);
-  box-shadow:0 0 25px rgba(255,215,0,.45);
+  box-shadow:0 0 35px rgba(255,215,0,.6);
 }
-
 .xp-text{
-  margin-top:10px;
+  margin-top:12px;
   font-size:12px;
   opacity:.7;
 }
@@ -141,48 +130,46 @@ body.vip .progress span{
 .levels{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:18px;
-  margin-bottom:40px;
+  gap:22px;
+  margin-bottom:50px;
 }
-
 .level{
-  background:rgba(0,0,0,.35);
+  background:rgba(0,0,0,.4);
   border:1px solid var(--line);
-  border-radius:24px;
+  border-radius:26px;
   padding:22px;
   position:relative;
-  transition:transform .3s ease, box-shadow .3s ease;
+  transition:.35s;
 }
-.level:hover{transform:translateY(-4px)}
-
 .level.active{
   outline:2px solid rgba(255,255,255,.6);
-  box-shadow:0 0 80px rgba(255,255,255,.15);
+  box-shadow:0 0 80px rgba(255,255,255,.2);
 }
-
+.level.vip.active{
+  outline:2px solid var(--vip);
+  box-shadow:0 0 120px rgba(255,215,0,.6);
+}
 .level h3{
   letter-spacing:.22em;
   font-size:14px;
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
-
 .level ul{
   list-style:none;
   font-size:13px;
-  opacity:.75;
+  opacity:.78;
   line-height:1.7;
 }
-
-/* VIP */
-.level.vip{
-  border-color:rgba(255,215,0,.4);
-}
-.level.vip .crown{
+.crown{
   position:absolute;
-  top:14px;
-  right:16px;
-  font-size:26px;
-  animation:float 2.5s infinite;
+  top:16px;
+  right:18px;
+  font-size:24px;
+  opacity:.15;
+}
+.level.vip.active .crown{
+  opacity:1;
+  animation:float 2.2s ease-in-out infinite;
 }
 @keyframes float{
   0%,100%{transform:translateY(0)}
@@ -193,17 +180,15 @@ body.vip .progress span{
 .missions{
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:26px;
+  border-radius:28px;
   padding:26px;
-  margin-bottom:40px;
+  margin-bottom:60px;
 }
-
 .missions h2{
   font-size:14px;
-  letter-spacing:.24em;
+  letter-spacing:.28em;
   margin-bottom:18px;
 }
-
 .mission{
   display:flex;
   justify-content:space-between;
@@ -212,60 +197,81 @@ body.vip .progress span{
   border-radius:18px;
   border:1px solid var(--line);
   margin-bottom:14px;
-  transition:transform .3s ease;
 }
-.mission:hover{transform:translateY(-2px)}
-
 .mission span{
   font-size:13px;
   opacity:.75;
 }
-
 .mission button{
   background:#fff;
   color:#000;
   border:none;
-  padding:12px 18px;
+  padding:11px 18px;
   border-radius:999px;
   font-size:11px;
   font-weight:800;
   letter-spacing:.14em;
   cursor:pointer;
 }
-
-/* ===== REWARDS ===== */
-.rewards{
-  margin-bottom:50px;
-}
-.rewards h2{
-  font-size:14px;
-  letter-spacing:.26em;
-  margin-bottom:18px;
+.mission button:disabled{
+  opacity:.4;
 }
 
-.reward-grid{
+/* ===== ARCADE HUB ===== */
+.arcade{
+  margin-bottom:80px;
+}
+.arcade h2{
+  font-size:15px;
+  letter-spacing:.3em;
+  margin-bottom:28px;
+  text-align:center;
+}
+.arcade-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:26px;
 }
-
-.reward{
-  background:rgba(0,0,0,.35);
+.arcade-card{
+  background:rgba(0,0,0,.5);
   border:1px solid var(--line);
-  border-radius:22px;
-  padding:22px;
+  border-radius:30px;
+  padding:28px;
+  min-height:170px;
   position:relative;
-  transition:transform .3s ease;
+  cursor:pointer;
+  transition:.4s;
 }
-.reward:hover{transform:translateY(-4px)}
-
-.reward.active{
-  animation:pulse 2.6s infinite;
+.arcade-card:hover{
+  transform:translateY(-8px) scale(1.03);
 }
-@keyframes pulse{
-  0%{box-shadow:0 0 0 rgba(255,255,255,.2)}
-  50%{box-shadow:0 0 25px rgba(255,255,255,.35)}
-  100%{box-shadow:0 0 0 rgba(255,255,255,.2)}
+.arcade-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
+  animation:scan 3.5s linear infinite;
+  opacity:.25;
+}
+@keyframes scan{
+  from{transform:translateX(-120%)}
+  to{transform:translateX(120%)}
+}
+.arcade-title{
+  font-size:13px;
+  letter-spacing:.24em;
+  margin-bottom:10px;
+}
+.arcade-desc{
+  font-size:13px;
+  opacity:.75;
+  line-height:1.6;
+}
+.arcade-icon{
+  position:absolute;
+  top:18px;
+  right:20px;
+  font-size:22px;
 }
 
 /* ===== FOOTER ===== */
@@ -273,9 +279,9 @@ footer{
   text-align:center;
   font-size:12px;
   opacity:.45;
-  margin-top:60px;
+  margin-top:80px;
   border-top:1px solid var(--line);
-  padding:30px 20px;
+  padding:40px 20px;
 }
 </style>
 </head>
@@ -293,88 +299,103 @@ footer{
 <div class="spacer"></div>
 
 <main>
-  <h1>TU NIVEL</h1>
-  <div class="subtitle">
-    Esto no es decoración. Es un sistema que premia al que vuelve.
+<h1>TU NIVEL</h1>
+<div class="subtitle">
+Esto es un juego real. Si vienes, subes. Si no, te quedas atrás.
+</div>
+
+<div class="xp-box">
+  <div class="rank" id="rank">BÁSICO</div>
+  <div class="progress"><span id="bar"></span></div>
+  <div class="xp-text" id="xpText"></div>
+</div>
+
+<div class="levels">
+  <div class="level" id="lv1">
+    <h3>BÁSICO</h3>
+    <ul>
+      <li>✔ Acceso al sistema</li>
+      <li>✖ Sin beneficios</li>
+    </ul>
   </div>
 
-  <div class="xp-box">
-    <div class="rank" id="rank">BÁSICO</div>
-    <div class="progress"><span id="bar"></span></div>
-    <div class="xp-text" id="xpText"></div>
+  <div class="level" id="lv2">
+    <h3>PRO</h3>
+    <ul>
+      <li>✔ Prioridad para reservar</li>
+      <li>✔ Festivos incluidos</li>
+    </ul>
   </div>
 
-  <div class="levels">
-    <div class="level active" id="lv1">
-      <h3>BÁSICO</h3>
-      <ul>
-        <li>• Acceso al sistema</li>
-        <li>• Sin beneficios</li>
-      </ul>
-    </div>
+  <div class="level vip" id="lv3">
+    <div class="crown">👑</div>
+    <h3>VIP</h3>
+    <ul>
+      <li>✔ Prioridad total</li>
+      <li>✔ 6 cortes gratis / año</li>
+      <li>✔ Agua / café</li>
+    </ul>
+  </div>
+</div>
 
-    <div class="level" id="lv2">
-      <h3>PRO</h3>
-      <ul>
-        <li>• Prioridad para reservar</li>
-        <li>• Incluye días festivos</li>
-      </ul>
-    </div>
+<div class="missions">
+  <h2>MISIONES</h2>
 
-    <div class="level vip" id="lv3">
-      <div class="crown">👑</div>
-      <h3>VIP</h3>
-      <ul>
-        <li>• Prioridad total</li>
-        <li>• 6 cortes gratis al año</li>
-        <li>• Atención VIP</li>
-      </ul>
-    </div>
+  <div class="mission">
+    <span>Propina opcional (+20 XP)</span>
+    <button onclick="gain(20)">RECLAMAR</button>
   </div>
 
-  <div class="missions">
-    <h2>MISIONES</h2>
-
-    <div class="mission">
-      <span>Propina opcional (+20 XP)</span>
-      <button onclick="gain(20)">RECLAMAR</button>
-    </div>
-
-    <div class="mission">
-      <span>Reservar y asistir 3 veces en un mes (+140 XP)</span>
-      <button onclick="gain(140)">RECLAMAR</button>
-    </div>
-
-    <div class="mission">
-      <span>Mantener nivel activo (+40 XP)</span>
-      <button onclick="gain(40)">RECLAMAR</button>
-    </div>
+  <div class="mission">
+    <span>Reservar y asistir 3 veces en un mes (+140 XP)</span>
+    <button onclick="gain(140)">RECLAMAR</button>
   </div>
 
-  <div class="rewards">
-    <h2>RECOMPENSAS</h2>
-    <div class="reward-grid">
-      <div class="reward active">
-        🎁 -10% en tu próxima visita
-      </div>
-      <div class="reward">
-        🔒 Corte gratis (solo VIP)
-      </div>
-      <div class="reward">
-        ⭐ Bonus mensual activo
-      </div>
-    </div>
+  <div class="mission">
+    <span>Mantener nivel activo (+40 XP)</span>
+    <button onclick="gain(40)">RECLAMAR</button>
   </div>
+</div>
+
+<section class="arcade">
+<h2>ZONA EXCLUSIVA</h2>
+<div class="arcade-grid">
+
+<div class="arcade-card">
+  <div class="arcade-icon">🎟</div>
+  <div class="arcade-title">CUPONES</div>
+  <div class="arcade-desc">Desbloqueables según constancia.</div>
+</div>
+
+<div class="arcade-card">
+  <div class="arcade-icon">🧠</div>
+  <div class="arcade-title">RETOS SECRETOS</div>
+  <div class="arcade-desc">No todos los clientes los ven.</div>
+</div>
+
+<div class="arcade-card">
+  <div class="arcade-icon">🔥</div>
+  <div class="arcade-title">BONUS OCULTO</div>
+  <div class="arcade-desc">Se activa con disciplina mensual.</div>
+</div>
+
+<div class="arcade-card">
+  <div class="arcade-icon">👑</div>
+  <div class="arcade-title">CAMINO VIP</div>
+  <div class="arcade-desc">VIP se gana. No se compra.</div>
+</div>
+
+</div>
+</section>
+
 </main>
 
 <footer>
-  © 2025 Barbería Premium · Sistema de fidelidad
+© 2025 Barbería Premium · Sistema de fidelidad
 </footer>
 
 <script>
-let data = JSON.parse(localStorage.getItem("nivelBarber")) || {
-  xp:0, racha:0
-};
+let data = JSON.parse(localStorage.getItem("nivelGame")) || {xp:0,racha:0};
 
 function update(){
   document.getElementById("xp").textContent = data.xp;
@@ -400,8 +421,11 @@ function update(){
   document.getElementById("rank").textContent=rank;
   document.getElementById("bar").style.width=percent+"%";
   document.getElementById("xpText").textContent=
-    rank==="VIP"?"Nivel máximo alcanzado":"Sigue jugando para subir";
-  localStorage.setItem("nivelBarber",JSON.stringify(data));
+    rank==="VIP"?"Nivel máximo alcanzado":
+    rank==="PRO"?"A 300 XP del VIP":
+    "A 180 XP del PRO";
+
+  localStorage.setItem("nivelGame",JSON.stringify(data));
 }
 
 function gain(x){
