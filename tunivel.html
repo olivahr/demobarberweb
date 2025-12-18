@@ -1,36 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>Tu Nivel | Barbería Premium</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 :root{
-  --bg:#000;
   --glass:rgba(255,255,255,.06);
   --line:rgba(255,255,255,.12);
-  --text:#fff;
-  --muted:rgba(255,255,255,.70);
-  --muted2:rgba(255,255,255,.55);
-  --good:#9affc7;
-  --warn:#fff3b0;
-  --vip:#ffffff;
 }
 
 body{
   font-family:'Inter',system-ui;
-  background: radial-gradient(900px 600px at 50% 0%, rgba(255,255,255,.06), transparent 60%),
-              radial-gradient(900px 600px at 0% 100%, rgba(255,255,255,.05), transparent 60%),
-              #000;
-  color:var(--text);
+  background:#000;
+  color:#fff;
   overflow-x:hidden;
 }
-
-/* anti double tap zoom feel (helps) */
-html, body{ touch-action: manipulation; -webkit-text-size-adjust:100%; }
 
 /* ===== TOP BAR ===== */
 .topbar{
@@ -44,862 +33,302 @@ html, body{ touch-action: manipulation; -webkit-text-size-adjust:100%; }
   border-radius:18px;
   background:rgba(0,0,0,.55);
   backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:0 18px 55px rgba(0,0,0,.65);
+  border:1px solid var(--line);
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  z-index:60;
+  z-index:50;
 }
-.back{
+.topbar a{
   color:#fff;
   text-decoration:none;
-  opacity:.75;
   letter-spacing:.14em;
   font-size:12px;
+  opacity:.75;
 }
-.back:hover{opacity:1}
-.right{
+.topbar a:hover{opacity:1}
+
+.stats{
   display:flex;
-  gap:10px;
-  align-items:center;
-}
-.pill{
-  padding:9px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.06);
+  gap:12px;
   font-size:11px;
   letter-spacing:.14em;
-  opacity:.9;
 }
-.pill strong{opacity:1}
-.spacer{height:110px}
+.stats span{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--glass);
+}
 
-/* ===== HERO / HUD ===== */
-.hud{
-  padding:18px 20px 0;
+/* ===== SPACER ===== */
+.spacer{height:120px}
+
+/* ===== MAIN ===== */
+main{
   max-width:1100px;
-  margin:0 auto;
+  margin:auto;
+  padding:20px;
 }
-.title{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:18px;
+
+h1{
+  font-size:42px;
+  letter-spacing:.28em;
+  margin-bottom:6px;
 }
-.title h1{
-  font-size:clamp(28px, 5vw, 46px);
-  letter-spacing:.26em;
-  font-weight:800;
-  text-transform:uppercase;
-}
+
 .subtitle{
   opacity:.65;
-  font-size:13px;
-  line-height:1.45;
-}
-.glowline{
-  height:1px;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
-  margin:18px 0 22px;
+  font-size:14px;
+  margin-bottom:30px;
 }
 
-/* ===== HUD CARDS GRID ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(12, 1fr);
-  gap:16px;
-}
-.card{
+/* ===== XP ===== */
+.xp-box{
   background:var(--glass);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:22px;
-  padding:18px;
-  box-shadow:0 20px 60px rgba(0,0,0,.55);
-  position:relative;
-  overflow:hidden;
-}
-.card::after{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background:radial-gradient(500px 180px at 20% 0%, rgba(255,255,255,.12), transparent 60%);
-  pointer-events:none;
-  opacity:.6;
-}
-.col-7{grid-column:span 7}
-.col-5{grid-column:span 5}
-.col-6{grid-column:span 6}
-.col-12{grid-column:span 12}
-
-@media (max-width:900px){
-  .col-7,.col-5,.col-6{grid-column:span 12}
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  margin-bottom:30px;
+  box-shadow:0 0 60px rgba(255,255,255,.06);
 }
 
-/* ===== XP BAR ===== */
-.xpRow{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:12px;
-}
 .rank{
   font-weight:800;
   letter-spacing:.18em;
-  text-transform:uppercase;
-  font-size:13px;
+  margin-bottom:10px;
 }
-.xp{
-  font-size:12px;
-  opacity:.72;
-  letter-spacing:.12em;
-}
-.bar{
-  height:12px;
-  width:100%;
+
+.progress{
+  height:14px;
+  background:rgba(255,255,255,.15);
   border-radius:999px;
-  background:rgba(255,255,255,.12);
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.08);
 }
-.fill{
+
+.progress span{
+  display:block;
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#fff,#bdbdbd,#fff);
-  border-radius:999px;
-  box-shadow:0 0 18px rgba(255,255,255,.18);
-  transition:width .9s cubic-bezier(.2,.9,.2,1);
+  background:linear-gradient(90deg,#fff,#bbb,#fff);
+  transition:width .8s ease;
+  box-shadow:0 0 25px rgba(255,255,255,.3);
 }
-.mini{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-  flex-wrap:wrap;
-}
-.tag{
-  padding:8px 10px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(0,0,0,.25);
-  font-size:11px;
-  letter-spacing:.10em;
-  opacity:.9;
-}
-.tag b{opacity:1}
 
-/* ===== MISSION LIST ===== */
-.mHead{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:14px;
+.xp-text{
+  margin-top:10px;
+  font-size:12px;
+  opacity:.7;
+}
+
+/* ===== LEVELS ===== */
+.levels{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  margin-bottom:40px;
+}
+
+.level{
+  background:rgba(0,0,0,.35);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:20px;
+  position:relative;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.level.active{
+  outline:2px solid rgba(255,255,255,.6);
+  box-shadow:0 0 70px rgba(255,255,255,.15);
+}
+
+.level h3{
+  letter-spacing:.2em;
+  font-size:14px;
   margin-bottom:12px;
 }
-.mHead h3{
+
+.level ul{
+  list-style:none;
   font-size:13px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
+  opacity:.75;
+  line-height:1.6;
 }
-.mHead span{
-  font-size:12px;
-  opacity:.65;
+
+/* ===== MISSIONS ===== */
+.missions{
+  background:var(--glass);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
 }
+
+.missions h2{
+  font-size:14px;
+  letter-spacing:.24em;
+  margin-bottom:14px;
+}
+
 .mission{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:12px;
-  padding:14px 12px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(0,0,0,.25);
-  margin-bottom:10px;
-  transition:transform .25s ease, border-color .25s ease, background .25s ease;
-}
-.mission:hover{
-  transform:translateY(-1px);
-  border-color:rgba(255,255,255,.18);
-  background:rgba(255,255,255,.06);
-}
-.mText{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-.mText strong{
-  font-size:13px;
-  letter-spacing:.06em;
-}
-.mText small{
-  font-size:12px;
-  opacity:.65;
-}
-.mBtn{
-  border:none;
-  cursor:pointer;
-  padding:11px 14px;
-  border-radius:999px;
-  background:#fff;
-  color:#000;
-  font-weight:700;
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  transition:transform .12s ease;
-}
-.mBtn:active{transform:scale(.98)}
-.mBtn[disabled]{
-  opacity:.35;
-  cursor:not-allowed;
-}
-
-/* ===== LEVELS ===== */
-.levelsWrap h3{
-  font-size:13px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  margin-bottom:12px;
-}
-.lGrid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:14px;
-}
-@media (max-width:900px){ .lGrid{grid-template-columns:1fr} }
-
-.levelCard{
-  border-radius:20px;
-  padding:18px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(0,0,0,.25);
-  position:relative;
-  overflow:hidden;
-}
-.levelCard::before{
-  content:"";
-  position:absolute;
-  inset:-1px;
-  background:radial-gradient(360px 180px at 30% 0%, rgba(255,255,255,.10), transparent 60%);
-  opacity:.6;
-  pointer-events:none;
-}
-.levelCard h4{
-  letter-spacing:.20em;
-  text-transform:uppercase;
-  font-size:13px;
-  margin-bottom:10px;
-}
-.levelCard ul{
-  list-style:none;
-  opacity:.75;
-  font-size:13px;
-  line-height:1.6;
-}
-.levelCard ul li{margin-bottom:6px}
-.now{
-  outline:2px solid rgba(255,255,255,.45);
-  box-shadow:0 0 60px rgba(255,255,255,.10);
-}
-.badge{
-  position:absolute;
-  top:14px;
-  right:14px;
-  padding:7px 10px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.06);
-  font-size:10px;
-  letter-spacing:.14em;
-  opacity:.85;
-}
-
-/* ===== ACHIEVEMENTS ===== */
-.achHead{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:flex-end;
-  margin-bottom:12px;
-}
-.achHead h3{
-  font-size:13px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-}
-.achHead span{
-  font-size:12px;
-  opacity:.65;
-}
-.ach{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:12px;
-}
-@media (max-width:900px){ .ach{grid-template-columns:1fr} }
-.achItem{
-  border-radius:18px;
   padding:14px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(0,0,0,.25);
-  opacity:.55;
-  transform:translateY(10px);
-  transition:opacity .35s ease, transform .35s ease, border-color .35s ease;
-}
-.achItem.on{
-  opacity:1;
-  transform:translateY(0);
-  border-color:rgba(255,255,255,.18);
-}
-.achItem strong{
-  display:block;
-  font-size:12px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  margin-bottom:6px;
-}
-.achItem small{opacity:.7; font-size:12px}
-
-/* ===== TOAST / POPUP ===== */
-.toast{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:18px;
-  width:calc(100% - 36px);
-  max-width:520px;
-  padding:14px 16px;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(0,0,0,.70);
-  backdrop-filter:blur(18px);
-  box-shadow:0 20px 60px rgba(0,0,0,.65);
-  display:none;
-  z-index:100;
+  border:1px solid var(--line);
+  margin-bottom:12px;
 }
-.toast.show{display:flex}
-.toast b{letter-spacing:.12em}
-.toast span{opacity:.75; margin-left:8px}
 
-/* ===== CUPOS FLOAT (LIKE INDEX STYLE) ===== */
-.cupos{
-  position:fixed;
-  bottom:22px;
-  right:22px;
-  background:rgba(20,20,20,.90);
-  border:1px solid rgba(255,255,255,.15);
-  backdrop-filter:blur(14px);
-  padding:16px 18px;
-  border-radius:18px;
-  box-shadow:0 20px 40px rgba(0,0,0,.60);
-  z-index:90;
-  animation:pulse 2.2s infinite;
-  width:260px;
-}
-.cupos strong{
-  display:block;
-  font-size:12px;
-  letter-spacing:.14em;
-  margin-bottom:6px;
-}
-.cupos span{
-  font-size:12px;
+.mission span{
+  font-size:13px;
   opacity:.7;
 }
-.cerrar{
-  position:absolute;
-  top:10px;
-  right:12px;
+
+.mission button{
+  background:#fff;
+  color:#000;
+  border:none;
+  padding:10px 16px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
   cursor:pointer;
-  font-size:14px;
-  opacity:.65;
-}
-@keyframes pulse{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-2px)}
-  100%{transform:translateY(0)}
 }
 
-/* ===== CONFETTI CANVAS ===== */
-#fx{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:120;
+.mission button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
 }
 
 /* ===== FOOTER ===== */
 footer{
-  padding:40px 20px;
   text-align:center;
   font-size:12px;
-  opacity:.45;
-  border-top:1px solid rgba(255,255,255,.08);
+  opacity:.4;
   margin-top:60px;
+  border-top:1px solid var(--line);
+  padding:30px 20px;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="fx"></canvas>
-
 <div class="topbar">
-  <a class="back" href="index.html">← INICIO</a>
-  <div class="right">
-    <div class="pill">RACHA: <strong id="streak">0</strong>🔥</div>
-    <div class="pill">XP: <strong id="xp">0</strong></div>
+  <a href="index.html">← INICIO</a>
+  <div class="stats">
+    <span>XP: <b id="xp">0</b></span>
+    <span>RACHA: <b id="racha">0</b></span>
   </div>
 </div>
 
 <div class="spacer"></div>
 
-<section class="hud">
-  <div class="title">
-    <div>
-      <h1>TU NIVEL</h1>
-      <div class="subtitle">Esto es un juego: más visitas = más privilegios. Mantente VIP y ganas beneficios reales.</div>
-    </div>
-    <div class="subtitle" id="rankLine">Cargando estado…</div>
+<main>
+  <h1>TU NIVEL</h1>
+  <div class="subtitle">
+    Esto no es un adorno. Mientras más vienes, más privilegios reales tienes.
   </div>
-  <div class="glowline"></div>
 
-  <div class="grid">
-
-    <!-- XP / PROGRESS -->
-    <div class="card col-7">
-      <div class="xpRow">
-        <div class="rank" id="rank">INTERMEDIO</div>
-        <div class="xp" id="next">FALTAN 0 XP PARA VIP</div>
-      </div>
-
-      <div class="bar"><div class="fill" id="fill"></div></div>
-
-      <div class="mini">
-        <div class="tag">BONO VIP: <b>6 cortes gratis/año</b></div>
-        <div class="tag">PRIORIDAD: <b>festivos incluidos</b></div>
-        <div class="tag">EXTRA: <b>agua / café</b></div>
-      </div>
-    </div>
-
-    <!-- MISSIONS -->
-    <div class="card col-5">
-      <div class="mHead">
-        <h3>MISIONES</h3>
-        <span id="missionsHint">Completa para subir rápido</span>
-      </div>
-
-      <div class="mission">
-        <div class="mText">
-          <strong>Asistir a tu cita</strong>
-          <small>+120 XP (lo confirma el barbero)</small>
-        </div>
-        <button class="mBtn" id="mVisit">RECLAMAR</button>
-      </div>
-
-      <div class="mission">
-        <div class="mText">
-          <strong>Propina (opcional)</strong>
-          <small>+20 XP (no es obligado)</small>
-        </div>
-        <button class="mBtn" id="mTip">RECLAMAR</button>
-      </div>
-
-      <div class="mission">
-        <div class="mText">
-          <strong>Reservar esta semana</strong>
-          <small>+60 XP (mantén tu racha)</small>
-        </div>
-        <button class="mBtn" id="mBook">RECLAMAR</button>
-      </div>
-    </div>
-
-    <!-- LEVELS -->
-    <div class="card col-12 levelsWrap">
-      <h3>BENEFICIOS POR NIVEL</h3>
-
-      <div class="lGrid">
-        <div class="levelCard" id="lv1">
-          <div class="badge">NIVEL 1</div>
-          <h4>BÁSICO</h4>
-          <ul>
-            <li>✔ Reservación normal</li>
-            <li>✔ Acumulas puntos</li>
-            <li>✔ Acceso al sistema</li>
-          </ul>
-        </div>
-
-        <div class="levelCard" id="lv2">
-          <div class="badge">NIVEL 2</div>
-          <h4>INTERMEDIO</h4>
-          <ul>
-            <li>✔ Prioridad para reservar</li>
-            <li>✔ Acceso preferente en horarios llenos</li>
-            <li>✔ Puntos se acumulan más rápido</li>
-          </ul>
-        </div>
-
-        <div class="levelCard" id="lv3">
-          <div class="badge">VIP</div>
-          <h4>VIP</h4>
-          <ul>
-            <li>✔ Prioridad incluso en días festivos</li>
-            <li>✔ 6 cortes GRATIS al año (usar cuando quieras)</li>
-            <li>✔ Atención VIP (agua / café)</li>
-            <li>✔ Reservaciones preferenciales</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- ACHIEVEMENTS -->
-    <div class="card col-12">
-      <div class="achHead">
-        <h3>LOGROS</h3>
-        <span>Esto es lo que envicia</span>
-      </div>
-
-      <div class="ach">
-        <div class="achItem" id="a1">
-          <strong>PRIMERA VICTORIA</strong>
-          <small>Gana tus primeros 100 XP.</small>
-        </div>
-        <div class="achItem" id="a2">
-          <strong>RACHA 🔥</strong>
-          <small>Reserva 3 veces en la semana.</small>
-        </div>
-        <div class="achItem" id="a3">
-          <strong>MODO VIP</strong>
-          <small>Alcanza nivel VIP.</small>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="card col-12" style="text-align:center">
-      <div style="letter-spacing:.22em; text-transform:uppercase; font-size:13px; opacity:.85; margin-bottom:10px;">
-        SUBE DE NIVEL
-      </div>
-      <div style="opacity:.65; font-size:14px; margin-bottom:18px;">
-        Mantente VIP y tienes prioridad de reserva + beneficios reales.
-      </div>
-      <a href="propinas.html" class="mBtn" style="display:inline-block; text-decoration:none; padding:14px 18px;">
-        IR A PROPINAS
-      </a>
-    </div>
-
+  <div class="xp-box">
+    <div class="rank" id="rank">BÁSICO</div>
+    <div class="progress"><span id="bar"></span></div>
+    <div class="xp-text" id="xpText"></div>
   </div>
-</section>
+
+  <div class="levels">
+    <div class="level" id="lv1">
+      <h3>BÁSICO</h3>
+      <ul>
+        <li>• Sin beneficios</li>
+        <li>• Solo acceso al sistema</li>
+      </ul>
+    </div>
+
+    <div class="level" id="lv2">
+      <h3>PRO</h3>
+      <ul>
+        <li>• Racha de 3 reservaciones al mes</li>
+        <li>• Prioridad para reservar</li>
+      </ul>
+    </div>
+
+    <div class="level" id="lv3">
+      <h3>VIP</h3>
+      <ul>
+        <li>• Prioridad total (festivos incluidos)</li>
+        <li>• 6 cortes gratis al año</li>
+        <li>• Atención VIP (agua / café)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="missions">
+    <h2>MISIONES</h2>
+
+    <div class="mission">
+      <span>Asistir a tu cita (+120 XP)</span>
+      <button onclick="gain(120)">RECLAMAR</button>
+    </div>
+
+    <div class="mission">
+      <span>Reservar este mes (+80 XP)</span>
+      <button onclick="gain(80)">RECLAMAR</button>
+    </div>
+
+    <div class="mission">
+      <span>Propina opcional (+20 XP)</span>
+      <button onclick="gain(20)">RECLAMAR</button>
+    </div>
+  </div>
+</main>
 
 <footer>
-  ©️ 2025 Barbería Premium · Sistema de fidelidad
+  © 2025 Barbería Premium · Sistema de fidelidad
 </footer>
 
-<!-- FLOAT CUPOS (puedes quitarlo si no lo quieres aquí) -->
-<div class="cupos" id="cupos">
-  <div class="cerrar" onclick="document.getElementById('cupos').style.display='none'">✕</div>
-  <strong>QUEDAN 3 CUPOS</strong>
-  <span>Disponibles esta semana</span>
-</div>
-
-<div class="toast" id="toast">
-  <b id="toastTitle">+XP</b><span id="toastText">Actualizado</span>
-</div>
-
 <script>
-/* =========================
-   SISTEMA JUEGO (LOCAL)
-   Guarda progreso por dispositivo.
-========================= */
-
-const SKEY = "barber_game_v1";
-const now = () => Date.now();
-
-const DEFAULT = {
-  xp: 180,
-  streak: 0,
-  weekBookings: 0,
-  lastBookingDay: 0,
-  lastTipDay: 0,
-  lastVisitDay: 0,
-  cuposHidden: false
+let data = JSON.parse(localStorage.getItem("nivelBarber")) || {
+  xp: 0,
+  racha: 0
 };
 
-function loadState(){
-  try{
-    const raw = localStorage.getItem(SKEY);
-    if(!raw) return {...DEFAULT};
-    const s = JSON.parse(raw);
-    return {...DEFAULT, ...s};
-  }catch(e){
-    return {...DEFAULT};
-  }
-}
-function saveState(s){
-  localStorage.setItem(SKEY, JSON.stringify(s));
-}
+function update(){
+  document.getElementById("xp").textContent = data.xp;
+  document.getElementById("racha").textContent = data.racha;
 
-function dayId(t=Date.now()){
-  const d = new Date(t);
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-}
+  let rank = "BÁSICO";
+  let percent = Math.min(100, data.xp / 5);
 
-/* =========================
-   NIVELES Y XP
-========================= */
-function getRank(xp){
-  if(xp < 100) return {name:"BÁSICO", level:1, next:100};
-  if(xp < 400) return {name:"INTERMEDIO", level:2, next:400};
-  return {name:"VIP", level:3, next:900}; // next cap visual
-}
-function percentToNext(xp){
-  const r = getRank(xp);
-  if(r.level === 1){
-    return Math.min(100, (xp / 100) * 100);
-  }
-  if(r.level === 2){
-    return Math.min(100, ((xp - 100) / (400 - 100)) * 100);
-  }
-  return 100;
-}
+  document.querySelectorAll(".level").forEach(l=>l.classList.remove("active"));
 
-/* =========================
-   UI
-========================= */
-const elXP = document.getElementById("xp");
-const elStreak = document.getElementById("streak");
-const elRank = document.getElementById("rank");
-const elNext = document.getElementById("next");
-const elFill = document.getElementById("fill");
-const elRankLine = document.getElementById("rankLine");
-
-const lv1 = document.getElementById("lv1");
-const lv2 = document.getElementById("lv2");
-const lv3 = document.getElementById("lv3");
-
-const a1 = document.getElementById("a1");
-const a2 = document.getElementById("a2");
-const a3 = document.getElementById("a3");
-
-const toast = document.getElementById("toast");
-const toastTitle = document.getElementById("toastTitle");
-const toastText = document.getElementById("toastText");
-
-function showToast(title, text){
-  toastTitle.textContent = title;
-  toastText.textContent = text;
-  toast.classList.add("show");
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(()=>toast.classList.remove("show"), 2200);
-}
-
-/* =========================
-   FX: Confetti + tiny sound
-========================= */
-const canvas = document.getElementById("fx");
-const ctx = canvas.getContext("2d");
-function resize(){
-  canvas.width = innerWidth * devicePixelRatio;
-  canvas.height = innerHeight * devicePixelRatio;
-}
-addEventListener("resize", resize);
-resize();
-
-let conf = [];
-function popConfetti(){
-  const count = 120;
-  conf = [];
-  for(let i=0;i<count;i++){
-    conf.push({
-      x: (Math.random()*innerWidth) * devicePixelRatio,
-      y: (-20 - Math.random()*200) * devicePixelRatio,
-      vx: (-1 + Math.random()*2) * devicePixelRatio * 1.2,
-      vy: (2 + Math.random()*5) * devicePixelRatio,
-      r: (2 + Math.random()*4) * devicePixelRatio,
-      rot: Math.random()*Math.PI,
-      vr: (-.2 + Math.random()*.4),
-      life: 140 + Math.random()*80
-    });
-  }
-  renderConfetti();
-  beep();
-}
-function renderConfetti(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  conf.forEach(p=>{
-    p.x += p.vx;
-    p.y += p.vy;
-    p.rot += p.vr;
-    p.vy *= 1.005;
-    p.life -= 1;
-
-    ctx.save();
-    ctx.translate(p.x,p.y);
-    ctx.rotate(p.rot);
-    ctx.globalAlpha = Math.max(0, Math.min(1, p.life/200));
-    ctx.fillStyle = "rgba(255,255,255,.95)";
-    ctx.fillRect(-p.r, -p.r, p.r*2.2, p.r*1.2);
-    ctx.restore();
-  });
-  conf = conf.filter(p=>p.life>0 && p.y < canvas.height+200);
-  if(conf.length) requestAnimationFrame(renderConfetti);
-  else ctx.clearRect(0,0,canvas.width,canvas.height);
-}
-function beep(){
-  try{
-    const ac = new (window.AudioContext||window.webkitAudioContext)();
-    const o = ac.createOscillator();
-    const g = ac.createGain();
-    o.type = "sine";
-    o.frequency.value = 880;
-    g.gain.value = 0.03;
-    o.connect(g); g.connect(ac.destination);
-    o.start();
-    setTimeout(()=>{ o.frequency.value = 660; }, 60);
-    setTimeout(()=>{ o.stop(); ac.close(); }, 140);
-  }catch(e){}
-}
-
-/* =========================
-   Achievements
-========================= */
-function updateAchievements(s){
-  if(s.xp >= 100) a1.classList.add("on");
-  if(s.weekBookings >= 3) a2.classList.add("on");
-  if(getRank(s.xp).level === 3) a3.classList.add("on");
-}
-
-/* =========================
-   Render
-========================= */
-function render(s, justLeveledUp=false){
-  const r = getRank(s.xp);
-
-  elXP.textContent = s.xp;
-  elStreak.textContent = s.streak;
-
-  elRank.textContent = r.name;
-  elFill.style.width = `${percentToNext(s.xp)}%`;
-
-  // line text
-  if(r.level === 3){
-    elNext.textContent = "MODO VIP ACTIVO";
-    elRankLine.textContent = `VIP activo: prioridad + beneficios reales (6 cortes gratis/año).`;
+  if(data.xp >= 400){
+    rank = "VIP";
+    document.getElementById("lv3").classList.add("active");
+  }else if(data.xp >= 150){
+    rank = "PRO";
+    document.getElementById("lv2").classList.add("active");
   }else{
-    const need = (r.next - s.xp);
-    elNext.textContent = `FALTAN ${need} XP PARA ${r.level===1 ? "INTERMEDIO" : "VIP"}`;
-    elRankLine.textContent = `Nivel ${r.level} · Racha ${s.streak} · Reservas semana: ${s.weekBookings}`;
+    document.getElementById("lv1").classList.add("active");
   }
 
-  // highlight level card
-  [lv1,lv2,lv3].forEach(x=>x.classList.remove("now"));
-  if(r.level===1) lv1.classList.add("now");
-  if(r.level===2) lv2.classList.add("now");
-  if(r.level===3) lv3.classList.add("now");
+  document.getElementById("rank").textContent = rank;
+  document.getElementById("bar").style.width = percent + "%";
+  document.getElementById("xpText").textContent = rank === "VIP"
+    ? "Nivel máximo alcanzado"
+    : "Sigue viniendo para subir de nivel";
 
-  updateAchievements(s);
-
-  if(justLeveledUp){
-    popConfetti();
-    showToast("SUBISTE DE NIVEL", "Modo más exclusivo desbloqueado.");
-  }
+  localStorage.setItem("nivelBarber", JSON.stringify(data));
 }
 
-/* =========================
-   Claim buttons logic (no backend)
-   Simula el sistema; luego se conecta.
-========================= */
-const mVisit = document.getElementById("mVisit");
-const mTip  = document.getElementById("mTip");
-const mBook = document.getElementById("mBook");
-
-function disableIfUsedToday(btn, lastDay){
-  const today = dayId();
-  if(lastDay === today){
-    btn.disabled = true;
-    btn.textContent = "HECHO";
-  }else{
-    btn.disabled = false;
-    btn.textContent = "RECLAMAR";
-  }
+function gain(x){
+  data.xp += x;
+  if(x >= 80) data.racha++;
+  update();
 }
 
-function addXP(s, amount){
-  const before = getRank(s.xp).level;
-  s.xp += amount;
-  const after = getRank(s.xp).level;
-  saveState(s);
-  render(s, after>before);
-  showToast(`+${amount} XP`, "Progreso guardado.");
-}
-
-function init(){
-  const s = loadState();
-
-  // restore cupos hidden choice
-  const cupos = document.getElementById("cupos");
-  if(s.cuposHidden && cupos) cupos.style.display="none";
-  const close = cupos?.querySelector(".cerrar");
-  if(close){
-    close.onclick = ()=>{
-      cupos.style.display="none";
-      s.cuposHidden = true;
-      saveState(s);
-    };
-  }
-
-  // setup daily disables
-  disableIfUsedToday(mVisit, s.lastVisitDay);
-  disableIfUsedToday(mTip, s.lastTipDay);
-  disableIfUsedToday(mBook, s.lastBookingDay);
-
-  // events
-  mVisit.addEventListener("click", ()=>{
-    const today = dayId();
-    if(s.lastVisitDay === today) return;
-    s.lastVisitDay = today;
-    addXP(s, 120);
-    disableIfUsedToday(mVisit, s.lastVisitDay);
-  });
-
-  mTip.addEventListener("click", ()=>{
-    const today = dayId();
-    if(s.lastTipDay === today) return;
-    s.lastTipDay = today;
-    addXP(s, 20);
-    disableIfUsedToday(mTip, s.lastTipDay);
-  });
-
-  mBook.addEventListener("click", ()=>{
-    const today = dayId();
-    if(s.lastBookingDay === today) return;
-
-    // streak logic
-    const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
-    const yId = dayId(yesterday.getTime());
-    if(s.lastBookingDay === yId) s.streak += 1;
-    else s.streak = 1;
-
-    s.lastBookingDay = today;
-    s.weekBookings += 1;
-
-    addXP(s, 60);
-    disableIfUsedToday(mBook, s.lastBookingDay);
-
-    // achievement toast
-    if(s.weekBookings === 3){
-      popConfetti();
-      showToast("LOGRO DESBLOQUEADO", "Racha 🔥: 3 reservas esta semana.");
-    }
-  });
-
-  // initial render
-  render(s, false);
-}
-init();
+update();
 </script>
 
 </body>
